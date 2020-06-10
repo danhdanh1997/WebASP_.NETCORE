@@ -1,0 +1,106 @@
+﻿@model ShopMartWebsite.Models.CategoryViewModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@if (@Model != null)
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <h5 class="modal-title">
+                @if (Model.Id > 0)
+                {
+                    <span>Chỉnh sửa danh mục</span>
+                }
+                else
+                {
+                    <span>Thêm danh mục</span>
+                }
+
+            </h5>
+
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <!--Thêm value để Edit-->
+            <form id="actionForm">
+                
+                <input type="hidden" name="ID" value="@Model.Id" />
+                <div class="form-group">
+                    <label>Tên danh mục</label>
+                    <input class="form-control" name="Name" placeholder="Tên danh mục..." value="@Model.Name">
+                </div>
+
+
+
+            </form>
+            <div class="errorDiv">
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="actionButton" type="button" class="btn btn-primary"><i class="fas fa-save mr-1"></i> Save</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times mr-1"></i> Close</button>
+        </div>
+    </div>
+}
+    <script>
+    //Create
+    $('#actionButton').click(function () {
+        $.ajax({
+            url: '@Url.Action("Action","Category")',
+            type: 'post',
+            data: $('#actionForm').serialize()
+        }).done(function (response) {
+            if (response.Success) {
+                if (response.Type == "edit") {
+                    swal({
+                        title: "Chúc mừng!!!",
+                        text: "Cập nhập Danh mục thành công!",
+                        icon: "success",
+                        buttons: "OK"
+
+                    })
+                        .then((willDelete) => {
+                            location.reload();
+                        });
+                }
+                else {
+                    swal({
+                        title: "Chúc mừng!!!",
+                        text: "Thêm Danh mục thành công!",
+                        icon: "success",
+                        buttons: "OK"
+
+                    })
+                        .then((willDelete) => {
+                            location.reload();
+                        });
+                }
+
+            }
+            else {
+                if (response.Type == "create") {
+                    swal({
+                        title: "Cảnh báo!!!",
+                        text: "Xin vui lòng điền tên Danh mục!",
+                        icon: "warning",
+                        buttons: "OK"
+                    })
+                }
+                else {
+                    swal({
+                        title: "Cảnh báo!!!",
+                        text: "Cập nhập Danh mục thất bại!",
+                        icon: "warning",
+                        buttons: "OK"
+                    })
+                }
+                
+            }
+        });
+            
+    });
+
+    </script>

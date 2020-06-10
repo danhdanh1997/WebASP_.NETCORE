@@ -1,0 +1,92 @@
+﻿@model ShopMartWebsite.Models.UserViewModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h5 class="modal-title">
+            @if (Model.Lockout == "true")
+            {
+                <span>Khóa Tài khoản</span>
+            }
+            else
+            {
+                <span>Mở Tài khoản</span>
+            }
+            
+        </h5>
+
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    <div class="modal-body">
+        <!--Thêm value để Edit-->
+        <form id="actionForm">
+            <input type="hidden" name="ID" value="@Model.id" />
+            <input type="hidden" name="Lockout" value="@Model.Lockout" />
+        </form>
+        @if (Model.Lockout == "true")
+        {
+            <div class="alert alert-danger" role="alert">
+                Khóa Tài khoản này?
+            </div>
+
+
+
+        }
+        else
+        {
+            <div class="alert alert-success" role="alert">
+                Mở khóa Tài khoản này?
+            </div>
+
+
+
+
+        }
+        <div class="modal-footer">
+            <button id="actionButton" type="button" class="btn btn-success"><i class="fas fa-trash-alt mr-1"></i> OK</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times mr-1"></i> Close</button>
+        </div>
+    </div>
+</div>
+<script>
+    //Create
+    $('#actionButton').click(function () {
+        console.log($('#actionForm').serialize());
+        $.ajax({
+                url: '@Url.Action("Lockout", "User")',
+            type: 'post',
+            data: $('#actionForm').serialize()
+        }).done(function (response) {
+                if (response.Success) {
+                    //data is saved .... reload listing
+                    swal({
+                        title: "Chúc mừng!!!",
+                        text: "Khóa thành công!",
+                        icon: "success",
+                        buttons: "OK"
+
+                    })
+                        .then((willDelete) => {
+                            window.location.href = '@Url.Action("Index", "User")';
+                        });
+                    
+                }
+                else {
+                    swal({
+                        title: "Chúc mừng!!!",
+                        text: "Mở khóa thành công!",
+                        icon: "success",
+                        buttons: "OK"
+
+                    }).then((willDelete) => {
+                            window.location.href = '@Url.Action("Index", "User")';
+                        });
+                }
+            });
+        });
+
+</script>

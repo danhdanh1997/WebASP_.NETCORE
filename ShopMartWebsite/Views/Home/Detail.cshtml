@@ -1,0 +1,467 @@
+﻿@model ShopMartWebsite.Models.ProductViewModel;
+@using ShopMartWebsite.Entities;
+@inject UserManager<User> userManager;
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<link href="~/lib/OwlCarousel2/assets/owl.carousel.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<style>
+    .item {
+        border-radius: 10px;
+        background: #f3f3f5;
+        height: 200px;
+        display: flex;
+        color: #eb6f21;
+    }
+    .owl-carousel a:hover {
+        color: green;
+        text-decoration: none;
+    }
+        .item img {
+            border-radius: 10px;
+        }
+    .slide-area div.owl-nav{
+        color: green;
+        display: inline-block;
+        font-size: 55px;
+        
+        margin-top: -30px;
+        
+        text-align: center;
+        transition: 0.3s;
+    }
+    
+        .owl-prev, .owl-next{
+        position: absolute;
+    }
+            .owl-prev:hover, .owl-next:hover {
+                background: white;
+                color: black;
+            }
+    
+    .owl-prev {
+        left: -40px;
+        bottom: 88px;
+    }
+    .owl-next {
+        right: -40px;
+        bottom: 88px;
+    }
+</style>
+<main>
+    <div class="product-detail">
+            <h4 style="margin-left: 10%; text-decoration:solid;">Xem chi tiết sản phẩm</h4><br />
+            <div class="container-product">
+                
+                <div class="product-view-area">
+                    <div class="product-detail-left">
+                        <div class="large-image">
+                            <img src="~/images/site/@Model.image" alt="">
+                        </div>
+                    </div>
+                    <div class="product-detail-right">
+                        <div class="wrap-right">
+                            <div class="product-name">
+                                <h3>@Model.name</h3>
+                            </div>
+                            <hr />
+                            <div class="price-box">
+                                <h5>Giá:</h5>
+                                <p class="special-price">@Model.price VNĐ</p>
+                                <hr />
+                                <h5>Số lượng còn: </h5>
+                                <span class="special-price">@Model.amount sản phẩm</span>
+                                <input type="hidden" id="amount" value="@Model.amount">
+                            </div>
+                            <hr />
+                            <div class="description">
+                                <h5>Mô tả:</h5>
+                                <p>
+                                    @Model.description
+                                </p>
+                            </div>
+                            <hr />
+                            <div class="color-size">
+                                <div class="color-area">
+                                    <h5>Màu sắc:</h5>
+                                    <div class="color">
+                                        @if (Model.color != null)
+                                        {
+                                            <ul>
+                                                <li style="background-color: @(Model.color)"><a href="#"></a></li>
+
+                                            </ul>
+                                        }
+
+                                    </div>
+                                </div>
+                                <div class="size-area">
+                                    <h5>Size:</h5>
+                                    <div class="size">
+                                        <ul>
+                                            @if (Model.size != null)
+                                            {
+                                                <li><a href="#">@Model.size</a></li>
+                                            }
+                                            else
+                                            {
+                                                <span>Không</span>
+                                            }
+                                            @*                             <li><a href="#">S</a></li>
+                                    <li><a href="#">L</a></li>
+                                    <li><a href="#">M</a></li>
+                                    <li><a href="#">XL</a></li>*@
+
+                                        </ul>
+                                    </div>
+                                </div>
+                            </div>
+                            <hr />
+                            <div class="product-variation">
+                                <form>
+                                    <label>Số lượng: </label>
+                                    <div class="cart-plus-minus">
+
+                                        <div class="numbers-row">
+                                            <div class="minus" data-id="@Model.id">
+                                                <i class="fas fa-minus"></i>
+                                            </div>
+                                            <input type="text" id="quantity" value="1">
+                                            <div class="plus">
+                                                <i class="fas fa-plus" data-id="@Model.id"></i>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="btn-add-cart">
+                                        <a id="addCartBtn" data-id="@Model.id" data-name="@Model.name"
+                                           data-description="@Model.description" data-image="@Model.image" data-category="@Model.category.name"
+                                           data-color="@Model.color" data-size="@Model.size" data-price="@Model.price" data-amount="@Model.amount">
+                                            <span>
+                                                <i class="fas fa-shopping-basket"> Thêm giỏ hàng</i>
+                                            </span>
+                                        </a>
+
+
+                                    </div>
+                                    <div class="btn-add-cart">
+                                        <a href="@Url.Action("Cart","Home")" style="border: 1px solid green; background-color:darkgreen;">
+                                            <span>
+                                                <i class="fas fa-shopping-basket"> Xem giỏ hàng</i>
+                                            </span>
+                                        </a>
+                                    </div>
+                                </form>
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!---->
+        @if (Model.ProductsOfCategory.Count() > 0)
+        {
+            <div class="slide-area" style="width: 100%;">
+                <div style="width: 80%; margin: 0 auto;"><h3>Các sản phẩm liên quan</h3><hr /></div>
+
+                <div class="owl-carousel owl-theme" style="width: 80%; margin: 0 auto;">
+                    @foreach (var i in Model.ProductsOfCategory)
+                    {
+                        <a asp-controller="Home" asp-action="Detail" asp-route-productID="@i.id">
+                            <div class="item">
+                                <div style="flex-basis: 60%; padding: 10px;">
+                                    <img height="180" src="~/images/site/@i.image" />
+                                </div>
+
+                                <div style="flex-basis: 40%; padding: 10px;">
+                                    <h6>@i.name</h6>
+                                    <p><span>Giá: </span>@i.price</p>
+                                    <p>@i.category.name</p>
+                                </div>
+                            </div>
+                        </a>
+                    }
+
+
+
+                </div>
+            </div>
+        }
+        else
+        {
+
+        }
+        <!---->
+        <div class="comment-area" style=" width: 80%; margin: 0 auto;">
+            <h3 style="margin: 20px;">Các đánh giá</h3>
+            <div class="comment-box" style="width: 60%;  margin: 20px;">
+                <form class="comment-form" asp-action="Comment" asp-controller="Home">
+                    @*
+                    <input name="user" type="hidden" value="@await userManager.FindByNameAsync(User.Identity.Name)"/>
+                    *@
+                    <input name="productId" type="hidden" value="@Model.id" />
+                    <textarea name="content" class="form-control"></textarea>
+                    <button class="btn btn-primary" style="margin-top: 3px;" type="submit">bình luận</button>
+                </form>
+            </div>
+            <!-- comment-->
+            @foreach (var cmt in Model.Comments)
+            {
+                @if (cmt.status == true)
+                {
+                    <div class="comment" style="width: 60%; margin: 20px;">
+                        <div class="title-comment" style="display: flex; ">
+                            <div style="background: #f1f1f1;width: 30px; height: 30px; border: 1px solid #f1f1f1; text-align: center; margin-right: 20px;">
+                                <h5>T</h5>
+                            </div>
+                            <h5>@cmt.user.UserName</h5>
+                        </div>
+                        <div class="comment-content" style="background: #f1f1f1;">
+                            <h6 style="margin: 5px;">@cmt.content</h6>
+                        </div>
+                        <div style="">
+                            &nbsp;<a role="button" aria-expanded="false" data-toggle="collapse" href="#collapseExample@(cmt.id)" aria-controls="collapseExample">Trả lời</a>
+                            <span> - @cmt.createDate</span>
+                        </div>
+                        <div id="collapseExample@(cmt.id)" class="collapse">
+                            <div style="display: flex; justify-content: flex-end;">
+                                <div style="display: flex; justify-content:flex-end;flex-direction: column; width: 80%;">
+                                    @foreach (var rp in cmt.Replies)
+                                    {
+                                        @if (rp.status == true)
+                                        {
+                                            <!--Reply-->
+                                            <div style=" width: 100%;">
+                                                <div class="title-comment" style="display: flex; ">
+                                                    <div style="background: #f1f1f1;width: 25px; height: 25px; border: 1px solid #f1f1f1; text-align: center; margin-right: 20px;">
+                                                        <h6>T</h6>
+                                                    </div>
+                                                    <h6>@await userManager.FindByIdAsync(rp.userId)</h6>
+                                                </div>
+                                                <div class="comment-content" style="background: #f1f1f1;">
+                                                    <h6 style="margin: 5px;">
+                                                        @rp.content
+                                                    </h6>
+                                                </div>
+                                                <div style="">
+                                                    <span> - @rp.createDate</span>
+                                                </div>
+                                            </div>
+                                            <!--Box Reply-->
+                                        }
+                                    }
+                                    <div class="reply-box" style=" width: 100%;">
+                                        <form class="comment-form" asp-action="Reply" asp-controller="Home">
+                                            <input name="productId" type="hidden" value="@Model.id" />
+                                            <input name="commentId" type="hidden" value="@cmt.id" />
+                                            <textarea name="content" class="form-control"></textarea>
+                                            <button class="btn btn-primary" style="margin-top: 3px;" type="submit">trả lời</button>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- x comment x-->
+                }
+            }
+        </div>
+</main>
+<!--slide-->
+<script src="~/lib/OwlCarousel2/owl.carousel.min.js"></script>
+
+<!--x-->
+<script>
+    //
+    $('.owl-carousel').owlCarousel({
+        autoplay: true,
+        loop: true,
+        margin: 20,
+        dots: false,
+        nav: true,
+        navText: ['<i class="fa fa-angle-left"></i>','<i class="fa fa-angle-right"></i>'],
+        responsive: {
+            0: {
+                items: 1
+            },
+            600: {
+                items: 2
+            },
+            1000: {
+                items: 4
+            }
+        }
+    })
+    //
+    const quantityContent = document.querySelector('.numbers-row');
+    class UI {
+        AddCartLogic() {
+
+            quantityContent.addEventListener('click', event => {
+                console.log(event);
+
+                //nút tăng giảm.
+                if (event.target.classList.contains('fa-plus')) {
+                    let addAmount = event.target;
+                    console.log("tang", addAmount);
+                    //let id = addAmount.dataset.id;
+                    //console.log("id", id);
+                    var quantity = $('#quantity').val();
+                    var amount = $('#amount').val();
+                    quantity++;
+                    console.log(amount);
+                    if (quantity > amount) {
+                        quantity = amount;
+                        //alert("trong kho chỉ còn lại " + amount + " sản phẩm");
+                        swal({
+                            title: "Thông báo!",
+                            text: "trong kho chỉ còn lại " + amount + " sản phẩm",
+                            icon: "warning",
+                            buttons: "OK"
+
+                        })
+                            .then((willDelete) => {
+                                //location.reload();
+                            });
+                    }
+
+                    $('#quantity').val(quantity);
+
+                    /*let tempItem = cart.find(item => item.id === id)
+                    tempItem.quantity += 1;
+                    console.log("Hang", tempItem)
+                    Storage.saveCart(cart);
+                    this.setCartValues(cart);
+                    addAmount.previousElementSibling.innerText = tempItem.quantity;*/
+                }
+                else if (event.target.classList.contains('fa-minus')) {
+                    let lowerAmount = event.target;
+                    var quantity = $('#quantity').val();
+
+                    if (quantity > 1) {
+                        quantity--;
+                        $('#quantity').val(quantity);
+                    }
+                    else {
+
+                    }
+                }
+            });
+        }
+    }
+    document.addEventListener('DOMContentLoaded', () => {
+        const ui = new UI();
+        ui.AddCartLogic();
+    });
+    //handle add cart
+    var lstItem = [];
+    if (window.localStorage)
+        lstItem = JSON.parse(window.localStorage.getItem("carts"));
+    if (!lstItem)
+        lstItem = [];
+    console.log("giohangton truoc", lstItem);
+    $("#addCartBtn").click(function () {
+        var exist = 1;
+        var productId = $(this).attr("data-id");
+        var quan = $('#quantity').val();
+        console.log("ID product", productId);
+        console.log("amount", quan);
+        for (i in lstItem) {
+
+            if (lstItem[i].id == productId && lstItem[i].quantity <= lstItem[i].amount) {
+                console.log("quan trong detail ", quan);
+                console.log("quan trong gio hang", lstItem[i].quantity);
+                console.log("amount ", lstItem[i].amount);
+                console.log("cong", (parseInt(quan) + parseInt(lstItem[i].quantity)));
+                if ((parseInt(quan) + parseInt(lstItem[i].quantity)) > lstItem[i].amount) {
+
+                    //alert("Sản phẩm còn " + (lstItem[i].amount - lstItem[i].quantity));
+                    swal({
+                        title: "Thông báo!",
+                        text: "Sản phẩm còn " + (lstItem[i].amount - lstItem[i].quantity),
+                        icon: "warning",
+                        buttons: "OK"
+
+                    })
+                        .then((willDelete) => {
+                            //location.reload();
+                        });
+                    exist = 4;
+                }
+                else {
+
+                    lstItem[i].quantity = parseInt(lstItem[i].quantity) + parseInt($('#quantity').val()); exist = 2;
+                }
+
+            }
+            else if (lstItem[i].id == productId && lstItem[i].quantity >= lstItem[i].amount) {
+                exist = 3;
+
+                //alert("sản phẩm chỉ còn lại " + (lstItem[i].amount) + " sản phẩm! bạn vui lòng kiểm tra lại giỏ hàng!");
+                swal({
+                    title: "Thông báo!",
+                    text: "sản phẩm chỉ còn lại " + (lstItem[i].amount) + " sản phẩm! bạn vui lòng kiểm tra lại giỏ hàng!",
+                    icon: "warning",
+                    buttons: "OK"
+
+                })
+                    .then((willDelete) => {
+                        //location.reload();
+                    });
+            }
+        }
+        console.log("giohangton sau", lstItem);
+        //trong localstorage chưa mua.
+        console.log("exist", exist);
+        if (exist == 1) {
+            var productId = $(this).attr("data-id");
+            var name = $(this).attr("data-name");
+            var image = $(this).attr("data-image");
+            var description = $(this).attr("data-description");
+            var category = $(this).attr("data-category");
+            var color = $(this).attr("data-color");
+            var size = $(this).attr("data-size");
+            var price = $(this).attr("data-price");
+            var quantity = $('#quantity').val();
+            var amount = $(this).attr("data-amount");
+            var item = {
+                id: productId, name: name, image: image, description: description, category: category, color: color,
+                size: size, price: price, quantity: quantity, amount: amount
+            }
+            console.log("Item", item);
+            lstItem.push(item);
+            window.localStorage.setItem("carts", JSON.stringify(lstItem));
+            //alert("Đã thêm giỏ hàng!!!");
+            swal({
+                title: "Thông báo!",
+                text: "Đã thêm giỏ hàng!!!",
+                icon: "success",
+                buttons: "OK"
+
+            })
+                .then((willDelete) => {
+                    //location.reload();
+                });
+        }
+        else if (exist == 2) {
+
+            window.localStorage.setItem("carts", JSON.stringify(lstItem));
+            //alert("Đã thêm giỏ hàng!!!");
+            swal({
+                title: "Thông báo!",
+                text: "Đã thêm giỏ hàng!!!",
+                icon: "success",
+                buttons: "OK"
+
+            })
+                .then((willDelete) => {
+                    //location.reload();
+                });
+
+        }
+    })
+</script>
+

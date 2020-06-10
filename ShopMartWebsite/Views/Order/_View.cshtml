@@ -1,0 +1,77 @@
+﻿@model ShopMartWebsite.Models.OrderDetailListViewModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+    
+*@
+@{ 
+    int total = 0;
+}
+@if (Model != null && Model.OrderDetails != null && Model.OrderDetails.Count() > 0)
+{
+<div class="modal-content">
+    <div class="card">
+        <div class="card-header text-center font-weight-bold">
+            Xem chi tiết đơn hàng
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="card-body">
+            <div class="container">
+                <div class="row" style="font-size: 20px; font-family: 'Times New Roman', Times, serif;">
+                    <label>Khách hàng: @Model.customer</label>
+                    <table class="table table-striped jambo_table bulk_action">
+                        <thead>
+                            <tr class="headings">
+
+                                <th class="column-title">Sản phẩm </th>
+                                <th class="column-title">Mô tả </th>
+                                <th class="column-title">Danh mục </th>
+                                <th class="column-title">Số lượng </th>
+
+
+                                <th class="column-title">Đơn giá </th>
+
+
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            @foreach (var item in Model.OrderDetails)
+                            {
+                            <tr class="even pointer">
+
+                                <td class="">
+                                    <img width="75" src="~/images/site/@item.product.image" />
+                                </td>
+                                <td class="">
+                                    <h6>@item.product.name</h6>
+                                    <small>Size: @item.product.size</small>
+                                    <br />
+                                    <small>Color: @item.product.color</small>
+                                </td>
+                                <td class="">@item.product.category.name</td>
+                                <td class="">@item.quantity</td>
+
+                                
+                                <td class="">@item.unitPrice</td>
+                                
+                            </tr>
+                        
+                                }
+                        </tbody>
+
+                    </table>
+
+
+                    <label style="color: red;">Tổng tiền: @Model.total (VNĐ)</label>
+
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+}

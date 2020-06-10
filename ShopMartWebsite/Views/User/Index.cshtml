@@ -1,0 +1,77 @@
+﻿@model ShopMartWebsite.Models.UserListingViewModel
+
+@using Microsoft.AspNetCore.Identity;
+@using ShopMartWebsite.Entities;
+@inject RoleManager<Role> roleManager;
+@inject UserManager<User> userManager;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+<script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+<div class="col-md-12 col-sm-12  ">
+    <div class="x_panel">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Quản lý User</li>
+            </ol>
+        </nav>
+        <h2>QUẢN LÝ USER</h2>
+        <div class="row mb-3">
+            <div class="col col-lg-12">
+                <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="searchterm" placeholder="Tìm kiếm bằng Email" value="@Model.SearchTerm" style=" margin-right: 5px;">
+                        
+
+                        <div class="input-group-append" id="button-addon4" style="margin-left: 5px;">
+                            <button class="btn btn-outline-primary" type="submit"><i class="fa fa-search mr-1"></i> Search</button>
+                            <a class="btn btn-outline-secondary" href="@Url.Action("Index", "User")"><i class="fa fa-sync mr-1"></i> Reset</a>
+                            
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="x_content">
+            <div class="table-responsive">
+                @{ Html.RenderPartial("_Listing", Model);
+                }
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+
+<div class="modal fade bd-example-modal-lg" id="actionModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+    </div>
+</div>
+<!---->
+<div class="modal fade bd-example-modal-xl" id="actionView" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+
+    </div>
+</div>
+<script>
+    $('.data-btn').click(function () {
+        $.ajax({
+            url: $(this).attr("data-href"),
+        }).done(function (response) {
+            $('#actionModal .modal-dialog').html(response);
+        });
+    });
+    $('.data-btn-view').click(function () {
+        $.ajax({
+            url: $(this).attr("data-href"),
+        }).done(function (response) {
+            $('#actionView .modal-dialog').html(response);
+        });
+    });
+</script>
+

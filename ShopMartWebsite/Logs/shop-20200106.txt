@@ -1,0 +1,1299 @@
+2020-01-06T22:57:32.7691795+07:00  [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T22:57:33.1637424+07:00  [INF] Executed DbCommand ("52"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""IF EXISTS (SELECT * FROM INFORMATION_SCHEMA.TABLES WHERE TABLE_TYPE = 'BASE TABLE') SELECT 1 ELSE SELECT 0" (0723d8ff)
+2020-01-06T22:57:33.9269308+07:00  [INF] Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetRoles] AS [a])
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2020-01-06T22:57:34.1024480+07:00  [INF] Executed DbCommand ("9"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [u]
+        WHERE [u].[UserName] = N'admin')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2020-01-06T22:57:34.6272137+07:00 0HLSIO4IGS4CS:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2020-01-06T22:57:34.6272140+07:00 0HLSIO4IGS4CT:00000001 [INF] Request starting HTTP/1.1 DEBUG http://localhost:51987/  0 (ca22a1cb)
+2020-01-06T22:57:34.7950683+07:00 0HLSIO4IGS4CT:00000001 [INF] Request finished in 210.9994ms 200  (791a596a)
+2020-01-06T22:57:35.1971564+07:00 0HLSIO4IGS4CS:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2020-01-06T22:57:35.2189721+07:00 0HLSIO4IGS4CS:00000001 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T22:57:35.9096882+07:00 0HLSIO4IGS4CS:00000001 [INF] Executed DbCommand ("58"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[amount], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2020-01-06T22:57:36.2440711+07:00 0HLSIO4IGS4CS:00000001 [INF] Executed DbCommand ("8"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE ([x0].[status] = 1) AND ([x0].[amount] > 0)
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2020-01-06T22:57:36.3485465+07:00 0HLSIO4IGS4CS:00000001 [INF] Executed DbCommand ("18"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)" (0723d8ff)
+2020-01-06T22:57:41.7517652+07:00 0HLSIO4IGS4CS:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2020-01-06T22:57:41.8771674+07:00 0HLSIO4IGS4CS:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2020-01-06T22:57:41.9115040+07:00 0HLSIO4IGS4CS:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2020-01-06T22:57:41.9956149+07:00 0HLSIO4IGS4CS:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2020-01-06T22:57:42.0086822+07:00 0HLSIO4IGS4CS:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2020-01-06T22:57:42.6998635+07:00 0HLSIO4IGS4CS:00000001 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 7467.4203ms (afa2e885)
+2020-01-06T22:57:42.7465742+07:00 0HLSIO4IGS4D0:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/aos.css   (ca22a1cb)
+2020-01-06T22:57:42.7599606+07:00 0HLSIO4IGS4CV:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/logo/logo.jpg   (ca22a1cb)
+2020-01-06T22:57:42.8456173+07:00 0HLSIO4IGS4CT:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/style.css   (ca22a1cb)
+2020-01-06T22:57:42.9272348+07:00 0HLSIO4IGS4CU:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/content/vendor/jquery/jquery.min.js   (ca22a1cb)
+2020-01-06T22:57:42.9482583+07:00 0HLSIO4IGS4CS:00000001 [INF] Request finished in 8184.7002ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T22:57:42.9567337+07:00 0HLSIO4IGS4D0:00000001 [INF] Sending file. Request path: '"/user/css/aos.css"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\css\aos.css"' (27b0a520)
+2020-01-06T22:57:42.9844859+07:00 0HLSIO4IGS4CV:00000001 [INF] Sending file. Request path: '"/user/assets/logo/logo.jpg"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\assets\logo\logo.jpg"' (27b0a520)
+2020-01-06T22:57:43.0023669+07:00 0HLSIO4IGS4CU:00000001 [INF] Sending file. Request path: '"/content/vendor/jquery/jquery.min.js"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\content\vendor\jquery\jquery.min.js"' (27b0a520)
+2020-01-06T22:57:43.0515697+07:00 0HLSIO4IGS4CV:00000001 [INF] Request finished in 319.7588ms 200 image/jpeg (791a596a)
+2020-01-06T22:57:43.1480533+07:00 0HLSIO4IGS4CT:00000002 [INF] Sending file. Request path: '"/user/css/style.css"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\css\style.css"' (27b0a520)
+2020-01-06T22:57:43.1693772+07:00 0HLSIO4IGS4D0:00000001 [INF] Request finished in 297.6177ms 200 text/css (791a596a)
+2020-01-06T22:57:43.2340290+07:00 0HLSIO4IGS4D0:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/fonts.css   (ca22a1cb)
+2020-01-06T22:57:43.2482298+07:00 0HLSIO4IGS4CS:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/jquery3.4.1.min.js   (ca22a1cb)
+2020-01-06T22:57:43.2693953+07:00 0HLSIO4IGS4CT:00000002 [INF] Request finished in 500.1463ms 200 text/css (791a596a)
+2020-01-06T22:57:43.2936139+07:00 0HLSIO4IGS4D1:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/owl.theme.default.min.css   (ca22a1cb)
+2020-01-06T22:57:43.3299856+07:00 0HLSIO4IGS4D0:00000002 [INF] Sending file. Request path: '"/user/css/fonts.css"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\css\fonts.css"' (27b0a520)
+2020-01-06T22:57:43.3604073+07:00 0HLSIO4IGS4CS:00000002 [INF] Sending file. Request path: '"/user/js/jquery3.4.1.min.js"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\js\jquery3.4.1.min.js"' (27b0a520)
+2020-01-06T22:57:43.3695507+07:00 0HLSIO4IGS4D2:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/owl.carousel.min.css   (ca22a1cb)
+2020-01-06T22:57:43.3835908+07:00 0HLSIO4IGS4D1:00000001 [INF] Sending file. Request path: '"/user/css/owl.theme.default.min.css"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\css\owl.theme.default.min.css"' (27b0a520)
+2020-01-06T22:57:43.3983456+07:00 0HLSIO4IGS4D2:00000001 [INF] Sending file. Request path: '"/user/css/owl.carousel.min.css"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\css\owl.carousel.min.css"' (27b0a520)
+2020-01-06T22:57:43.4162326+07:00 0HLSIO4IGS4D1:00000001 [INF] Request finished in 280.3335ms 200 text/css (791a596a)
+2020-01-06T22:57:43.4643212+07:00 0HLSIO4IGS4CT:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/detailproduct.css   (ca22a1cb)
+2020-01-06T22:57:43.5002449+07:00 0HLSIO4IGS4D0:00000002 [INF] Request finished in 145.6288ms 200 text/css (791a596a)
+2020-01-06T22:57:43.5619883+07:00 0HLSIO4IGS4D2:00000001 [INF] Request finished in 220.694ms 200 text/css (791a596a)
+2020-01-06T22:57:43.6142356+07:00 0HLSIO4IGS4CT:00000003 [INF] Sending file. Request path: '"/user/css/detailproduct.css"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\css\detailproduct.css"' (27b0a520)
+2020-01-06T22:57:43.6192676+07:00 0HLSIO4IGS4D3:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/all.css   (ca22a1cb)
+2020-01-06T22:57:43.6508563+07:00 0HLSIO4IGS4D5:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/slick.css   (ca22a1cb)
+2020-01-06T22:57:43.6818501+07:00 0HLSIO4IGS4D6:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/Banner/banner-1.jpg   (ca22a1cb)
+2020-01-06T22:57:43.7142215+07:00 0HLSIO4IGS4D4:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/bootstrap.css   (ca22a1cb)
+2020-01-06T22:57:43.7358450+07:00 0HLSIO4IGS4CT:00000003 [INF] Request finished in 286.382ms 200 text/css (791a596a)
+2020-01-06T22:57:43.7497313+07:00 0HLSIO4IGS4D3:00000001 [INF] Sending file. Request path: '"/user/css/all.css"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\css\all.css"' (27b0a520)
+2020-01-06T22:57:43.7642146+07:00 0HLSIO4IGS4D4:00000001 [INF] Sending file. Request path: '"/user/css/bootstrap.css"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\css\bootstrap.css"' (27b0a520)
+2020-01-06T22:57:43.7785562+07:00 0HLSIO4IGS4D6:00000001 [INF] Sending file. Request path: '"/user/assets/Banner/banner-1.jpg"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\assets\Banner\banner-1.jpg"' (27b0a520)
+2020-01-06T22:57:43.7918990+07:00 0HLSIO4IGS4D5:00000001 [INF] Sending file. Request path: '"/user/css/slick.css"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\css\slick.css"' (27b0a520)
+2020-01-06T22:57:43.8282709+07:00 0HLSIO4IGS4D6:00000001 [INF] Request finished in 222.249ms 200 image/jpeg (791a596a)
+2020-01-06T22:57:43.8817784+07:00 0HLSIO4IGS4CU:00000001 [INF] Request finished in 1084.6766ms 200 application/javascript (791a596a)
+2020-01-06T22:57:43.8983411+07:00 0HLSIO4IGS4CV:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/cart.css   (ca22a1cb)
+2020-01-06T22:57:43.9590348+07:00 0HLSIO4IGS4D5:00000001 [INF] Request finished in 274.6285ms 200 text/css (791a596a)
+2020-01-06T22:57:43.9848479+07:00 0HLSIO4IGS4CS:00000002 [INF] Request finished in 712.3315ms 200 application/javascript (791a596a)
+2020-01-06T22:57:43.9996667+07:00 0HLSIO4IGS4CV:00000002 [INF] Sending file. Request path: '"/user/css/cart.css"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\css\cart.css"' (27b0a520)
+2020-01-06T22:57:44.0476169+07:00 0HLSIO4IGS4D3:00000001 [INF] Request finished in 567.9152ms 200 text/css (791a596a)
+2020-01-06T22:57:44.0583716+07:00 0HLSIO4IGS4D1:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/main.js   (ca22a1cb)
+2020-01-06T22:57:44.1045896+07:00 0HLSIO4IGS4D0:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/owl.carousel.min.js   (ca22a1cb)
+2020-01-06T22:57:44.1989438+07:00 0HLSIO4IGS4D1:00000002 [INF] Sending file. Request path: '"/user/js/main.js"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\js\main.js"' (27b0a520)
+2020-01-06T22:57:44.2405180+07:00 0HLSIO4IGS4D0:00000003 [INF] Sending file. Request path: '"/user/js/owl.carousel.min.js"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\js\owl.carousel.min.js"' (27b0a520)
+2020-01-06T22:57:44.2489973+07:00 0HLSIO4IGS4CV:00000002 [INF] Request finished in 229.0951ms 200 text/css (791a596a)
+2020-01-06T22:57:44.2895358+07:00 0HLSIO4IGS4D2:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/anh11.jpg   (ca22a1cb)
+2020-01-06T22:57:44.3076543+07:00 0HLSIO4IGS4D3:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/b72117e0-d277-4a55-a0c9-79d86d642b8a.jpg   (ca22a1cb)
+2020-01-06T22:57:44.3459456+07:00 0HLSIO4IGS4D2:00000002 [INF] Sending file. Request path: '"/user/assets/instagram/anh11.jpg"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\assets\instagram\anh11.jpg"' (27b0a520)
+2020-01-06T22:57:44.3614052+07:00 0HLSIO4IGS4D5:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/anh1.jpg   (ca22a1cb)
+2020-01-06T22:57:44.4376557+07:00 0HLSIO4IGS4D0:00000003 [INF] Request finished in 443.8838ms 200 application/javascript (791a596a)
+2020-01-06T22:57:44.4644518+07:00 0HLSIO4IGS4D3:00000002 [INF] Sending file. Request path: '"/images/site/b72117e0-d277-4a55-a0c9-79d86d642b8a.jpg"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\images\site\b72117e0-d277-4a55-a0c9-79d86d642b8a.jpg"' (27b0a520)
+2020-01-06T22:57:44.5259462+07:00 0HLSIO4IGS4CV:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/167ab4ca-c83a-422e-ac39-413bc9f4e92f.jpg   (ca22a1cb)
+2020-01-06T22:57:44.5483568+07:00 0HLSIO4IGS4CT:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/anh44.jpg   (ca22a1cb)
+2020-01-06T22:57:44.8258125+07:00 0HLSIO4IGS4CT:00000004 [INF] Sending file. Request path: '"/user/assets/instagram/anh44.jpg"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\assets\instagram\anh44.jpg"' (27b0a520)
+2020-01-06T22:57:44.8446996+07:00 0HLSIO4IGS4D6:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/792b5f52-efea-44f8-8886-6fff975eb77a.jpg   (ca22a1cb)
+2020-01-06T22:57:44.8517228+07:00 0HLSIO4IGS4D5:00000002 [INF] Sending file. Request path: '"/user/assets/instagram/anh1.jpg"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\assets\instagram\anh1.jpg"' (27b0a520)
+2020-01-06T22:57:44.8821173+07:00 0HLSIO4IGS4CV:00000003 [INF] Sending file. Request path: '"/images/site/167ab4ca-c83a-422e-ac39-413bc9f4e92f.jpg"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\images\site\167ab4ca-c83a-422e-ac39-413bc9f4e92f.jpg"' (27b0a520)
+2020-01-06T22:57:44.9028718+07:00 0HLSIO4IGS4CT:00000004 [INF] Request finished in 496.7228ms 200 image/jpeg (791a596a)
+2020-01-06T22:57:44.9257913+07:00 0HLSIO4IGS4CU:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/anh55.jpg   (ca22a1cb)
+2020-01-06T22:57:44.9604501+07:00 0HLSIO4IGS4D7:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/11cd7a2e-374f-44f8-86c6-976446961c83.jpg   (ca22a1cb)
+2020-01-06T22:57:45.0212157+07:00 0HLSIO4IGS4CS:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/b4b84e7e-4a02-472c-9357-f7396529f533.png   (ca22a1cb)
+2020-01-06T22:57:45.2470540+07:00 0HLSIO4IGS4CU:00000002 [INF] Sending file. Request path: '"/user/assets/instagram/anh55.jpg"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\assets\instagram\anh55.jpg"' (27b0a520)
+2020-01-06T22:57:45.2938668+07:00 0HLSIO4IGS4D9:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/faf0142b-aa8d-4d4f-80a0-d5d03eec9446.jpg   (ca22a1cb)
+2020-01-06T22:57:45.3427876+07:00 0HLSIO4IGS4D7:00000001 [INF] Sending file. Request path: '"/images/site/11cd7a2e-374f-44f8-86c6-976446961c83.jpg"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\images\site\11cd7a2e-374f-44f8-86c6-976446961c83.jpg"' (27b0a520)
+2020-01-06T22:57:45.3512949+07:00 0HLSIO4IGS4D6:00000002 [INF] Sending file. Request path: '"/images/site/792b5f52-efea-44f8-8886-6fff975eb77a.jpg"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\images\site\792b5f52-efea-44f8-8886-6fff975eb77a.jpg"' (27b0a520)
+2020-01-06T22:57:45.3651234+07:00 0HLSIO4IGS4D9:00000001 [INF] Sending file. Request path: '"/images/site/faf0142b-aa8d-4d4f-80a0-d5d03eec9446.jpg"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\images\site\faf0142b-aa8d-4d4f-80a0-d5d03eec9446.jpg"' (27b0a520)
+2020-01-06T22:57:45.4083388+07:00 0HLSIO4IGS4CS:00000003 [INF] Sending file. Request path: '"/images/site/b4b84e7e-4a02-472c-9357-f7396529f533.png"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\images\site\b4b84e7e-4a02-472c-9357-f7396529f533.png"' (27b0a520)
+2020-01-06T22:57:45.4670304+07:00 0HLSIO4IGS4CU:00000002 [INF] Request finished in 724.697ms 200 image/jpeg (791a596a)
+2020-01-06T22:57:45.5344752+07:00 0HLSIO4IGS4DD:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/1848d93b-56c6-4716-bd89-bc8e04985b1c.jpg   (ca22a1cb)
+2020-01-06T22:57:45.5461327+07:00 0HLSIO4IGS4CS:00000003 [INF] Request finished in 547.519ms 200 image/png (791a596a)
+2020-01-06T22:57:45.5603271+07:00 0HLSIO4IGS4D7:00000001 [INF] Request finished in 482.933ms 200 image/jpeg (791a596a)
+2020-01-06T22:57:45.5863452+07:00 0HLSIO4IGS4D8:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/Banner/banner-2.webp   (ca22a1cb)
+2020-01-06T22:57:45.5968492+07:00 0HLSIO4IGS4DB:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/484ffee4-bbea-4229-ba6b-b628f16ff3a8.jpg   (ca22a1cb)
+2020-01-06T22:57:45.6325151+07:00 0HLSIO4IGS4DD:00000001 [INF] Sending file. Request path: '"/images/site/1848d93b-56c6-4716-bd89-bc8e04985b1c.jpg"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\images\site\1848d93b-56c6-4716-bd89-bc8e04985b1c.jpg"' (27b0a520)
+2020-01-06T22:57:45.6528585+07:00 0HLSIO4IGS4D8:00000001 [INF] Sending file. Request path: '"/user/assets/Banner/banner-2.webp"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\assets\Banner\banner-2.webp"' (27b0a520)
+2020-01-06T22:57:45.6758850+07:00 0HLSIO4IGS4DD:00000001 [INF] Request finished in 247.1363ms 200 image/jpeg (791a596a)
+2020-01-06T22:57:45.6986398+07:00 0HLSIO4IGS4DB:00000001 [INF] Sending file. Request path: '"/images/site/484ffee4-bbea-4229-ba6b-b628f16ff3a8.jpg"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\images\site\484ffee4-bbea-4229-ba6b-b628f16ff3a8.jpg"' (27b0a520)
+2020-01-06T22:57:45.7033868+07:00 0HLSIO4IGS4DC:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/anh66.jpg   (ca22a1cb)
+2020-01-06T22:57:45.7245661+07:00 0HLSIO4IGS4DA:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/aos.js   (ca22a1cb)
+2020-01-06T22:57:45.7599670+07:00 0HLSIO4IGS4DA:00000001 [INF] Sending file. Request path: '"/user/js/aos.js"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\js\aos.js"' (27b0a520)
+2020-01-06T22:57:45.8197729+07:00 0HLSIO4IGS4DB:00000001 [INF] Request finished in 352.3546ms 200 image/jpeg (791a596a)
+2020-01-06T22:57:45.8516878+07:00 0HLSIO4IGS4DG:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/MiniBanner/banner-mini4.png   (ca22a1cb)
+2020-01-06T22:57:45.8826175+07:00 0HLSIO4IGS4DG:00000001 [INF] Sending file. Request path: '"/user/assets/MiniBanner/banner-mini4.png"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\assets\MiniBanner\banner-mini4.png"' (27b0a520)
+2020-01-06T22:57:45.9405274+07:00 0HLSIO4IGS4DG:00000001 [INF] Request finished in 59.0462ms 200 image/png (791a596a)
+2020-01-06T22:57:45.9410778+07:00 0HLSIO4IGS4DC:00000001 [INF] Sending file. Request path: '"/user/assets/instagram/anh66.jpg"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\assets\instagram\anh66.jpg"' (27b0a520)
+2020-01-06T22:57:46.0153924+07:00 0HLSIO4IGS4DI:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/anh33.jpg   (ca22a1cb)
+2020-01-06T22:57:46.0641644+07:00 0HLSIO4IGS4DH:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/MiniBanner/banner-mini2.png   (ca22a1cb)
+2020-01-06T22:57:46.0991459+07:00 0HLSIO4IGS4DE:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/bootstrap.js   (ca22a1cb)
+2020-01-06T22:57:46.1251230+07:00 0HLSIO4IGS4DE:00000001 [INF] Sending file. Request path: '"/user/js/bootstrap.js"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\js\bootstrap.js"' (27b0a520)
+2020-01-06T22:57:46.1759505+07:00 0HLSIO4IGS4DF:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/MiniBanner/banner-mini3.png   (ca22a1cb)
+2020-01-06T22:57:46.1935538+07:00 0HLSIO4IGS4DH:00000001 [INF] Sending file. Request path: '"/user/assets/MiniBanner/banner-mini2.png"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\assets\MiniBanner\banner-mini2.png"' (27b0a520)
+2020-01-06T22:57:46.2246782+07:00 0HLSIO4IGS4DF:00000001 [INF] Sending file. Request path: '"/user/assets/MiniBanner/banner-mini3.png"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\assets\MiniBanner\banner-mini3.png"' (27b0a520)
+2020-01-06T22:57:46.2568843+07:00 0HLSIO4IGS4DI:00000001 [INF] Sending file. Request path: '"/user/assets/instagram/anh33.jpg"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\assets\instagram\anh33.jpg"' (27b0a520)
+2020-01-06T22:57:46.2769804+07:00 0HLSIO4IGS4DJ:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/slick.min.js   (ca22a1cb)
+2020-01-06T22:57:46.3116044+07:00 0HLSIO4IGS4DJ:00000001 [INF] Sending file. Request path: '"/user/js/slick.min.js"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\js\slick.min.js"' (27b0a520)
+2020-01-06T22:57:46.3207061+07:00 0HLSIO4IGS4DL:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/Banner/banner-3.webp   (ca22a1cb)
+2020-01-06T22:57:46.3511534+07:00 0HLSIO4IGS4DK:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/MiniBanner/banner-mini1.png   (ca22a1cb)
+2020-01-06T22:57:46.3768754+07:00 0HLSIO4IGS4DL:00000001 [INF] Sending file. Request path: '"/user/assets/Banner/banner-3.webp"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\assets\Banner\banner-3.webp"' (27b0a520)
+2020-01-06T22:57:46.4461729+07:00 0HLSIO4IGS4DI:00000001 [INF] Request finished in 289.2453ms 200 image/jpeg (791a596a)
+2020-01-06T22:57:46.4758083+07:00 0HLSIO4IGS4D4:00000001 [INF] Request finished in 2865.4428ms 200 text/css (791a596a)
+2020-01-06T22:57:46.5085913+07:00 0HLSIO4IGS4D2:00000002 [INF] Request finished in 2263.6904ms 200 image/jpeg (791a596a)
+2020-01-06T22:57:46.5336641+07:00 0HLSIO4IGS4DK:00000001 [INF] Sending file. Request path: '"/user/assets/MiniBanner/banner-mini1.png"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\assets\MiniBanner\banner-mini1.png"' (27b0a520)
+2020-01-06T22:57:46.5777457+07:00 0HLSIO4IGS4D3:00000002 [INF] Request finished in 2350.3693ms 200 image/jpeg (791a596a)
+2020-01-06T22:57:46.6854774+07:00 0HLSIO4IGS4DM:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/webfonts/fa-solid-900.woff2   (ca22a1cb)
+2020-01-06T22:57:46.9675695+07:00 0HLSIO4IGS4D1:00000002 [INF] Request finished in 2447.6203ms 200 application/javascript (791a596a)
+2020-01-06T22:57:47.1312078+07:00 0HLSIO4IGS4D5:00000002 [INF] Request finished in 2894.7973ms 200 image/jpeg (791a596a)
+2020-01-06T22:57:47.1615973+07:00 0HLSIO4IGS4D0:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/fonts/Lexend_Deca/LexendDeca-Regular.ttf   (ca22a1cb)
+2020-01-06T22:57:47.2278609+07:00 0HLSIO4IGS4DM:00000001 [INF] Sending file. Request path: '"/user/webfonts/fa-solid-900.woff2"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\webfonts\fa-solid-900.woff2"' (27b0a520)
+2020-01-06T22:57:47.2522319+07:00 0HLSIO4IGS4D9:00000001 [INF] Request finished in 2240.1338ms 200 image/jpeg (791a596a)
+2020-01-06T22:57:47.3248795+07:00 0HLSIO4IGS4DA:00000001 [INF] Request finished in 1653.8302ms 200 application/javascript (791a596a)
+2020-01-06T22:57:47.3706428+07:00 0HLSIO4IGS4D8:00000001 [INF] Request finished in 1743.5044ms 200 image/webp (791a596a)
+2020-01-06T22:57:47.3842792+07:00 0HLSIO4IGS4D0:00000004 [INF] Sending file. Request path: '"/user/fonts/Lexend_Deca/LexendDeca-Regular.ttf"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\fonts\Lexend_Deca\LexendDeca-Regular.ttf"' (27b0a520)
+2020-01-06T22:57:47.4892733+07:00 0HLSIO4IGS4DC:00000001 [INF] Request finished in 1680.2787ms 200 image/jpeg (791a596a)
+2020-01-06T22:57:47.5657011+07:00 0HLSIO4IGS4DF:00000001 [INF] Request finished in 1529.4641ms 200 image/png (791a596a)
+2020-01-06T22:57:47.6813978+07:00 0HLSIO4IGS4DJ:00000001 [INF] Request finished in 1326.2173ms 200 application/javascript (791a596a)
+2020-01-06T22:57:47.7593134+07:00 0HLSIO4IGS4D0:00000004 [INF] Request finished in 1161.5263ms 200 application/x-font-ttf (791a596a)
+2020-01-06T22:57:47.7911371+07:00 0HLSIO4IGS4DH:00000001 [INF] Request finished in 1550.321ms 200 image/png (791a596a)
+2020-01-06T22:57:47.8256733+07:00 0HLSIO4IGS4CT:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/webfonts/fa-brands-400.woff2   (ca22a1cb)
+2020-01-06T22:57:48.0797510+07:00 0HLSIO4IGS4D6:00000002 [INF] Request finished in 3188.1796ms 200 image/jpeg (791a596a)
+2020-01-06T22:57:48.1074057+07:00 0HLSIO4IGS4DM:00000001 [INF] Request finished in 1153.1469ms 200 font/woff2 (791a596a)
+2020-01-06T22:57:48.1154110+07:00 0HLSIO4IGS4DK:00000001 [INF] Request finished in 1390.2191ms 200 image/png (791a596a)
+2020-01-06T22:57:48.1248225+07:00 0HLSIO4IGS4CT:00000005 [INF] Sending file. Request path: '"/user/webfonts/fa-brands-400.woff2"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\webfonts\fa-brands-400.woff2"' (27b0a520)
+2020-01-06T22:57:48.1393624+07:00 0HLSIO4IGS4CV:00000003 [INF] Request finished in 3378.8155ms 200 image/jpeg (791a596a)
+2020-01-06T22:57:48.1591625+07:00 0HLSIO4IGS4DL:00000001 [INF] Request finished in 1344.6433ms 200 image/webp (791a596a)
+2020-01-06T22:57:48.1815281+07:00 0HLSIO4IGS4DE:00000001 [INF] Request finished in 2030.3742ms 200 application/javascript (791a596a)
+2020-01-06T22:57:48.3625043+07:00 0HLSIO4IGS4CT:00000005 [INF] Request finished in 539.7401ms 200 font/woff2 (791a596a)
+2020-01-06T22:57:48.7647116+07:00 0HLSIO4IGS4CU:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/favicon.ico   (ca22a1cb)
+2020-01-06T22:57:48.7789469+07:00 0HLSIO4IGS4CU:00000003 [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\favicon.ico"' (27b0a520)
+2020-01-06T22:57:48.8304342+07:00 0HLSIO4IGS4CU:00000003 [INF] Request finished in 62.4866ms 200 image/x-icon (791a596a)
+2020-01-06T22:59:09.2191040+07:00 0HLSIO4IGS4DN:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Account/Login   (ca22a1cb)
+2020-01-06T22:59:09.2479864+07:00 0HLSIO4IGS4DN:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" with arguments (["", ""]) - ModelState is Valid (ba7f4ac2)
+2020-01-06T22:59:10.3295787+07:00 0HLSIO4IGS4DN:00000001 [INF] Executing ViewResult, running view at path "/Views/Account/Login.cshtml". (9707eebe)
+2020-01-06T22:59:10.6787905+07:00 0HLSIO4IGS4DN:00000001 [INF] Executed action "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" in 1383.2568ms (afa2e885)
+2020-01-06T22:59:10.6902474+07:00 0HLSIO4IGS4DN:00000001 [INF] Request finished in 1475.8995ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T22:59:10.7321238+07:00 0HLSIO4IGS4DO:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/login.css   (ca22a1cb)
+2020-01-06T22:59:10.7487496+07:00 0HLSIO4IGS4DO:00000001 [INF] Sending file. Request path: '"/user/css/login.css"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\css\login.css"' (27b0a520)
+2020-01-06T22:59:10.7772649+07:00 0HLSIO4IGS4DO:00000001 [INF] Request finished in 70.9735ms 200 text/css (791a596a)
+2020-01-06T22:59:20.8546725+07:00 0HLSIO4IGS4DN:00000002 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Account/Register application/x-www-form-urlencoded 229 (ca22a1cb)
+2020-01-06T22:59:20.9287735+07:00 0HLSIO4IGS4DN:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.AccountController.Register (ShopMartWebsite)" with arguments (["ShopMartWebsite.Models.RegisterViewModel"]) - ModelState is Invalid (ba7f4ac2)
+2020-01-06T22:59:20.9878380+07:00 0HLSIO4IGS4DN:00000002 [INF] Executing ViewResult, running view at path "/Views/Account/Login.cshtml". (9707eebe)
+2020-01-06T22:59:21.0031946+07:00 0HLSIO4IGS4DN:00000002 [INF] Executed action "ShopMartWebsite.Controllers.AccountController.Register (ShopMartWebsite)" in 120.2103ms (afa2e885)
+2020-01-06T22:59:21.0193923+07:00 0HLSIO4IGS4DN:00000002 [INF] Request finished in 169.0385ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:00:22.0530815+07:00 0HLSIO4IGS4DP:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2020-01-06T23:00:22.0680865+07:00 0HLSIO4IGS4DP:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2020-01-06T23:00:22.0947857+07:00 0HLSIO4IGS4DP:00000001 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T23:00:22.1105625+07:00 0HLSIO4IGS4DP:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[amount], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2020-01-06T23:00:22.1203360+07:00 0HLSIO4IGS4DP:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE ([x0].[status] = 1) AND ([x0].[amount] > 0)
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2020-01-06T23:00:22.1502192+07:00 0HLSIO4IGS4DP:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)" (0723d8ff)
+2020-01-06T23:00:22.1559775+07:00 0HLSIO4IGS4DP:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2020-01-06T23:00:22.1832549+07:00 0HLSIO4IGS4DP:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2020-01-06T23:00:22.2120207+07:00 0HLSIO4IGS4DP:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2020-01-06T23:00:22.2399093+07:00 0HLSIO4IGS4DP:00000001 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2020-01-06T23:00:22.2483055+07:00 0HLSIO4IGS4DP:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2020-01-06T23:00:22.2624286+07:00 0HLSIO4IGS4DP:00000001 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 199.1285ms (afa2e885)
+2020-01-06T23:00:22.2709703+07:00 0HLSIO4IGS4DP:00000001 [INF] Request finished in 218.8972ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:00:27.2139791+07:00 0HLSIO4IGS4DP:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Detail?productID=1   (ca22a1cb)
+2020-01-06T23:00:27.2439233+07:00 0HLSIO4IGS4DP:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" with arguments (["1"]) - ModelState is Valid (ba7f4ac2)
+2020-01-06T23:00:27.2717014+07:00 0HLSIO4IGS4DP:00000002 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T23:00:27.3332635+07:00 0HLSIO4IGS4DP:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [pro].[id], [pro].[amount], [pro].[categoryId], [pro].[color], [pro].[description], [pro].[image], [pro].[name], [pro].[price], [pro].[size], [pro].[status], [pro.category].[id], [pro.category].[name], [pro.category].[status]
+FROM [product] AS [pro]
+LEFT JOIN [category] AS [pro.category] ON [pro].[categoryId] = [pro.category].[id]
+WHERE [pro].[id] = @__id_0
+ORDER BY [pro].[id]" (0723d8ff)
+2020-01-06T23:00:27.3651618+07:00 0HLSIO4IGS4DP:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [pro.Comments].[id], [pro.Comments].[content], [pro.Comments].[createDate], [pro.Comments].[productId], [pro.Comments].[status], [pro.Comments].[userId]
+FROM [comment] AS [pro.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [pro0].[id]
+        FROM [product] AS [pro0]
+        LEFT JOIN [category] AS [pro.category0] ON [pro0].[categoryId] = [pro.category0].[id]
+        WHERE [pro0].[id] = @__id_0
+        ORDER BY [pro0].[id]
+    ) AS [t]
+) AS [t0] ON [pro.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[id]" (0723d8ff)
+2020-01-06T23:00:27.4425693+07:00 0HLSIO4IGS4DP:00000002 [INF] Executed DbCommand ("5"ms) [Parameters=["@__productId_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp].[id], [rp].[content], [rp].[createDate], [rp].[productId], [rp].[status], [rp].[userId], [rp.user].[Id], [rp.user].[AccessFailedCount], [rp.user].[ConcurrencyStamp], [rp.user].[Email], [rp.user].[EmailConfirmed], [rp.user].[LockoutEnabled], [rp.user].[LockoutEnd], [rp.user].[NormalizedEmail], [rp.user].[NormalizedUserName], [rp.user].[PasswordHash], [rp.user].[PhoneNumber], [rp.user].[PhoneNumberConfirmed], [rp.user].[SecurityStamp], [rp.user].[TwoFactorEnabled], [rp.user].[UserName], [rp.user].[address], [rp.user].[birthDay], [rp.user].[displayname], [rp.user].[gender], [rp.user].[password], [rp.user].[phone], [rp.user].[status]
+FROM [comment] AS [rp]
+LEFT JOIN [AspNetUsers] AS [rp.user] ON [rp].[userId] = [rp.user].[Id]
+WHERE [rp].[productId] = @__productId_0
+ORDER BY [rp].[id]" (0723d8ff)
+2020-01-06T23:00:27.4899855+07:00 0HLSIO4IGS4DP:00000002 [INF] Executed DbCommand ("8"ms) [Parameters=["@__ID_0='?' (DbType = Int32), @__productId_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[amount], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE ((([x].[categoryId] = @__ID_0) AND ([x].[id] <> @__productId_1)) AND ([x].[status] = 1)) AND ([x].[amount] > 0)" (0723d8ff)
+2020-01-06T23:00:27.8002198+07:00 0HLSIO4IGS4DP:00000002 [INF] Executing ViewResult, running view at path "/Views/Home/Detail.cshtml". (9707eebe)
+2020-01-06T23:00:27.8715672+07:00 0HLSIO4IGS4DP:00000002 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" in 634.9692ms (afa2e885)
+2020-01-06T23:00:27.8998042+07:00 0HLSIO4IGS4DP:00000002 [INF] Request finished in 666.3591ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:00:27.9580371+07:00 0HLSIO4IGS4DQ:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/lib/OwlCarousel2/owl.carousel.min.js   (ca22a1cb)
+2020-01-06T23:00:28.0289492+07:00 0HLSIO4IGS4DP:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/lib/OwlCarousel2/assets/owl.carousel.css   (ca22a1cb)
+2020-01-06T23:00:28.0547990+07:00 0HLSIO4IGS4DQ:00000001 [INF] Sending file. Request path: '"/lib/OwlCarousel2/owl.carousel.min.js"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\lib\OwlCarousel2\owl.carousel.min.js"' (27b0a520)
+2020-01-06T23:00:28.0591401+07:00 0HLSIO4IGS4DP:00000003 [INF] Sending file. Request path: '"/lib/OwlCarousel2/assets/owl.carousel.css"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\lib\OwlCarousel2\assets\owl.carousel.css"' (27b0a520)
+2020-01-06T23:00:28.0833201+07:00 0HLSIO4IGS4DP:00000003 [INF] Request finished in 136.1794ms 200 text/css (791a596a)
+2020-01-06T23:00:28.1245137+07:00 0HLSIO4IGS4DQ:00000001 [INF] Request finished in 205.7372ms 200 application/javascript (791a596a)
+2020-01-06T23:00:37.7290051+07:00 0HLSIO4IGS4DP:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2020-01-06T23:00:37.7562998+07:00 0HLSIO4IGS4DP:00000004 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2020-01-06T23:00:37.7821592+07:00 0HLSIO4IGS4DP:00000004 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T23:00:37.7894923+07:00 0HLSIO4IGS4DP:00000004 [INF] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[amount], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2020-01-06T23:00:37.7972459+07:00 0HLSIO4IGS4DP:00000004 [INF] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE ([x0].[status] = 1) AND ([x0].[amount] > 0)
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2020-01-06T23:00:37.8244606+07:00 0HLSIO4IGS4DP:00000004 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)" (0723d8ff)
+2020-01-06T23:00:37.8303069+07:00 0HLSIO4IGS4DP:00000004 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2020-01-06T23:00:37.8581056+07:00 0HLSIO4IGS4DP:00000004 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2020-01-06T23:00:37.8856889+07:00 0HLSIO4IGS4DP:00000004 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2020-01-06T23:00:37.9168634+07:00 0HLSIO4IGS4DP:00000004 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2020-01-06T23:00:37.9245054+07:00 0HLSIO4IGS4DP:00000004 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2020-01-06T23:00:37.9390883+07:00 0HLSIO4IGS4DP:00000004 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 197.9706ms (afa2e885)
+2020-01-06T23:00:37.9512653+07:00 0HLSIO4IGS4DP:00000004 [INF] Request finished in 219.8794ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:01:07.9136797+07:00 0HLSIO4IGS4DQ:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Cart   (ca22a1cb)
+2020-01-06T23:01:07.9225863+07:00 0HLSIO4IGS4DQ:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2020-01-06T23:01:08.1672201+07:00 0HLSIO4IGS4DQ:00000002 [INF] Executing ViewResult, running view at path "/Views/Home/Cart.cshtml". (9707eebe)
+2020-01-06T23:01:08.1905141+07:00 0HLSIO4IGS4DQ:00000002 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" in 260.5614ms (afa2e885)
+2020-01-06T23:01:08.2115228+07:00 0HLSIO4IGS4DQ:00000002 [INF] Request finished in 284.8846ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:01:08.3028278+07:00 0HLSIO4IGS4DQ:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/all.css   (ca22a1cb)
+2020-01-06T23:01:08.3460994+07:00 0HLSIO4IGS4DV:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/logo/logo.jpg   (ca22a1cb)
+2020-01-06T23:01:08.4471881+07:00 0HLSIO4IGS4DU:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/aos.css   (ca22a1cb)
+2020-01-06T23:01:08.5243164+07:00 0HLSIO4IGS4DS:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/owl.theme.default.min.css   (ca22a1cb)
+2020-01-06T23:01:08.5331473+07:00 0HLSIO4IGS4E0:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/owl.carousel.min.css   (ca22a1cb)
+2020-01-06T23:01:08.5436184+07:00 0HLSIO4IGS4DR:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/style.css   (ca22a1cb)
+2020-01-06T23:01:08.5676074+07:00 0HLSIO4IGS4DP:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/content/vendor/jquery/jquery.min.js   (ca22a1cb)
+2020-01-06T23:01:08.5949477+07:00 0HLSIO4IGS4DT:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/bootstrap.css   (ca22a1cb)
+2020-01-06T23:01:08.6196968+07:00 0HLSIO4IGS4DV:00000001 [INF] The file "/user/assets/logo/logo.jpg" was not modified (f1f8d725)
+2020-01-06T23:01:08.6922973+07:00 0HLSIO4IGS4DU:00000001 [INF] The file "/user/css/aos.css" was not modified (f1f8d725)
+2020-01-06T23:01:08.7266997+07:00 0HLSIO4IGS4E1:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/slick.css   (ca22a1cb)
+2020-01-06T23:01:08.7476934+07:00 0HLSIO4IGS4DQ:00000003 [INF] The file "/user/css/all.css" was not modified (f1f8d725)
+2020-01-06T23:01:08.8041014+07:00 0HLSIO4IGS4DS:00000001 [INF] The file "/user/css/owl.theme.default.min.css" was not modified (f1f8d725)
+2020-01-06T23:01:08.8206345+07:00 0HLSIO4IGS4E0:00000001 [INF] The file "/user/css/owl.carousel.min.css" was not modified (f1f8d725)
+2020-01-06T23:01:08.8691588+07:00 0HLSIO4IGS4E1:00000001 [INF] The file "/user/css/slick.css" was not modified (f1f8d725)
+2020-01-06T23:01:08.8805195+07:00 0HLSIO4IGS4DV:00000001 [INF] Request finished in 343.1821ms 304 image/jpeg (791a596a)
+2020-01-06T23:01:08.9043300+07:00 0HLSIO4IGS4DP:00000005 [INF] The file "/content/vendor/jquery/jquery.min.js" was not modified (f1f8d725)
+2020-01-06T23:01:08.9308860+07:00 0HLSIO4IGS4DT:00000001 [INF] The file "/user/css/bootstrap.css" was not modified (f1f8d725)
+2020-01-06T23:01:08.9416721+07:00 0HLSIO4IGS4DR:00000001 [INF] The file "/user/css/style.css" was not modified (f1f8d725)
+2020-01-06T23:01:08.9731719+07:00 0HLSIO4IGS4DU:00000001 [INF] Request finished in 401.5983ms 304 text/css (791a596a)
+2020-01-06T23:01:09.0220490+07:00 0HLSIO4IGS4E1:00000001 [INF] Request finished in 488.283ms 304 text/css (791a596a)
+2020-01-06T23:01:09.0637878+07:00 0HLSIO4IGS4DQ:00000003 [INF] Request finished in 473.6001ms 304 text/css (791a596a)
+2020-01-06T23:01:09.0882672+07:00 0HLSIO4IGS4DS:00000001 [INF] Request finished in 535.7018ms 304 text/css (791a596a)
+2020-01-06T23:01:09.1085592+07:00 0HLSIO4IGS4E0:00000001 [INF] Request finished in 498.757ms 304 text/css (791a596a)
+2020-01-06T23:01:09.1529731+07:00 0HLSIO4IGS4DP:00000005 [INF] Request finished in 672.8281ms 304 application/javascript (791a596a)
+2020-01-06T23:01:09.1685820+07:00 0HLSIO4IGS4DT:00000001 [INF] Request finished in 688.637ms 304 text/css (791a596a)
+2020-01-06T23:01:09.1919162+07:00 0HLSIO4IGS4DR:00000001 [INF] Request finished in 702.1485ms 304 text/css (791a596a)
+2020-01-06T23:01:09.2073690+07:00 0HLSIO4IGS4DV:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/jquery3.4.1.min.js   (ca22a1cb)
+2020-01-06T23:01:09.3534697+07:00 0HLSIO4IGS4DS:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/detailproduct.css   (ca22a1cb)
+2020-01-06T23:01:09.3862699+07:00 0HLSIO4IGS4DU:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/cart.css   (ca22a1cb)
+2020-01-06T23:01:09.3989226+07:00 0HLSIO4IGS4E2:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/anh1.jpg   (ca22a1cb)
+2020-01-06T23:01:09.4076492+07:00 0HLSIO4IGS4DV:00000002 [INF] The file "/user/js/jquery3.4.1.min.js" was not modified (f1f8d725)
+2020-01-06T23:01:09.4521167+07:00 0HLSIO4IGS4DQ:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/fonts.css   (ca22a1cb)
+2020-01-06T23:01:09.5393029+07:00 0HLSIO4IGS4E2:00000001 [INF] The file "/user/assets/instagram/anh1.jpg" was not modified (f1f8d725)
+2020-01-06T23:01:09.5642242+07:00 0HLSIO4IGS4DS:00000002 [INF] The file "/user/css/detailproduct.css" was not modified (f1f8d725)
+2020-01-06T23:01:09.5893662+07:00 0HLSIO4IGS4DV:00000002 [INF] Request finished in 422.3954ms 304 application/javascript (791a596a)
+2020-01-06T23:01:09.6183864+07:00 0HLSIO4IGS4DU:00000002 [INF] The file "/user/css/cart.css" was not modified (f1f8d725)
+2020-01-06T23:01:09.6962555+07:00 0HLSIO4IGS4E0:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/owl.carousel.min.js   (ca22a1cb)
+2020-01-06T23:01:09.7047674+07:00 0HLSIO4IGS4DQ:00000004 [INF] The file "/user/css/fonts.css" was not modified (f1f8d725)
+2020-01-06T23:01:09.7174845+07:00 0HLSIO4IGS4E1:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/main.js   (ca22a1cb)
+2020-01-06T23:01:09.7708362+07:00 0HLSIO4IGS4DU:00000002 [INF] Request finished in 486.0283ms 304 text/css (791a596a)
+2020-01-06T23:01:09.8307753+07:00 0HLSIO4IGS4DS:00000002 [INF] Request finished in 340.5563ms 304 text/css (791a596a)
+2020-01-06T23:01:09.8930554+07:00 0HLSIO4IGS4E2:00000001 [INF] Request finished in 386.5411ms 304 image/jpeg (791a596a)
+2020-01-06T23:01:10.0013476+07:00 0HLSIO4IGS4E1:00000002 [INF] The file "/user/js/main.js" was not modified (f1f8d725)
+2020-01-06T23:01:10.0393568+07:00 0HLSIO4IGS4DR:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/anh44.jpg   (ca22a1cb)
+2020-01-06T23:01:10.0653619+07:00 0HLSIO4IGS4E0:00000002 [INF] The file "/user/js/owl.carousel.min.js" was not modified (f1f8d725)
+2020-01-06T23:01:10.0917914+07:00 0HLSIO4IGS4DT:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/anh33.jpg   (ca22a1cb)
+2020-01-06T23:01:10.0998328+07:00 0HLSIO4IGS4DQ:00000004 [INF] Request finished in 524.8491ms 304 text/css (791a596a)
+2020-01-06T23:01:10.1078986+07:00 0HLSIO4IGS4DP:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/bootstrap.js   (ca22a1cb)
+2020-01-06T23:01:10.1758345+07:00 0HLSIO4IGS4DS:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/aos.js   (ca22a1cb)
+2020-01-06T23:01:10.1866706+07:00 0HLSIO4IGS4E1:00000002 [INF] Request finished in 434.9029ms 304 application/javascript (791a596a)
+2020-01-06T23:01:10.2139918+07:00 0HLSIO4IGS4DR:00000002 [INF] The file "/user/assets/instagram/anh44.jpg" was not modified (f1f8d725)
+2020-01-06T23:01:10.2385060+07:00 0HLSIO4IGS4DU:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/slick.min.js   (ca22a1cb)
+2020-01-06T23:01:10.2653453+07:00 0HLSIO4IGS4E2:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/anh11.jpg   (ca22a1cb)
+2020-01-06T23:01:10.2824429+07:00 0HLSIO4IGS4E0:00000002 [INF] Request finished in 594.4366ms 304 application/javascript (791a596a)
+2020-01-06T23:01:10.3159239+07:00 0HLSIO4IGS4DT:00000002 [INF] The file "/user/assets/instagram/anh33.jpg" was not modified (f1f8d725)
+2020-01-06T23:01:10.3271485+07:00 0HLSIO4IGS4DP:00000006 [INF] The file "/user/js/bootstrap.js" was not modified (f1f8d725)
+2020-01-06T23:01:10.3388259+07:00 0HLSIO4IGS4DS:00000003 [INF] The file "/user/js/aos.js" was not modified (f1f8d725)
+2020-01-06T23:01:10.3965819+07:00 0HLSIO4IGS4DR:00000002 [INF] Request finished in 433.9313ms 304 image/jpeg (791a596a)
+2020-01-06T23:01:10.4554993+07:00 0HLSIO4IGS4DU:00000003 [INF] The file "/user/js/slick.min.js" was not modified (f1f8d725)
+2020-01-06T23:01:10.5248728+07:00 0HLSIO4IGS4E2:00000002 [INF] The file "/user/assets/instagram/anh11.jpg" was not modified (f1f8d725)
+2020-01-06T23:01:10.5428666+07:00 0HLSIO4IGS4DQ:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/anh66.jpg   (ca22a1cb)
+2020-01-06T23:01:10.5771565+07:00 0HLSIO4IGS4DS:00000003 [INF] Request finished in 363.1281ms 304 application/javascript (791a596a)
+2020-01-06T23:01:10.5965281+07:00 0HLSIO4IGS4DV:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/anh55.jpg   (ca22a1cb)
+2020-01-06T23:01:10.6071915+07:00 0HLSIO4IGS4DP:00000006 [INF] Request finished in 557.4245ms 304 application/javascript (791a596a)
+2020-01-06T23:01:10.6183271+07:00 0HLSIO4IGS4DT:00000002 [INF] Request finished in 545.0224ms 304 image/jpeg (791a596a)
+2020-01-06T23:01:10.6730715+07:00 0HLSIO4IGS4E3:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/fonts/Lexend_Deca/LexendDeca-Regular.ttf   (ca22a1cb)
+2020-01-06T23:01:10.7213434+07:00 0HLSIO4IGS4DU:00000003 [INF] Request finished in 470.7313ms 304 application/javascript (791a596a)
+2020-01-06T23:01:10.7350568+07:00 0HLSIO4IGS4E4:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/webfonts/fa-regular-400.woff2   (ca22a1cb)
+2020-01-06T23:01:10.7427771+07:00 0HLSIO4IGS4E2:00000002 [INF] Request finished in 507.2608ms 304 image/jpeg (791a596a)
+2020-01-06T23:01:10.7730016+07:00 0HLSIO4IGS4DV:00000003 [INF] The file "/user/assets/instagram/anh55.jpg" was not modified (f1f8d725)
+2020-01-06T23:01:10.7859160+07:00 0HLSIO4IGS4DQ:00000005 [INF] The file "/user/assets/instagram/anh66.jpg" was not modified (f1f8d725)
+2020-01-06T23:01:10.8155113+07:00 0HLSIO4IGS4DQ:00000005 [INF] Request finished in 561.1833ms 304 image/jpeg (791a596a)
+2020-01-06T23:01:10.8510819+07:00 0HLSIO4IGS4E0:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/1848d93b-56c6-4716-bd89-bc8e04985b1c.jpg   (ca22a1cb)
+2020-01-06T23:01:10.8589308+07:00 0HLSIO4IGS4E3:00000001 [INF] The file "/user/fonts/Lexend_Deca/LexendDeca-Regular.ttf" was not modified (f1f8d725)
+2020-01-06T23:01:10.9175233+07:00 0HLSIO4IGS4E4:00000001 [INF] Sending file. Request path: '"/user/webfonts/fa-regular-400.woff2"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\webfonts\fa-regular-400.woff2"' (27b0a520)
+2020-01-06T23:01:10.9314567+07:00 0HLSIO4IGS4DV:00000003 [INF] Request finished in 457.1327ms 304 image/jpeg (791a596a)
+2020-01-06T23:01:10.9795217+07:00 0HLSIO4IGS4E1:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/167ab4ca-c83a-422e-ac39-413bc9f4e92f.jpg   (ca22a1cb)
+2020-01-06T23:01:10.9824157+07:00 0HLSIO4IGS4E3:00000001 [INF] Request finished in 462.3591ms 304 application/x-font-ttf (791a596a)
+2020-01-06T23:01:10.9923734+07:00 0HLSIO4IGS4E0:00000003 [INF] The file "/images/site/1848d93b-56c6-4716-bd89-bc8e04985b1c.jpg" was not modified (f1f8d725)
+2020-01-06T23:01:11.0260009+07:00 0HLSIO4IGS4E4:00000001 [INF] Request finished in 355.0306ms 200 font/woff2 (791a596a)
+2020-01-06T23:01:11.0391308+07:00 0HLSIO4IGS4E0:00000003 [INF] Request finished in 229.8782ms 304 image/jpeg (791a596a)
+2020-01-06T23:01:11.0685770+07:00 0HLSIO4IGS4E1:00000003 [INF] The file "/images/site/167ab4ca-c83a-422e-ac39-413bc9f4e92f.jpg" was not modified (f1f8d725)
+2020-01-06T23:01:11.0986789+07:00 0HLSIO4IGS4E1:00000003 [INF] Request finished in 261.2571ms 304 image/jpeg (791a596a)
+2020-01-06T23:01:36.0823695+07:00 0HLSIO4IGS4DR:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Account/Login   (ca22a1cb)
+2020-01-06T23:01:36.1086396+07:00 0HLSIO4IGS4DR:00000003 [INF] Executing action method "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" with arguments (["", ""]) - ModelState is Valid (ba7f4ac2)
+2020-01-06T23:01:36.1153972+07:00 0HLSIO4IGS4DR:00000003 [INF] Executing ViewResult, running view at path "/Views/Account/Login.cshtml". (9707eebe)
+2020-01-06T23:01:36.1293494+07:00 0HLSIO4IGS4DR:00000003 [INF] Executed action "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" in 34.0443ms (afa2e885)
+2020-01-06T23:01:36.1393924+07:00 0HLSIO4IGS4DR:00000003 [INF] Request finished in 57.0023ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:02:01.3840388+07:00 0HLSIO4IGS4DT:00000003 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Account/Register application/x-www-form-urlencoded 277 (ca22a1cb)
+2020-01-06T23:02:01.3906886+07:00 0HLSIO4IGS4DT:00000003 [INF] Executing action method "ShopMartWebsite.Controllers.AccountController.Register (ShopMartWebsite)" with arguments (["ShopMartWebsite.Models.RegisterViewModel"]) - ModelState is Invalid (ba7f4ac2)
+2020-01-06T23:02:01.3979804+07:00 0HLSIO4IGS4DT:00000003 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T23:02:01.4151495+07:00 0HLSIO4IGS4DT:00000003 [INF] Executed DbCommand ("5"ms) [Parameters=["@__model_Email_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [u]
+        WHERE [u].[UserName] = @__model_Email_0)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2020-01-06T23:02:01.6101108+07:00 0HLSIO4IGS4DT:00000003 [INF] Executed DbCommand ("18"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[address], [u].[birthDay], [u].[displayname], [u].[gender], [u].[password], [u].[phone], [u].[status]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-01-06T23:02:01.9950167+07:00 0HLSIO4IGS4DT:00000003 [INF] Executed DbCommand ("23"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTimeOffset), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Boolean), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 256), @p15='?' (Size = 4000), @p16='?' (DbType = DateTime2), @p17='?' (Size = 4000), @p18='?' (DbType = Boolean), @p19='?' (Size = 4000), @p20='?' (Size = 4000), @p21='?' (DbType = Boolean)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUsers] ([Id], [AccessFailedCount], [ConcurrencyStamp], [Email], [EmailConfirmed], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName], [address], [birthDay], [displayname], [gender], [password], [phone], [status])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21);" (0723d8ff)
+2020-01-06T23:02:02.0646384+07:00 0HLSIO4IGS4DT:00000003 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetRoles] AS [x]
+        WHERE [x].[Name] = N'User')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2020-01-06T23:02:02.0971002+07:00 0HLSIO4IGS4DT:00000003 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [r].[Id], [r].[ConcurrencyStamp], [r].[CreationDate], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedRoleName_0" (0723d8ff)
+2020-01-06T23:02:02.1863811+07:00 0HLSIO4IGS4DT:00000003 [INF] Executed DbCommand ("2"ms) [Parameters=["@__get_Item_0='?' (Size = 450), @__get_Item_1='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[UserId], [e].[RoleId]
+FROM [AspNetUserRoles] AS [e]
+WHERE ([e].[UserId] = @__get_Item_0) AND ([e].[RoleId] = @__get_Item_1)" (0723d8ff)
+2020-01-06T23:02:02.2050504+07:00 0HLSIO4IGS4DT:00000003 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [r].[Id], [r].[ConcurrencyStamp], [r].[CreationDate], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedRoleName_0" (0723d8ff)
+2020-01-06T23:02:02.2383450+07:00 0HLSIO4IGS4DT:00000003 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[address], [u].[birthDay], [u].[displayname], [u].[gender], [u].[password], [u].[phone], [u].[status]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-01-06T23:02:02.2772125+07:00 0HLSIO4IGS4DT:00000003 [INF] Executed DbCommand ("3"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUserRoles] ([UserId], [RoleId])
+VALUES (@p0, @p1);" (0723d8ff)
+2020-01-06T23:02:02.3205374+07:00 0HLSIO4IGS4DT:00000003 [INF] Executed DbCommand ("9"ms) [Parameters=["@p21='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p22='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (DbType = Boolean), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTimeOffset), @p6='?' (Size = 256), @p7='?' (Size = 256), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (DbType = Boolean), @p11='?' (Size = 4000), @p12='?' (DbType = Boolean), @p13='?' (Size = 256), @p14='?' (Size = 4000), @p15='?' (DbType = DateTime2), @p16='?' (Size = 4000), @p17='?' (DbType = Boolean), @p18='?' (Size = 4000), @p19='?' (Size = 4000), @p20='?' (DbType = Boolean)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Email] = @p2, [EmailConfirmed] = @p3, [LockoutEnabled] = @p4, [LockoutEnd] = @p5, [NormalizedEmail] = @p6, [NormalizedUserName] = @p7, [PasswordHash] = @p8, [PhoneNumber] = @p9, [PhoneNumberConfirmed] = @p10, [SecurityStamp] = @p11, [TwoFactorEnabled] = @p12, [UserName] = @p13, [address] = @p14, [birthDay] = @p15, [displayname] = @p16, [gender] = @p17, [password] = @p18, [phone] = @p19, [status] = @p20
+WHERE [Id] = @p21 AND [ConcurrencyStamp] = @p22;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2020-01-06T23:02:06.8925452+07:00 0HLSIO4IGS4DT:00000003 [INF] Executed action "ShopMartWebsite.Controllers.AccountController.Register (ShopMartWebsite)" in 5501.9219ms (afa2e885)
+2020-01-06T23:02:07.0342507+07:00 0HLSIO4IGS4DT:00000003 [ERR] An unhandled exception has occurred while executing the request (cf926119)
+MailKit.Security.AuthenticationException: 534: 5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbu
+5.7.14 Y_wCOR55HaZ9p-g90oHn7EoSqPMYr-lsrZ83WfO_I3SiL40WVRkFDg9lrTjT2S6Bb4e2z
+5.7.14 JLe2Ody39fHUOQMDtIESi1eT5PbWTxlkcvLdz1AvduApJo3BYNqfg-Ua42wxjknv>
+5.7.14 Please log in via your web browser and then try again.
+5.7.14  Learn more at
+5.7.14  https://support.google.com/mail/answer/78754 b22sm75299675pft.110 - gsmtp ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbu
+5.7.14 Y_wCOR55HaZ9p-g90oHn7EoSqPMYr-lsrZ83WfO_I3SiL40WVRkFDg9lrTjT2S6Bb4e2z
+5.7.14 JLe2Ody39fHUOQMDtIESi1eT5PbWTxlkcvLdz1AvduApJo3BYNqfg-Ua42wxjknv>
+5.7.14 Please log in via your web browser and then try again.
+5.7.14  Learn more at
+5.7.14  https://support.google.com/mail/answer/78754 b22sm75299675pft.110 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.<AuthenticateAsync>d__67.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at MailKit.Net.Smtp.SmtpClient.Authenticate(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at MailKit.MailService.Authenticate(Encoding encoding, String userName, String password, CancellationToken cancellationToken)
+   at MailKit.MailService.Authenticate(String userName, String password, CancellationToken cancellationToken)
+   at ShopMartWebsite.Controllers.AccountController.<Register>d__9.MoveNext() in D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\Controllers\AccountController.cs:line 176
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeActionMethodAsync>d__12.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeNextActionFilterAsync>d__10.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeInnerFilterAsync>d__14.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2020-01-06T23:02:07.2138285+07:00 0HLSIO4IGS4DT:00000003 [INF] Request finished in 5805.0755ms 500 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:04:34.3918847+07:00 0HLSIO4IGS4E5:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Account/Login   (ca22a1cb)
+2020-01-06T23:04:34.3991987+07:00 0HLSIO4IGS4E5:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" with arguments (["", ""]) - ModelState is Valid (ba7f4ac2)
+2020-01-06T23:04:34.4063146+07:00 0HLSIO4IGS4E5:00000001 [INF] Executing ViewResult, running view at path "/Views/Account/Login.cshtml". (9707eebe)
+2020-01-06T23:04:34.4150177+07:00 0HLSIO4IGS4E5:00000001 [INF] Executed action "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" in 15.4876ms (afa2e885)
+2020-01-06T23:04:34.4284684+07:00 0HLSIO4IGS4E5:00000001 [INF] Request finished in 33.3962ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:05:54.3688515+07:00 0HLSIO4IGS4E6:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Account/Register application/x-www-form-urlencoded 281 (ca22a1cb)
+2020-01-06T23:05:54.3756552+07:00 0HLSIO4IGS4E6:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.AccountController.Register (ShopMartWebsite)" with arguments (["ShopMartWebsite.Models.RegisterViewModel"]) - ModelState is Invalid (ba7f4ac2)
+2020-01-06T23:05:54.4033917+07:00 0HLSIO4IGS4E6:00000001 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T23:05:54.4342336+07:00 0HLSIO4IGS4E6:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__model_Email_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [u]
+        WHERE [u].[UserName] = @__model_Email_0)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2020-01-06T23:05:54.4569581+07:00 0HLSIO4IGS4E6:00000001 [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[address], [u].[birthDay], [u].[displayname], [u].[gender], [u].[password], [u].[phone], [u].[status]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-01-06T23:05:54.4733664+07:00 0HLSIO4IGS4E6:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTimeOffset), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Boolean), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 256), @p15='?' (Size = 4000), @p16='?' (DbType = DateTime2), @p17='?' (Size = 4000), @p18='?' (DbType = Boolean), @p19='?' (Size = 4000), @p20='?' (Size = 4000), @p21='?' (DbType = Boolean)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUsers] ([Id], [AccessFailedCount], [ConcurrencyStamp], [Email], [EmailConfirmed], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName], [address], [birthDay], [displayname], [gender], [password], [phone], [status])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21);" (0723d8ff)
+2020-01-06T23:05:54.5299282+07:00 0HLSIO4IGS4E6:00000001 [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetRoles] AS [x]
+        WHERE [x].[Name] = N'User')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2020-01-06T23:05:54.5683784+07:00 0HLSIO4IGS4E6:00000001 [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [r].[Id], [r].[ConcurrencyStamp], [r].[CreationDate], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedRoleName_0" (0723d8ff)
+2020-01-06T23:05:54.6440160+07:00 0HLSIO4IGS4E6:00000001 [INF] Executed DbCommand ("6"ms) [Parameters=["@__get_Item_0='?' (Size = 450), @__get_Item_1='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[UserId], [e].[RoleId]
+FROM [AspNetUserRoles] AS [e]
+WHERE ([e].[UserId] = @__get_Item_0) AND ([e].[RoleId] = @__get_Item_1)" (0723d8ff)
+2020-01-06T23:05:54.6535260+07:00 0HLSIO4IGS4E6:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [r].[Id], [r].[ConcurrencyStamp], [r].[CreationDate], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedRoleName_0" (0723d8ff)
+2020-01-06T23:05:54.6712707+07:00 0HLSIO4IGS4E6:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[address], [u].[birthDay], [u].[displayname], [u].[gender], [u].[password], [u].[phone], [u].[status]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-01-06T23:05:54.6848386+07:00 0HLSIO4IGS4E6:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUserRoles] ([UserId], [RoleId])
+VALUES (@p0, @p1);" (0723d8ff)
+2020-01-06T23:05:54.7198397+07:00 0HLSIO4IGS4E6:00000001 [INF] Executed DbCommand ("7"ms) [Parameters=["@p21='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p22='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (DbType = Boolean), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTimeOffset), @p6='?' (Size = 256), @p7='?' (Size = 256), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (DbType = Boolean), @p11='?' (Size = 4000), @p12='?' (DbType = Boolean), @p13='?' (Size = 256), @p14='?' (Size = 4000), @p15='?' (DbType = DateTime2), @p16='?' (Size = 4000), @p17='?' (DbType = Boolean), @p18='?' (Size = 4000), @p19='?' (Size = 4000), @p20='?' (DbType = Boolean)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Email] = @p2, [EmailConfirmed] = @p3, [LockoutEnabled] = @p4, [LockoutEnd] = @p5, [NormalizedEmail] = @p6, [NormalizedUserName] = @p7, [PasswordHash] = @p8, [PhoneNumber] = @p9, [PhoneNumberConfirmed] = @p10, [SecurityStamp] = @p11, [TwoFactorEnabled] = @p12, [UserName] = @p13, [address] = @p14, [birthDay] = @p15, [displayname] = @p16, [gender] = @p17, [password] = @p18, [phone] = @p19, [status] = @p20
+WHERE [Id] = @p21 AND [ConcurrencyStamp] = @p22;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2020-01-06T23:05:58.0564746+07:00 0HLSIO4IGS4E6:00000001 [INF] Executed action "ShopMartWebsite.Controllers.AccountController.Register (ShopMartWebsite)" in 3661.264ms (afa2e885)
+2020-01-06T23:05:58.1277157+07:00 0HLSIO4IGS4E6:00000001 [ERR] An unhandled exception has occurred while executing the request (cf926119)
+MailKit.Security.AuthenticationException: 534: 5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbt
+5.7.14 ZZgXwirvevF8409dh2ywu627q9PlFf8dDm2FXJA5LN0-kXGTXMS9VlQDooAdxpHfJr4A2
+5.7.14 DAYm0LhCiCNUt0d5wkTbTUfYRYw3jxusl1Ltx9JVs11wp7DP8Qv-yDpsZByc4WQ0>
+5.7.14 Please log in via your web browser and then try again.
+5.7.14  Learn more at
+5.7.14  https://support.google.com/mail/answer/78754 r3sm79327752pfg.145 - gsmtp ---> MailKit.Net.Smtp.SmtpCommandException: 5.7.14 <https://accounts.google.com/signin/continue?sarp=1&scc=1&plt=AKgnsbt
+5.7.14 ZZgXwirvevF8409dh2ywu627q9PlFf8dDm2FXJA5LN0-kXGTXMS9VlQDooAdxpHfJr4A2
+5.7.14 DAYm0LhCiCNUt0d5wkTbTUfYRYw3jxusl1Ltx9JVs11wp7DP8Qv-yDpsZByc4WQ0>
+5.7.14 Please log in via your web browser and then try again.
+5.7.14  Learn more at
+5.7.14  https://support.google.com/mail/answer/78754 r3sm79327752pfg.145 - gsmtp
+   --- End of inner exception stack trace ---
+   at MailKit.Net.Smtp.SmtpClient.<AuthenticateAsync>d__67.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at MailKit.Net.Smtp.SmtpClient.Authenticate(Encoding encoding, ICredentials credentials, CancellationToken cancellationToken)
+   at MailKit.MailService.Authenticate(Encoding encoding, String userName, String password, CancellationToken cancellationToken)
+   at MailKit.MailService.Authenticate(String userName, String password, CancellationToken cancellationToken)
+   at ShopMartWebsite.Controllers.AccountController.<Register>d__9.MoveNext() in D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\Controllers\AccountController.cs:line 176
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeActionMethodAsync>d__12.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeNextActionFilterAsync>d__10.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Rethrow(ActionExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ControllerActionInvoker.<InvokeInnerFilterAsync>d__14.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2020-01-06T23:05:58.2579995+07:00 0HLSIO4IGS4E6:00000001 [INF] Request finished in 3906.0798ms 500 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:06:07.1438170+07:00 0HLSIO4IGS4E6:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Account/Login   (ca22a1cb)
+2020-01-06T23:06:07.1505450+07:00 0HLSIO4IGS4E6:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" with arguments (["", ""]) - ModelState is Valid (ba7f4ac2)
+2020-01-06T23:06:07.1579431+07:00 0HLSIO4IGS4E6:00000002 [INF] Executing ViewResult, running view at path "/Views/Account/Login.cshtml". (9707eebe)
+2020-01-06T23:06:07.1697605+07:00 0HLSIO4IGS4E6:00000002 [INF] Executed action "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" in 15.0509ms (afa2e885)
+2020-01-06T23:06:07.2426999+07:00 0HLSIO4IGS4E6:00000002 [INF] Request finished in 34.7928ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:10:40.4046127+07:00 0HLSIO4IGS4E7:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Account/Register application/x-www-form-urlencoded 281 (ca22a1cb)
+2020-01-06T23:10:40.4315774+07:00 0HLSIO4IGS4E7:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.AccountController.Register (ShopMartWebsite)" with arguments (["ShopMartWebsite.Models.RegisterViewModel"]) - ModelState is Invalid (ba7f4ac2)
+2020-01-06T23:10:40.4572703+07:00 0HLSIO4IGS4E7:00000001 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T23:10:40.4780239+07:00 0HLSIO4IGS4E7:00000001 [INF] Executed DbCommand ("6"ms) [Parameters=["@__model_Email_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [u]
+        WHERE [u].[UserName] = @__model_Email_0)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2020-01-06T23:10:40.5074643+07:00 0HLSIO4IGS4E7:00000001 [INF] Executing ViewResult, running view at path "/Views/Account/Login.cshtml". (9707eebe)
+2020-01-06T23:10:40.5874907+07:00 0HLSIO4IGS4E7:00000001 [INF] Executed action "ShopMartWebsite.Controllers.AccountController.Register (ShopMartWebsite)" in 111.0817ms (afa2e885)
+2020-01-06T23:10:40.7037524+07:00 0HLSIO4IGS4EA:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/bootstrap.css   (ca22a1cb)
+2020-01-06T23:10:40.8909695+07:00 0HLSIO4IGS4E7:00000001 [INF] Request finished in 190.7168ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:10:40.9926151+07:00 0HLSIO4IGS4EC:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/owl.theme.default.min.css   (ca22a1cb)
+2020-01-06T23:10:41.0562611+07:00 0HLSIO4IGS4EA:00000001 [INF] The file "/user/css/bootstrap.css" was not modified (f1f8d725)
+2020-01-06T23:10:41.0765736+07:00 0HLSIO4IGS4E8:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/login.css   (ca22a1cb)
+2020-01-06T23:10:41.1077408+07:00 0HLSIO4IGS4EB:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/slick.min.js   (ca22a1cb)
+2020-01-06T23:10:41.1485225+07:00 0HLSIO4IGS4E9:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/owl.carousel.min.css   (ca22a1cb)
+2020-01-06T23:10:41.2535085+07:00 0HLSIO4IGS4EC:00000001 [INF] The file "/user/css/owl.theme.default.min.css" was not modified (f1f8d725)
+2020-01-06T23:10:41.2864933+07:00 0HLSIO4IGS4ED:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/owl.carousel.min.js   (ca22a1cb)
+2020-01-06T23:10:41.2938158+07:00 0HLSIO4IGS4E8:00000001 [INF] The file "/user/css/login.css" was not modified (f1f8d725)
+2020-01-06T23:10:41.3117292+07:00 0HLSIO4IGS4EI:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/jquery3.4.1.min.js   (ca22a1cb)
+2020-01-06T23:10:41.3262357+07:00 0HLSIO4IGS4EA:00000001 [INF] Request finished in 465.1859ms 304 text/css (791a596a)
+2020-01-06T23:10:41.3418301+07:00 0HLSIO4IGS4EB:00000001 [INF] The file "/user/js/slick.min.js" was not modified (f1f8d725)
+2020-01-06T23:10:41.3790790+07:00 0HLSIO4IGS4E9:00000001 [INF] The file "/user/css/owl.carousel.min.css" was not modified (f1f8d725)
+2020-01-06T23:10:41.4336455+07:00 0HLSIO4IGS4EE:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/aos.js   (ca22a1cb)
+2020-01-06T23:10:41.4996346+07:00 0HLSIO4IGS4E8:00000001 [INF] Request finished in 637.0488ms 304 text/css (791a596a)
+2020-01-06T23:10:41.5246613+07:00 0HLSIO4IGS4EC:00000001 [INF] Request finished in 558.9603ms 304 text/css (791a596a)
+2020-01-06T23:10:41.5571760+07:00 0HLSIO4IGS4ED:00000001 [INF] The file "/user/js/owl.carousel.min.js" was not modified (f1f8d725)
+2020-01-06T23:10:41.5748643+07:00 0HLSIO4IGS4EI:00000001 [INF] The file "/user/js/jquery3.4.1.min.js" was not modified (f1f8d725)
+2020-01-06T23:10:41.5956411+07:00 0HLSIO4IGS4EB:00000001 [INF] Request finished in 646.1697ms 304 application/javascript (791a596a)
+2020-01-06T23:10:41.6268654+07:00 0HLSIO4IGS4E9:00000001 [INF] Request finished in 700.2782ms 304 text/css (791a596a)
+2020-01-06T23:10:41.6671321+07:00 0HLSIO4IGS4E7:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/fonts.css   (ca22a1cb)
+2020-01-06T23:10:41.7208852+07:00 0HLSIO4IGS4ED:00000001 [INF] Request finished in 863.3066ms 304 application/javascript (791a596a)
+2020-01-06T23:10:41.7258402+07:00 0HLSIO4IGS4EE:00000001 [INF] The file "/user/js/aos.js" was not modified (f1f8d725)
+2020-01-06T23:10:41.7487030+07:00 0HLSIO4IGS4EJ:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/main.js   (ca22a1cb)
+2020-01-06T23:10:41.8124419+07:00 0HLSIO4IGS4EI:00000001 [INF] Request finished in 515.0045ms 304 application/javascript (791a596a)
+2020-01-06T23:10:41.8554336+07:00 0HLSIO4IGS4EF:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/all.css   (ca22a1cb)
+2020-01-06T23:10:41.8750308+07:00 0HLSIO4IGS4EK:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/slick.css   (ca22a1cb)
+2020-01-06T23:10:41.9005031+07:00 0HLSIO4IGS4EH:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/aos.css   (ca22a1cb)
+2020-01-06T23:10:41.9141097+07:00 0HLSIO4IGS4EG:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/bootstrap.js   (ca22a1cb)
+2020-01-06T23:10:41.9320978+07:00 0HLSIO4IGS4E7:00000002 [INF] The file "/user/css/fonts.css" was not modified (f1f8d725)
+2020-01-06T23:10:41.9436398+07:00 0HLSIO4IGS4EE:00000001 [INF] Request finished in 1032.9239ms 304 application/javascript (791a596a)
+2020-01-06T23:10:41.9635413+07:00 0HLSIO4IGS4EJ:00000001 [INF] The file "/user/js/main.js" was not modified (f1f8d725)
+2020-01-06T23:10:42.0297964+07:00 0HLSIO4IGS4EK:00000001 [INF] The file "/user/css/slick.css" was not modified (f1f8d725)
+2020-01-06T23:10:42.0753153+07:00 0HLSIO4IGS4EF:00000001 [INF] The file "/user/css/all.css" was not modified (f1f8d725)
+2020-01-06T23:10:42.1665226+07:00 0HLSIO4IGS4EH:00000001 [INF] The file "/user/css/aos.css" was not modified (f1f8d725)
+2020-01-06T23:10:42.1921805+07:00 0HLSIO4IGS4EG:00000001 [INF] The file "/user/js/bootstrap.js" was not modified (f1f8d725)
+2020-01-06T23:10:42.2546878+07:00 0HLSIO4IGS4EJ:00000001 [INF] Request finished in 836.8806ms 304 application/javascript (791a596a)
+2020-01-06T23:10:42.3758995+07:00 0HLSIO4IGS4E7:00000002 [INF] Request finished in 614.7761ms 304 text/css (791a596a)
+2020-01-06T23:10:42.4094280+07:00 0HLSIO4IGS4EK:00000001 [INF] Request finished in 828.8253ms 304 text/css (791a596a)
+2020-01-06T23:10:42.4250173+07:00 0HLSIO4IGS4EF:00000001 [INF] Request finished in 1272.7885ms 304 text/css (791a596a)
+2020-01-06T23:10:42.4490733+07:00 0HLSIO4IGS4EH:00000001 [INF] Request finished in 1175.0804ms 304 text/css (791a596a)
+2020-01-06T23:10:42.5837699+07:00 0HLSIO4IGS4EA:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/webfonts/fa-brands-400.woff2   (ca22a1cb)
+2020-01-06T23:10:42.6272740+07:00 0HLSIO4IGS4EG:00000001 [INF] Request finished in 1275.1688ms 304 application/javascript (791a596a)
+2020-01-06T23:10:42.6392701+07:00 0HLSIO4IGS4EA:00000002 [INF] The file "/user/webfonts/fa-brands-400.woff2" was not modified (f1f8d725)
+2020-01-06T23:10:42.6576327+07:00 0HLSIO4IGS4EA:00000002 [INF] Request finished in 292.8931ms 304 font/woff2 (791a596a)
+2020-01-06T23:15:32.0646188+07:00 0HLSIO4IGS4EL:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Account/Register application/x-www-form-urlencoded 281 (ca22a1cb)
+2020-01-06T23:15:32.0926359+07:00 0HLSIO4IGS4EL:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.AccountController.Register (ShopMartWebsite)" with arguments (["ShopMartWebsite.Models.RegisterViewModel"]) - ModelState is Invalid (ba7f4ac2)
+2020-01-06T23:15:32.1188520+07:00 0HLSIO4IGS4EL:00000001 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T23:15:32.1328724+07:00 0HLSIO4IGS4EL:00000001 [INF] Executed DbCommand ("6"ms) [Parameters=["@__model_Email_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetUsers] AS [u]
+        WHERE [u].[UserName] = @__model_Email_0)
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2020-01-06T23:15:32.1763573+07:00 0HLSIO4IGS4EL:00000001 [INF] Executed DbCommand ("10"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[address], [u].[birthDay], [u].[displayname], [u].[gender], [u].[password], [u].[phone], [u].[status]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-01-06T23:15:32.2057997+07:00 0HLSIO4IGS4EL:00000001 [INF] Executed DbCommand ("15"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (DbType = Int32), @p2='?' (Size = 4000), @p3='?' (Size = 256), @p4='?' (DbType = Boolean), @p5='?' (DbType = Boolean), @p6='?' (DbType = DateTimeOffset), @p7='?' (Size = 256), @p8='?' (Size = 256), @p9='?' (Size = 4000), @p10='?' (Size = 4000), @p11='?' (DbType = Boolean), @p12='?' (Size = 4000), @p13='?' (DbType = Boolean), @p14='?' (Size = 256), @p15='?' (Size = 4000), @p16='?' (DbType = DateTime2), @p17='?' (Size = 4000), @p18='?' (DbType = Boolean), @p19='?' (Size = 4000), @p20='?' (Size = 4000), @p21='?' (DbType = Boolean)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUsers] ([Id], [AccessFailedCount], [ConcurrencyStamp], [Email], [EmailConfirmed], [LockoutEnabled], [LockoutEnd], [NormalizedEmail], [NormalizedUserName], [PasswordHash], [PhoneNumber], [PhoneNumberConfirmed], [SecurityStamp], [TwoFactorEnabled], [UserName], [address], [birthDay], [displayname], [gender], [password], [phone], [status])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8, @p9, @p10, @p11, @p12, @p13, @p14, @p15, @p16, @p17, @p18, @p19, @p20, @p21);" (0723d8ff)
+2020-01-06T23:15:32.2189534+07:00 0HLSIO4IGS4EL:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT CASE
+    WHEN EXISTS (
+        SELECT 1
+        FROM [AspNetRoles] AS [x]
+        WHERE [x].[Name] = N'User')
+    THEN CAST(1 AS BIT) ELSE CAST(0 AS BIT)
+END" (0723d8ff)
+2020-01-06T23:15:32.2307750+07:00 0HLSIO4IGS4EL:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [r].[Id], [r].[ConcurrencyStamp], [r].[CreationDate], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedRoleName_0" (0723d8ff)
+2020-01-06T23:15:32.2514370+07:00 0HLSIO4IGS4EL:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__get_Item_0='?' (Size = 450), @__get_Item_1='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[UserId], [e].[RoleId]
+FROM [AspNetUserRoles] AS [e]
+WHERE ([e].[UserId] = @__get_Item_0) AND ([e].[RoleId] = @__get_Item_1)" (0723d8ff)
+2020-01-06T23:15:32.2707874+07:00 0HLSIO4IGS4EL:00000001 [INF] Executed DbCommand ("8"ms) [Parameters=["@__normalizedRoleName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(2) [r].[Id], [r].[ConcurrencyStamp], [r].[CreationDate], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedRoleName_0" (0723d8ff)
+2020-01-06T23:15:32.2845126+07:00 0HLSIO4IGS4EL:00000001 [INF] Executed DbCommand ("6"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[address], [u].[birthDay], [u].[displayname], [u].[gender], [u].[password], [u].[phone], [u].[status]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-01-06T23:15:32.3190639+07:00 0HLSIO4IGS4EL:00000001 [INF] Executed DbCommand ("7"ms) [Parameters=["@p0='?' (Size = 450), @p1='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [AspNetUserRoles] ([UserId], [RoleId])
+VALUES (@p0, @p1);" (0723d8ff)
+2020-01-06T23:15:32.3347532+07:00 0HLSIO4IGS4EL:00000001 [INF] Executed DbCommand ("9"ms) [Parameters=["@p21='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p22='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (DbType = Boolean), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTimeOffset), @p6='?' (Size = 256), @p7='?' (Size = 256), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (DbType = Boolean), @p11='?' (Size = 4000), @p12='?' (DbType = Boolean), @p13='?' (Size = 256), @p14='?' (Size = 4000), @p15='?' (DbType = DateTime2), @p16='?' (Size = 4000), @p17='?' (DbType = Boolean), @p18='?' (Size = 4000), @p19='?' (Size = 4000), @p20='?' (DbType = Boolean)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Email] = @p2, [EmailConfirmed] = @p3, [LockoutEnabled] = @p4, [LockoutEnd] = @p5, [NormalizedEmail] = @p6, [NormalizedUserName] = @p7, [PasswordHash] = @p8, [PhoneNumber] = @p9, [PhoneNumberConfirmed] = @p10, [SecurityStamp] = @p11, [TwoFactorEnabled] = @p12, [UserName] = @p13, [address] = @p14, [birthDay] = @p15, [displayname] = @p16, [gender] = @p17, [password] = @p18, [phone] = @p19, [status] = @p20
+WHERE [Id] = @p21 AND [ConcurrencyStamp] = @p22;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2020-01-06T23:15:36.8488021+07:00 0HLSIO4IGS4EL:00000001 [INF] Executing ViewResult, running view at path "/Views/Account/Login.cshtml". (9707eebe)
+2020-01-06T23:15:36.8697874+07:00 0HLSIO4IGS4EL:00000001 [INF] Executed action "ShopMartWebsite.Controllers.AccountController.Register (ShopMartWebsite)" in 4785.006ms (afa2e885)
+2020-01-06T23:15:36.9299889+07:00 0HLSIO4IGS4EL:00000001 [INF] Request finished in 4815.848ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:15:37.0326296+07:00 0HLSIO4IGS4EM:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/jquery3.4.1.min.js   (ca22a1cb)
+2020-01-06T23:15:37.1913268+07:00 0HLSIO4IGS4ES:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/bootstrap.css   (ca22a1cb)
+2020-01-06T23:15:37.2128303+07:00 0HLSIO4IGS4EN:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/aos.css   (ca22a1cb)
+2020-01-06T23:15:37.2363453+07:00 0HLSIO4IGS4EP:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/slick.css   (ca22a1cb)
+2020-01-06T23:15:37.2486412+07:00 0HLSIO4IGS4ER:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/login.css   (ca22a1cb)
+2020-01-06T23:15:37.2627427+07:00 0HLSIO4IGS4EU:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/bootstrap.js   (ca22a1cb)
+2020-01-06T23:15:37.3000374+07:00 0HLSIO4IGS4EQ:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/main.js   (ca22a1cb)
+2020-01-06T23:15:37.3182519+07:00 0HLSIO4IGS4EO:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/owl.carousel.min.js   (ca22a1cb)
+2020-01-06T23:15:37.3707781+07:00 0HLSIO4IGS4EM:00000001 [INF] The file "/user/js/jquery3.4.1.min.js" was not modified (f1f8d725)
+2020-01-06T23:15:37.3951558+07:00 0HLSIO4IGS4ES:00000001 [INF] The file "/user/css/bootstrap.css" was not modified (f1f8d725)
+2020-01-06T23:15:37.4589440+07:00 0HLSIO4IGS4EP:00000001 [INF] The file "/user/css/slick.css" was not modified (f1f8d725)
+2020-01-06T23:15:37.4714179+07:00 0HLSIO4IGS4EN:00000001 [INF] The file "/user/css/aos.css" was not modified (f1f8d725)
+2020-01-06T23:15:37.5030014+07:00 0HLSIO4IGS4ER:00000001 [INF] The file "/user/css/login.css" was not modified (f1f8d725)
+2020-01-06T23:15:37.5321580+07:00 0HLSIO4IGS4EU:00000001 [INF] The file "/user/js/bootstrap.js" was not modified (f1f8d725)
+2020-01-06T23:15:37.5507171+07:00 0HLSIO4IGS4EQ:00000001 [INF] The file "/user/js/main.js" was not modified (f1f8d725)
+2020-01-06T23:15:37.5681768+07:00 0HLSIO4IGS4EO:00000001 [INF] The file "/user/js/owl.carousel.min.js" was not modified (f1f8d725)
+2020-01-06T23:15:37.6015678+07:00 0HLSIO4IGS4EM:00000001 [INF] Request finished in 430.7923ms 304 application/javascript (791a596a)
+2020-01-06T23:15:37.6306245+07:00 0HLSIO4IGS4ES:00000001 [INF] Request finished in 473.1835ms 304 text/css (791a596a)
+2020-01-06T23:15:37.6990667+07:00 0HLSIO4IGS4EN:00000001 [INF] Request finished in 551.7893ms 304 text/css (791a596a)
+2020-01-06T23:15:37.7135184+07:00 0HLSIO4IGS4ER:00000001 [INF] Request finished in 553.5883ms 304 text/css (791a596a)
+2020-01-06T23:15:37.7396530+07:00 0HLSIO4IGS4EP:00000001 [INF] Request finished in 537.0436ms 304 text/css (791a596a)
+2020-01-06T23:15:37.7677559+07:00 0HLSIO4IGS4EU:00000001 [INF] Request finished in 571.7852ms 304 application/javascript (791a596a)
+2020-01-06T23:15:37.7983886+07:00 0HLSIO4IGS4EQ:00000001 [INF] Request finished in 588.373ms 304 application/javascript (791a596a)
+2020-01-06T23:15:37.8163685+07:00 0HLSIO4IGS4EO:00000001 [INF] Request finished in 605.1527ms 304 application/javascript (791a596a)
+2020-01-06T23:15:37.8955259+07:00 0HLSIO4IGS4ET:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/slick.min.js   (ca22a1cb)
+2020-01-06T23:15:37.9315513+07:00 0HLSIO4IGS4F0:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/all.css   (ca22a1cb)
+2020-01-06T23:15:37.9688404+07:00 0HLSIO4IGS4F1:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/owl.theme.default.min.css   (ca22a1cb)
+2020-01-06T23:15:37.9764564+07:00 0HLSIO4IGS4F2:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/owl.carousel.min.css   (ca22a1cb)
+2020-01-06T23:15:37.9927437+07:00 0HLSIO4IGS4EV:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/aos.js   (ca22a1cb)
+2020-01-06T23:15:38.0317305+07:00 0HLSIO4IGS4F0:00000001 [INF] The file "/user/css/all.css" was not modified (f1f8d725)
+2020-01-06T23:15:38.0425214+07:00 0HLSIO4IGS4EL:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/fonts.css   (ca22a1cb)
+2020-01-06T23:15:38.0739564+07:00 0HLSIO4IGS4ET:00000001 [INF] The file "/user/js/slick.min.js" was not modified (f1f8d725)
+2020-01-06T23:15:38.1073942+07:00 0HLSIO4IGS4EV:00000001 [INF] The file "/user/js/aos.js" was not modified (f1f8d725)
+2020-01-06T23:15:38.1294238+07:00 0HLSIO4IGS4F2:00000001 [INF] The file "/user/css/owl.carousel.min.css" was not modified (f1f8d725)
+2020-01-06T23:15:38.1524494+07:00 0HLSIO4IGS4F1:00000001 [INF] The file "/user/css/owl.theme.default.min.css" was not modified (f1f8d725)
+2020-01-06T23:15:38.2104166+07:00 0HLSIO4IGS4F0:00000001 [INF] Request finished in 950.8926ms 304 text/css (791a596a)
+2020-01-06T23:15:38.2352077+07:00 0HLSIO4IGS4EL:00000002 [INF] The file "/user/css/fonts.css" was not modified (f1f8d725)
+2020-01-06T23:15:38.2696584+07:00 0HLSIO4IGS4ET:00000001 [INF] Request finished in 1113.2166ms 304 application/javascript (791a596a)
+2020-01-06T23:15:38.2912650+07:00 0HLSIO4IGS4EV:00000001 [INF] Request finished in 1074.8867ms 304 application/javascript (791a596a)
+2020-01-06T23:15:38.3608076+07:00 0HLSIO4IGS4F2:00000001 [INF] Request finished in 361.7976ms 304 text/css (791a596a)
+2020-01-06T23:15:38.3830782+07:00 0HLSIO4IGS4F1:00000001 [INF] Request finished in 417.9728ms 304 text/css (791a596a)
+2020-01-06T23:15:38.4990678+07:00 0HLSIO4IGS4EL:00000002 [INF] Request finished in 386.9564ms 304 text/css (791a596a)
+2020-01-06T23:15:38.5382335+07:00 0HLSIO4IGS4ES:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/webfonts/fa-brands-400.woff2   (ca22a1cb)
+2020-01-06T23:15:38.5632793+07:00 0HLSIO4IGS4ES:00000002 [INF] The file "/user/webfonts/fa-brands-400.woff2" was not modified (f1f8d725)
+2020-01-06T23:15:38.6360669+07:00 0HLSIO4IGS4ES:00000002 [INF] Request finished in 220.0742ms 304 font/woff2 (791a596a)
+2020-01-06T23:16:56.3514204+07:00 0HLSIO4IGS4F3:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Account/ConfirmEmail?userId=70a7b9e2-27a1-45a6-a1aa-44890b33b974&token=CfDJ8OQFyPoIl%2FVPne8zl6ADBsxAVIIQwqyHHJSzXIojsDmdBD%2B2YCpZThZ08%2B59jiKAmvVcHCSGwgwSToQvPnBg0ZgqrVxLLketpY13QSvQHnOuc89AJxtS4RgvqsJuae8wgDQ5KlWaLnrnh00jjTATe67HmSolIMUZFLlR3vTUZrXr8uEKT4PGpJN7g%2BTHFzY5682M7lXt2FYMd0SimFLCtRclMqadx8g8aq3xUc1%2B6F1VZNC8838lrwl5I3Mlv%2FM3%2Fw%3D%3D   (ca22a1cb)
+2020-01-06T23:16:56.3825805+07:00 0HLSIO4IGS4F3:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.AccountController.ConfirmEmail (ShopMartWebsite)" with arguments (["70a7b9e2-27a1-45a6-a1aa-44890b33b974", "CfDJ8OQFyPoIl/VPne8zl6ADBsxAVIIQwqyHHJSzXIojsDmdBD+2YCpZThZ08+59jiKAmvVcHCSGwgwSToQvPnBg0ZgqrVxLLketpY13QSvQHnOuc89AJxtS4RgvqsJuae8wgDQ5KlWaLnrnh00jjTATe67HmSolIMUZFLlR3vTUZrXr8uEKT4PGpJN7g+THFzY5682M7lXt2FYMd0SimFLCtRclMqadx8g8aq3xUc1+6F1VZNC8838lrwl5I3Mlv/M3/w=="]) - ModelState is Valid (ba7f4ac2)
+2020-01-06T23:16:56.4137446+07:00 0HLSIO4IGS4F3:00000001 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T23:16:56.4428719+07:00 0HLSIO4IGS4F3:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__get_Item_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [e].[Id], [e].[AccessFailedCount], [e].[ConcurrencyStamp], [e].[Email], [e].[EmailConfirmed], [e].[LockoutEnabled], [e].[LockoutEnd], [e].[NormalizedEmail], [e].[NormalizedUserName], [e].[PasswordHash], [e].[PhoneNumber], [e].[PhoneNumberConfirmed], [e].[SecurityStamp], [e].[TwoFactorEnabled], [e].[UserName], [e].[address], [e].[birthDay], [e].[displayname], [e].[gender], [e].[password], [e].[phone], [e].[status]
+FROM [AspNetUsers] AS [e]
+WHERE [e].[Id] = @__get_Item_0" (0723d8ff)
+2020-01-06T23:16:56.4778343+07:00 0HLSIO4IGS4F3:00000001 [INF] Executed DbCommand ("6"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[address], [u].[birthDay], [u].[displayname], [u].[gender], [u].[password], [u].[phone], [u].[status]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-01-06T23:16:56.5247479+07:00 0HLSIO4IGS4F3:00000001 [INF] Executed DbCommand ("18"ms) [Parameters=["@p21='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p22='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (DbType = Boolean), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTimeOffset), @p6='?' (Size = 256), @p7='?' (Size = 256), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (DbType = Boolean), @p11='?' (Size = 4000), @p12='?' (DbType = Boolean), @p13='?' (Size = 256), @p14='?' (Size = 4000), @p15='?' (DbType = DateTime2), @p16='?' (Size = 4000), @p17='?' (DbType = Boolean), @p18='?' (Size = 4000), @p19='?' (Size = 4000), @p20='?' (DbType = Boolean)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Email] = @p2, [EmailConfirmed] = @p3, [LockoutEnabled] = @p4, [LockoutEnd] = @p5, [NormalizedEmail] = @p6, [NormalizedUserName] = @p7, [PasswordHash] = @p8, [PhoneNumber] = @p9, [PhoneNumberConfirmed] = @p10, [SecurityStamp] = @p11, [TwoFactorEnabled] = @p12, [UserName] = @p13, [address] = @p14, [birthDay] = @p15, [displayname] = @p16, [gender] = @p17, [password] = @p18, [phone] = @p19, [status] = @p20
+WHERE [Id] = @p21 AND [ConcurrencyStamp] = @p22;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2020-01-06T23:16:56.5627141+07:00 0HLSIO4IGS4F3:00000001 [INF] Executing RedirectResult, redirecting to "/Account/Login#Email confirmed successfully!". (d98d540e)
+2020-01-06T23:16:56.5746627+07:00 0HLSIO4IGS4F3:00000001 [INF] Executed action "ShopMartWebsite.Controllers.AccountController.ConfirmEmail (ShopMartWebsite)" in 206.8259ms (afa2e885)
+2020-01-06T23:16:56.6067879+07:00 0HLSIO4IGS4F3:00000001 [INF] Request finished in 231.7167ms 302  (791a596a)
+2020-01-06T23:16:56.6168253+07:00 0HLSIO4IGS4F3:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Account/Login   (ca22a1cb)
+2020-01-06T23:16:56.6250877+07:00 0HLSIO4IGS4F3:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" with arguments (["", ""]) - ModelState is Valid (ba7f4ac2)
+2020-01-06T23:16:56.6315397+07:00 0HLSIO4IGS4F3:00000002 [INF] Executing ViewResult, running view at path "/Views/Account/Login.cshtml". (9707eebe)
+2020-01-06T23:16:56.6449702+07:00 0HLSIO4IGS4F3:00000002 [INF] Executed action "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" in 16.5422ms (afa2e885)
+2020-01-06T23:16:56.6560941+07:00 0HLSIO4IGS4F3:00000002 [INF] Request finished in 33.6686ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:17:25.0108456+07:00 0HLSIO4IGS4F3:00000003 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Account/Login application/x-www-form-urlencoded 252 (ca22a1cb)
+2020-01-06T23:17:25.0457577+07:00 0HLSIO4IGS4F3:00000003 [INF] Executing action method "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" with arguments (["ShopMartWebsite.Models.RegisterViewModel"]) - ModelState is Invalid (ba7f4ac2)
+2020-01-06T23:17:25.0607731+07:00 0HLSIO4IGS4F3:00000003 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T23:17:25.0921132+07:00 0HLSIO4IGS4F3:00000003 [INF] Executed DbCommand ("2"ms) [Parameters=["@__Username_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [x].[Id], [x].[AccessFailedCount], [x].[ConcurrencyStamp], [x].[Email], [x].[EmailConfirmed], [x].[LockoutEnabled], [x].[LockoutEnd], [x].[NormalizedEmail], [x].[NormalizedUserName], [x].[PasswordHash], [x].[PhoneNumber], [x].[PhoneNumberConfirmed], [x].[SecurityStamp], [x].[TwoFactorEnabled], [x].[UserName], [x].[address], [x].[birthDay], [x].[displayname], [x].[gender], [x].[password], [x].[phone], [x].[status]
+FROM [AspNetUsers] AS [x]
+WHERE [x].[UserName] = @__Username_0" (0723d8ff)
+2020-01-06T23:17:25.1055440+07:00 0HLSIO4IGS4F3:00000003 [INF] Executing ViewResult, running view at path "/Views/Account/Login.cshtml". (9707eebe)
+2020-01-06T23:17:25.1187983+07:00 0HLSIO4IGS4F3:00000003 [INF] Executed action "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" in 90.1733ms (afa2e885)
+2020-01-06T23:17:25.1315367+07:00 0HLSIO4IGS4F3:00000003 [INF] Request finished in 120.202ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:19:49.2666616+07:00 0HLSIO4IGS4F4:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Account/Login application/x-www-form-urlencoded 252 (ca22a1cb)
+2020-01-06T23:19:49.2724534+07:00 0HLSIO4IGS4F4:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" with arguments (["ShopMartWebsite.Models.RegisterViewModel"]) - ModelState is Invalid (ba7f4ac2)
+2020-01-06T23:19:49.3008304+07:00 0HLSIO4IGS4F4:00000001 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T23:19:49.3312059+07:00 0HLSIO4IGS4F4:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__Username_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [x].[Id], [x].[AccessFailedCount], [x].[ConcurrencyStamp], [x].[Email], [x].[EmailConfirmed], [x].[LockoutEnabled], [x].[LockoutEnd], [x].[NormalizedEmail], [x].[NormalizedUserName], [x].[PasswordHash], [x].[PhoneNumber], [x].[PhoneNumberConfirmed], [x].[SecurityStamp], [x].[TwoFactorEnabled], [x].[UserName], [x].[address], [x].[birthDay], [x].[displayname], [x].[gender], [x].[password], [x].[phone], [x].[status]
+FROM [AspNetUsers] AS [x]
+WHERE [x].[UserName] = @__Username_0" (0723d8ff)
+2020-01-06T23:19:49.3506817+07:00 0HLSIO4IGS4F4:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[address], [u].[birthDay], [u].[displayname], [u].[gender], [u].[password], [u].[phone], [u].[status]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-01-06T23:19:49.5030465+07:00 0HLSIO4IGS4F4:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0" (0723d8ff)
+2020-01-06T23:19:49.5667960+07:00 0HLSIO4IGS4F4:00000001 [INF] Executed DbCommand ("4"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [AspNetUserRoles] AS [userRole]
+INNER JOIN [AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2020-01-06T23:19:49.6094160+07:00 0HLSIO4IGS4F4:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[CreationDate], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2020-01-06T23:19:49.6462681+07:00 0HLSIO4IGS4F4:00000001 [INF] Executed DbCommand ("5"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rc].[ClaimType], [rc].[ClaimValue]
+FROM [AspNetRoleClaims] AS [rc]
+WHERE [rc].[RoleId] = @__role_Id_0" (0723d8ff)
+2020-01-06T23:19:49.6831949+07:00 0HLSIO4IGS4F4:00000001 [INF] AuthenticationScheme: "Identity.Application" signed in. (c66dd7e7)
+2020-01-06T23:19:49.6898951+07:00 0HLSIO4IGS4F4:00000001 [INF] Executing RedirectResult, redirecting to "/". (d98d540e)
+2020-01-06T23:19:49.6978474+07:00 0HLSIO4IGS4F4:00000001 [INF] Executed action "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" in 423.0638ms (afa2e885)
+2020-01-06T23:19:49.7042108+07:00 0HLSIO4IGS4F4:00000001 [INF] Request finished in 458.7574ms 302  (791a596a)
+2020-01-06T23:19:49.7349105+07:00 0HLSIO4IGS4F4:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2020-01-06T23:19:49.7477379+07:00 0HLSIO4IGS4F4:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2020-01-06T23:19:49.7734978+07:00 0HLSIO4IGS4F4:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2020-01-06T23:19:49.8004333+07:00 0HLSIO4IGS4F4:00000002 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T23:19:49.8157531+07:00 0HLSIO4IGS4F4:00000002 [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[amount], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2020-01-06T23:19:49.8391289+07:00 0HLSIO4IGS4F4:00000002 [INF] Executed DbCommand ("8"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE ([x0].[status] = 1) AND ([x0].[amount] > 0)
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2020-01-06T23:19:49.8508782+07:00 0HLSIO4IGS4F4:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)" (0723d8ff)
+2020-01-06T23:19:49.8589242+07:00 0HLSIO4IGS4F4:00000002 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2020-01-06T23:19:49.8735192+07:00 0HLSIO4IGS4F4:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2020-01-06T23:19:49.8928190+07:00 0HLSIO4IGS4F4:00000002 [INF] Executed DbCommand ("10"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2020-01-06T23:19:49.9141418+07:00 0HLSIO4IGS4F4:00000002 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2020-01-06T23:19:49.9301340+07:00 0HLSIO4IGS4F4:00000002 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2020-01-06T23:19:49.9800101+07:00 0HLSIO4IGS4F4:00000002 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 190.0774ms (afa2e885)
+2020-01-06T23:19:50.0970352+07:00 0HLSIO4IGS4F6:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/logo/logo.jpg   (ca22a1cb)
+2020-01-06T23:19:50.1243225+07:00 0HLSIO4IGS4F5:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/content/vendor/jquery/jquery.min.js   (ca22a1cb)
+2020-01-06T23:19:50.2020142+07:00 0HLSIO4IGS4F7:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/Banner/banner-1.jpg   (ca22a1cb)
+2020-01-06T23:19:50.2105761+07:00 0HLSIO4IGS4F4:00000002 [INF] Request finished in 262.3215ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:19:50.2675842+07:00 0HLSIO4IGS4F5:00000001 [INF] The file "/content/vendor/jquery/jquery.min.js" was not modified (f1f8d725)
+2020-01-06T23:19:50.3088599+07:00 0HLSIO4IGS4F5:00000001 [INF] Request finished in 267.949ms 304 application/javascript (791a596a)
+2020-01-06T23:19:50.3249231+07:00 0HLSIO4IGS4F6:00000001 [INF] The file "/user/assets/logo/logo.jpg" was not modified (f1f8d725)
+2020-01-06T23:19:50.3532205+07:00 0HLSIO4IGS4F7:00000001 [INF] The file "/user/assets/Banner/banner-1.jpg" was not modified (f1f8d725)
+2020-01-06T23:19:50.4067702+07:00 0HLSIO4IGS4F4:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/style.css   (ca22a1cb)
+2020-01-06T23:19:50.4900900+07:00 0HLSIO4IGS4F6:00000001 [INF] Request finished in 303.7998ms 304 image/jpeg (791a596a)
+2020-01-06T23:19:50.5256404+07:00 0HLSIO4IGS4F7:00000001 [INF] Request finished in 329.9201ms 304 image/jpeg (791a596a)
+2020-01-06T23:19:50.6233584+07:00 0HLSIO4IGS4F7:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/Banner/banner-3.webp   (ca22a1cb)
+2020-01-06T23:19:50.6440047+07:00 0HLSIO4IGS4F5:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/Banner/banner-2.webp   (ca22a1cb)
+2020-01-06T23:19:50.6670498+07:00 0HLSIO4IGS4F5:00000002 [INF] The file "/user/assets/Banner/banner-2.webp" was not modified (f1f8d725)
+2020-01-06T23:19:50.6922280+07:00 0HLSIO4IGS4F4:00000003 [INF] The file "/user/css/style.css" was not modified (f1f8d725)
+2020-01-06T23:19:50.7458126+07:00 0HLSIO4IGS4F4:00000003 [INF] Request finished in 306.6977ms 304 text/css (791a596a)
+2020-01-06T23:19:50.8983803+07:00 0HLSIO4IGS4F7:00000002 [INF] The file "/user/assets/Banner/banner-3.webp" was not modified (f1f8d725)
+2020-01-06T23:19:50.9299812+07:00 0HLSIO4IGS4F5:00000002 [INF] Request finished in 279.5114ms 304 image/webp (791a596a)
+2020-01-06T23:19:50.9484209+07:00 0HLSIO4IGS4F6:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/detailproduct.css   (ca22a1cb)
+2020-01-06T23:19:50.9790181+07:00 0HLSIO4IGS4F7:00000002 [INF] Request finished in 356.8688ms 304 image/webp (791a596a)
+2020-01-06T23:19:51.0715054+07:00 0HLSIO4IGS4F4:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/cart.css   (ca22a1cb)
+2020-01-06T23:19:51.0876068+07:00 0HLSIO4IGS4F6:00000002 [INF] The file "/user/css/detailproduct.css" was not modified (f1f8d725)
+2020-01-06T23:19:51.1312215+07:00 0HLSIO4IGS4F5:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/MiniBanner/banner-mini1.png   (ca22a1cb)
+2020-01-06T23:19:51.1403854+07:00 0HLSIO4IGS4F7:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/MiniBanner/banner-mini2.png   (ca22a1cb)
+2020-01-06T23:19:51.2035007+07:00 0HLSIO4IGS4F6:00000002 [INF] Request finished in 369.3524ms 304 text/css (791a596a)
+2020-01-06T23:19:51.2308026+07:00 0HLSIO4IGS4F7:00000003 [INF] The file "/user/assets/MiniBanner/banner-mini2.png" was not modified (f1f8d725)
+2020-01-06T23:19:51.2500994+07:00 0HLSIO4IGS4F4:00000004 [INF] The file "/user/css/cart.css" was not modified (f1f8d725)
+2020-01-06T23:19:51.3476242+07:00 0HLSIO4IGS4F5:00000003 [INF] The file "/user/assets/MiniBanner/banner-mini1.png" was not modified (f1f8d725)
+2020-01-06T23:19:51.5355896+07:00 0HLSIO4IGS4F6:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/MiniBanner/banner-mini3.png   (ca22a1cb)
+2020-01-06T23:19:51.8707332+07:00 0HLSIO4IGS4F7:00000003 [INF] Request finished in 246.3463ms 304 image/png (791a596a)
+2020-01-06T23:19:51.8832213+07:00 0HLSIO4IGS4F9:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/MiniBanner/banner-mini4.png   (ca22a1cb)
+2020-01-06T23:19:51.9085492+07:00 0HLSIO4IGS4F4:00000004 [INF] Request finished in 378.3131ms 304 text/css (791a596a)
+2020-01-06T23:19:51.9520197+07:00 0HLSIO4IGS4F8:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/1848d93b-56c6-4716-bd89-bc8e04985b1c.jpg   (ca22a1cb)
+2020-01-06T23:19:51.9907214+07:00 0HLSIO4IGS4F5:00000003 [INF] Request finished in 341.524ms 304 image/png (791a596a)
+2020-01-06T23:19:52.4918136+07:00 0HLSIO4IGS4F6:00000003 [INF] The file "/user/assets/MiniBanner/banner-mini3.png" was not modified (f1f8d725)
+2020-01-06T23:19:52.6897857+07:00 0HLSIO4IGS4FB:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/484ffee4-bbea-4229-ba6b-b628f16ff3a8.jpg   (ca22a1cb)
+2020-01-06T23:19:52.7195295+07:00 0HLSIO4IGS4F9:00000001 [INF] The file "/user/assets/MiniBanner/banner-mini4.png" was not modified (f1f8d725)
+2020-01-06T23:19:52.8341311+07:00 0HLSIO4IGS4F8:00000001 [INF] The file "/images/site/1848d93b-56c6-4716-bd89-bc8e04985b1c.jpg" was not modified (f1f8d725)
+2020-01-06T23:19:52.8780361+07:00 0HLSIO4IGS4F7:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/11cd7a2e-374f-44f8-86c6-976446961c83.jpg   (ca22a1cb)
+2020-01-06T23:19:53.0182705+07:00 0HLSIO4IGS4F4:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/b72117e0-d277-4a55-a0c9-79d86d642b8a.jpg   (ca22a1cb)
+2020-01-06T23:19:53.0889964+07:00 0HLSIO4IGS4F6:00000003 [INF] Request finished in 1209.2239ms 304 image/png (791a596a)
+2020-01-06T23:19:53.1683956+07:00 0HLSIO4IGS4F5:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/webfonts/fa-solid-900.woff2   (ca22a1cb)
+2020-01-06T23:19:53.1997196+07:00 0HLSIO4IGS4F9:00000001 [INF] Request finished in 1335.5457ms 304 image/png (791a596a)
+2020-01-06T23:19:53.2575425+07:00 0HLSIO4IGS4F8:00000001 [INF] Request finished in 1446.2698ms 304 image/jpeg (791a596a)
+2020-01-06T23:19:53.2897853+07:00 0HLSIO4IGS4F7:00000004 [INF] The file "/images/site/11cd7a2e-374f-44f8-86c6-976446961c83.jpg" was not modified (f1f8d725)
+2020-01-06T23:19:53.3455095+07:00 0HLSIO4IGS4FB:00000001 [INF] The file "/images/site/484ffee4-bbea-4229-ba6b-b628f16ff3a8.jpg" was not modified (f1f8d725)
+2020-01-06T23:19:53.3913699+07:00 0HLSIO4IGS4F4:00000005 [INF] The file "/images/site/b72117e0-d277-4a55-a0c9-79d86d642b8a.jpg" was not modified (f1f8d725)
+2020-01-06T23:19:53.4515631+07:00 0HLSIO4IGS4F5:00000004 [INF] The file "/user/webfonts/fa-solid-900.woff2" was not modified (f1f8d725)
+2020-01-06T23:19:53.5811337+07:00 0HLSIO4IGS4FC:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/anh1.jpg   (ca22a1cb)
+2020-01-06T23:19:53.6132586+07:00 0HLSIO4IGS4F7:00000004 [INF] Request finished in 852.3353ms 304 image/jpeg (791a596a)
+2020-01-06T23:19:53.6584971+07:00 0HLSIO4IGS4FB:00000001 [INF] Request finished in 1735.3195ms 304 image/jpeg (791a596a)
+2020-01-06T23:19:53.6696500+07:00 0HLSIO4IGS4FD:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/anh44.jpg   (ca22a1cb)
+2020-01-06T23:19:53.6801918+07:00 0HLSIO4IGS4F4:00000005 [INF] Request finished in 917.4505ms 304 image/jpeg (791a596a)
+2020-01-06T23:19:53.7120747+07:00 0HLSIO4IGS4FG:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/anh55.jpg   (ca22a1cb)
+2020-01-06T23:19:53.7306027+07:00 0HLSIO4IGS4F5:00000004 [INF] Request finished in 861.6801ms 304 font/woff2 (791a596a)
+2020-01-06T23:19:53.7596667+07:00 0HLSIO4IGS4FF:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/792b5f52-efea-44f8-8886-6fff975eb77a.jpg   (ca22a1cb)
+2020-01-06T23:19:53.8172373+07:00 0HLSIO4IGS4FC:00000001 [INF] The file "/user/assets/instagram/anh1.jpg" was not modified (f1f8d725)
+2020-01-06T23:19:53.9091783+07:00 0HLSIO4IGS4FD:00000001 [INF] The file "/user/assets/instagram/anh44.jpg" was not modified (f1f8d725)
+2020-01-06T23:19:53.9501588+07:00 0HLSIO4IGS4FG:00000001 [INF] The file "/user/assets/instagram/anh55.jpg" was not modified (f1f8d725)
+2020-01-06T23:19:53.9835026+07:00 0HLSIO4IGS4FI:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/anh33.jpg   (ca22a1cb)
+2020-01-06T23:19:53.9993085+07:00 0HLSIO4IGS4FL:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/anh66.jpg   (ca22a1cb)
+2020-01-06T23:19:54.0134127+07:00 0HLSIO4IGS4FF:00000001 [INF] The file "/images/site/792b5f52-efea-44f8-8886-6fff975eb77a.jpg" was not modified (f1f8d725)
+2020-01-06T23:19:54.0386287+07:00 0HLSIO4IGS4FE:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/faf0142b-aa8d-4d4f-80a0-d5d03eec9446.jpg   (ca22a1cb)
+2020-01-06T23:19:54.0998681+07:00 0HLSIO4IGS4FC:00000001 [INF] Request finished in 559.7842ms 304 image/jpeg (791a596a)
+2020-01-06T23:19:54.1442329+07:00 0HLSIO4IGS4FK:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/fonts/Lexend_Deca/LexendDeca-Regular.ttf   (ca22a1cb)
+2020-01-06T23:19:54.2580768+07:00 0HLSIO4IGS4FD:00000001 [INF] Request finished in 516.4971ms 304 image/jpeg (791a596a)
+2020-01-06T23:19:54.2923716+07:00 0HLSIO4IGS4FG:00000001 [INF] Request finished in 515.3501ms 304 image/jpeg (791a596a)
+2020-01-06T23:19:54.3126423+07:00 0HLSIO4IGS4FI:00000001 [INF] The file "/user/assets/instagram/anh33.jpg" was not modified (f1f8d725)
+2020-01-06T23:19:54.3360316+07:00 0HLSIO4IGS4FL:00000001 [INF] The file "/user/assets/instagram/anh66.jpg" was not modified (f1f8d725)
+2020-01-06T23:19:54.4047178+07:00 0HLSIO4IGS4FF:00000001 [INF] Request finished in 1825.3589ms 304 image/jpeg (791a596a)
+2020-01-06T23:19:54.4465831+07:00 0HLSIO4IGS4FK:00000001 [INF] The file "/user/fonts/Lexend_Deca/LexendDeca-Regular.ttf" was not modified (f1f8d725)
+2020-01-06T23:19:54.4709543+07:00 0HLSIO4IGS4FE:00000001 [INF] The file "/images/site/faf0142b-aa8d-4d4f-80a0-d5d03eec9446.jpg" was not modified (f1f8d725)
+2020-01-06T23:19:54.6564730+07:00 0HLSIO4IGS4FL:00000001 [INF] Request finished in 578.5595ms 304 image/jpeg (791a596a)
+2020-01-06T23:19:54.6919269+07:00 0HLSIO4IGS4FI:00000001 [INF] Request finished in 585.2276ms 304 image/jpeg (791a596a)
+2020-01-06T23:19:54.7260725+07:00 0HLSIO4IGS4FH:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/b4b84e7e-4a02-472c-9357-f7396529f533.png   (ca22a1cb)
+2020-01-06T23:19:54.7590318+07:00 0HLSIO4IGS4FJ:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/anh11.jpg   (ca22a1cb)
+2020-01-06T23:19:54.8168198+07:00 0HLSIO4IGS4FK:00000001 [INF] Request finished in 620.6515ms 304 application/x-font-ttf (791a596a)
+2020-01-06T23:19:54.8452537+07:00 0HLSIO4IGS4FE:00000001 [INF] Request finished in 2484.6503ms 304 image/jpeg (791a596a)
+2020-01-06T23:19:54.9145092+07:00 0HLSIO4IGS4FA:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/167ab4ca-c83a-422e-ac39-413bc9f4e92f.jpg   (ca22a1cb)
+2020-01-06T23:19:54.9409993+07:00 0HLSIO4IGS4FH:00000001 [INF] The file "/images/site/b4b84e7e-4a02-472c-9357-f7396529f533.png" was not modified (f1f8d725)
+2020-01-06T23:19:54.9530816+07:00 0HLSIO4IGS4FJ:00000001 [INF] The file "/user/assets/instagram/anh11.jpg" was not modified (f1f8d725)
+2020-01-06T23:19:54.9697409+07:00 0HLSIO4IGS4FJ:00000001 [INF] Request finished in 2498.318ms 304 image/jpeg (791a596a)
+2020-01-06T23:19:54.9985949+07:00 0HLSIO4IGS4FH:00000001 [INF] Request finished in 2503.5633ms 304 image/png (791a596a)
+2020-01-06T23:19:55.0120661+07:00 0HLSIO4IGS4FA:00000001 [INF] The file "/images/site/167ab4ca-c83a-422e-ac39-413bc9f4e92f.jpg" was not modified (f1f8d725)
+2020-01-06T23:19:55.0202400+07:00 0HLSIO4IGS4FA:00000001 [INF] Request finished in 2420.2761ms 304 image/jpeg (791a596a)
+2020-01-06T23:20:10.6364569+07:00 0HLSIO4IGS4F6:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/InfoPersional?email=thienvovan0112@gmail.com   (ca22a1cb)
+2020-01-06T23:20:10.6444632+07:00 0HLSIO4IGS4F6:00000004 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2020-01-06T23:20:10.6845213+07:00 0HLSIO4IGS4F6:00000004 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.InfoPersional (ShopMartWebsite)" with arguments (["thienvovan0112@gmail.com"]) - ModelState is Valid (ba7f4ac2)
+2020-01-06T23:20:10.6962764+07:00 0HLSIO4IGS4F6:00000004 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T23:20:10.7245818+07:00 0HLSIO4IGS4F6:00000004 [INF] Executed DbCommand ("5"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[address], [u].[birthDay], [u].[displayname], [u].[gender], [u].[password], [u].[phone], [u].[status]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0" (0723d8ff)
+2020-01-06T23:20:11.0831252+07:00 0HLSIO4IGS4F6:00000004 [INF] Executing ViewResult, running view at path "/Views/Home/InfoPersional.cshtml". (9707eebe)
+2020-01-06T23:20:11.1521017+07:00 0HLSIO4IGS4F6:00000004 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.InfoPersional (ShopMartWebsite)" in 471.4564ms (afa2e885)
+2020-01-06T23:20:11.1808475+07:00 0HLSIO4IGS4F6:00000004 [INF] Request finished in 524.3731ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:20:32.0285733+07:00 0HLSIO4IGS4F9:00000002 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Home/InfoPersional application/x-www-form-urlencoded 358 (ca22a1cb)
+2020-01-06T23:20:32.0351516+07:00 0HLSIO4IGS4F9:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2020-01-06T23:20:32.0617181+07:00 0HLSIO4IGS4F9:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.InfoPersional (ShopMartWebsite)" with arguments (["ShopMartWebsite.Models.UserViewModel"]) - ModelState is Valid (ba7f4ac2)
+2020-01-06T23:20:32.0700028+07:00 0HLSIO4IGS4F9:00000002 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T23:20:32.0808313+07:00 0HLSIO4IGS4F9:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[address], [u].[birthDay], [u].[displayname], [u].[gender], [u].[password], [u].[phone], [u].[status]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0" (0723d8ff)
+2020-01-06T23:20:32.0922112+07:00 0HLSIO4IGS4F9:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[address], [u].[birthDay], [u].[displayname], [u].[gender], [u].[password], [u].[phone], [u].[status]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2020-01-06T23:20:32.1260634+07:00 0HLSIO4IGS4F9:00000002 [INF] Executed DbCommand ("6"ms) [Parameters=["@p21='?' (Size = 450), @p0='?' (DbType = Int32), @p1='?' (Size = 4000), @p22='?' (Size = 4000), @p2='?' (Size = 256), @p3='?' (DbType = Boolean), @p4='?' (DbType = Boolean), @p5='?' (DbType = DateTimeOffset), @p6='?' (Size = 256), @p7='?' (Size = 256), @p8='?' (Size = 4000), @p9='?' (Size = 4000), @p10='?' (DbType = Boolean), @p11='?' (Size = 4000), @p12='?' (DbType = Boolean), @p13='?' (Size = 256), @p14='?' (Size = 4000), @p15='?' (DbType = DateTime2), @p16='?' (Size = 4000), @p17='?' (DbType = Boolean), @p18='?' (Size = 4000), @p19='?' (Size = 4000), @p20='?' (DbType = Boolean)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+UPDATE [AspNetUsers] SET [AccessFailedCount] = @p0, [ConcurrencyStamp] = @p1, [Email] = @p2, [EmailConfirmed] = @p3, [LockoutEnabled] = @p4, [LockoutEnd] = @p5, [NormalizedEmail] = @p6, [NormalizedUserName] = @p7, [PasswordHash] = @p8, [PhoneNumber] = @p9, [PhoneNumberConfirmed] = @p10, [SecurityStamp] = @p11, [TwoFactorEnabled] = @p12, [UserName] = @p13, [address] = @p14, [birthDay] = @p15, [displayname] = @p16, [gender] = @p17, [password] = @p18, [phone] = @p19, [status] = @p20
+WHERE [Id] = @p21 AND [ConcurrencyStamp] = @p22;
+SELECT @@ROWCOUNT;" (0723d8ff)
+2020-01-06T23:20:32.1575626+07:00 0HLSIO4IGS4F9:00000002 [INF] Executing RedirectResult, redirecting to "/Home/InfoPersional?email=thienvovan0112@gmail.com". (d98d540e)
+2020-01-06T23:20:32.1650026+07:00 0HLSIO4IGS4F9:00000002 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.InfoPersional (ShopMartWebsite)" in 107.7884ms (afa2e885)
+2020-01-06T23:20:32.1714397+07:00 0HLSIO4IGS4F9:00000002 [INF] Request finished in 142.585ms 302  (791a596a)
+2020-01-06T23:20:32.1803948+07:00 0HLSIO4IGS4F8:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/InfoPersional?email=thienvovan0112@gmail.com   (ca22a1cb)
+2020-01-06T23:20:32.1852455+07:00 0HLSIO4IGS4F8:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2020-01-06T23:20:32.2121254+07:00 0HLSIO4IGS4F8:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.InfoPersional (ShopMartWebsite)" with arguments (["thienvovan0112@gmail.com"]) - ModelState is Valid (ba7f4ac2)
+2020-01-06T23:20:32.2212320+07:00 0HLSIO4IGS4F8:00000002 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T23:20:32.2330106+07:00 0HLSIO4IGS4F8:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[address], [u].[birthDay], [u].[displayname], [u].[gender], [u].[password], [u].[phone], [u].[status]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0" (0723d8ff)
+2020-01-06T23:20:32.2399422+07:00 0HLSIO4IGS4F8:00000002 [INF] Executing ViewResult, running view at path "/Views/Home/InfoPersional.cshtml". (9707eebe)
+2020-01-06T23:20:32.2697027+07:00 0HLSIO4IGS4F8:00000002 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.InfoPersional (ShopMartWebsite)" in 61.6883ms (afa2e885)
+2020-01-06T23:20:32.3023539+07:00 0HLSIO4IGS4F8:00000002 [INF] Request finished in 97.6514ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:20:32.3336351+07:00 0HLSIO4IGS4F5:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/jquery3.4.1.min.js   (ca22a1cb)
+2020-01-06T23:20:32.3648034+07:00 0HLSIO4IGS4FB:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/aos.css   (ca22a1cb)
+2020-01-06T23:20:32.3733682+07:00 0HLSIO4IGS4FC:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/owl.carousel.min.js   (ca22a1cb)
+2020-01-06T23:20:32.4040616+07:00 0HLSIO4IGS4FB:00000002 [INF] The file "/user/css/aos.css" was not modified (f1f8d725)
+2020-01-06T23:20:32.4671677+07:00 0HLSIO4IGS4F5:00000005 [INF] The file "/user/js/jquery3.4.1.min.js" was not modified (f1f8d725)
+2020-01-06T23:20:32.4805883+07:00 0HLSIO4IGS4F5:00000005 [INF] Request finished in 160.4061ms 304 application/javascript (791a596a)
+2020-01-06T23:20:32.5143719+07:00 0HLSIO4IGS4FC:00000002 [INF] The file "/user/js/owl.carousel.min.js" was not modified (f1f8d725)
+2020-01-06T23:20:32.5226909+07:00 0HLSIO4IGS4F7:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/bootstrap.css   (ca22a1cb)
+2020-01-06T23:20:32.5395079+07:00 0HLSIO4IGS4FB:00000002 [INF] Request finished in 98.2221ms 304 text/css (791a596a)
+2020-01-06T23:20:32.6148526+07:00 0HLSIO4IGS4FD:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/bootstrap.js   (ca22a1cb)
+2020-01-06T23:20:32.6518078+07:00 0HLSIO4IGS4FD:00000002 [INF] The file "/user/js/bootstrap.js" was not modified (f1f8d725)
+2020-01-06T23:20:32.6951893+07:00 0HLSIO4IGS4FD:00000002 [INF] Request finished in 80.0428ms 304 application/javascript (791a596a)
+2020-01-06T23:20:32.7689699+07:00 0HLSIO4IGS4F4:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/slick.css   (ca22a1cb)
+2020-01-06T23:20:32.8001972+07:00 0HLSIO4IGS4F7:00000005 [INF] The file "/user/css/bootstrap.css" was not modified (f1f8d725)
+2020-01-06T23:20:32.8317473+07:00 0HLSIO4IGS4F4:00000006 [INF] The file "/user/css/slick.css" was not modified (f1f8d725)
+2020-01-06T23:20:32.8594391+07:00 0HLSIO4IGS4F4:00000006 [INF] Request finished in 264.9929ms 304 text/css (791a596a)
+2020-01-06T23:20:32.8761465+07:00 0HLSIO4IGS4FC:00000002 [INF] Request finished in 197.6698ms 304 application/javascript (791a596a)
+2020-01-06T23:20:32.9251704+07:00 0HLSIO4IGS4F7:00000005 [INF] Request finished in 493.2759ms 304 text/css (791a596a)
+2020-01-06T23:20:32.9510361+07:00 0HLSIO4IGS4FG:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/main.js   (ca22a1cb)
+2020-01-06T23:20:32.9639462+07:00 0HLSIO4IGS4FG:00000002 [INF] The file "/user/js/main.js" was not modified (f1f8d725)
+2020-01-06T23:20:33.0164709+07:00 0HLSIO4IGS4FG:00000002 [INF] Request finished in 223.8068ms 304 application/javascript (791a596a)
+2020-01-06T23:20:35.1478167+07:00 0HLSIO4IGS4FF:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2020-01-06T23:20:35.1543351+07:00 0HLSIO4IGS4FF:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2020-01-06T23:20:35.1618320+07:00 0HLSIO4IGS4FF:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2020-01-06T23:20:35.1689192+07:00 0HLSIO4IGS4FF:00000002 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T23:20:35.1803051+07:00 0HLSIO4IGS4FF:00000002 [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[amount], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2020-01-06T23:20:35.1896504+07:00 0HLSIO4IGS4FF:00000002 [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE ([x0].[status] = 1) AND ([x0].[amount] > 0)
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2020-01-06T23:20:35.2003092+07:00 0HLSIO4IGS4FF:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)" (0723d8ff)
+2020-01-06T23:20:35.2066765+07:00 0HLSIO4IGS4FF:00000002 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2020-01-06T23:20:35.2366585+07:00 0HLSIO4IGS4FF:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2020-01-06T23:20:35.2470634+07:00 0HLSIO4IGS4FF:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2020-01-06T23:20:35.2570463+07:00 0HLSIO4IGS4FF:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2020-01-06T23:20:35.2657869+07:00 0HLSIO4IGS4FF:00000002 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2020-01-06T23:20:35.2784038+07:00 0HLSIO4IGS4FF:00000002 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 113.3432ms (afa2e885)
+2020-01-06T23:20:35.2995766+07:00 0HLSIO4IGS4FF:00000002 [INF] Request finished in 141.089ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:20:35.3647981+07:00 0HLSIO4IGS4FI:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/all.css   (ca22a1cb)
+2020-01-06T23:20:35.3719204+07:00 0HLSIO4IGS4FI:00000002 [INF] The file "/user/css/all.css" was not modified (f1f8d725)
+2020-01-06T23:20:35.3847002+07:00 0HLSIO4IGS4FK:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/fonts.css   (ca22a1cb)
+2020-01-06T23:20:35.4402148+07:00 0HLSIO4IGS4FE:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/owl.theme.default.min.css   (ca22a1cb)
+2020-01-06T23:20:35.4532784+07:00 0HLSIO4IGS4FE:00000002 [INF] The file "/user/css/owl.theme.default.min.css" was not modified (f1f8d725)
+2020-01-06T23:20:35.4783527+07:00 0HLSIO4IGS4FK:00000002 [INF] The file "/user/css/fonts.css" was not modified (f1f8d725)
+2020-01-06T23:20:35.5695105+07:00 0HLSIO4IGS4FE:00000002 [INF] Request finished in 132.4808ms 304 text/css (791a596a)
+2020-01-06T23:20:35.5950865+07:00 0HLSIO4IGS4FK:00000002 [INF] Request finished in 129.1371ms 304 text/css (791a596a)
+2020-01-06T23:20:35.5995765+07:00 0HLSIO4IGS4FL:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/owl.carousel.min.css   (ca22a1cb)
+2020-01-06T23:20:35.6072930+07:00 0HLSIO4IGS4FI:00000002 [INF] Request finished in 56.6153ms 304 text/css (791a596a)
+2020-01-06T23:20:35.6627675+07:00 0HLSIO4IGS4FL:00000002 [INF] The file "/user/css/owl.carousel.min.css" was not modified (f1f8d725)
+2020-01-06T23:20:35.7213511+07:00 0HLSIO4IGS4FJ:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/slick.min.js   (ca22a1cb)
+2020-01-06T23:20:35.7575045+07:00 0HLSIO4IGS4FL:00000002 [INF] Request finished in 336.3139ms 304 text/css (791a596a)
+2020-01-06T23:20:35.9385107+07:00 0HLSIO4IGS4FH:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/aos.js   (ca22a1cb)
+2020-01-06T23:20:35.9547404+07:00 0HLSIO4IGS4FJ:00000002 [INF] The file "/user/js/slick.min.js" was not modified (f1f8d725)
+2020-01-06T23:20:35.9824407+07:00 0HLSIO4IGS4FJ:00000002 [INF] Request finished in 265.8245ms 304 application/javascript (791a596a)
+2020-01-06T23:20:35.9916572+07:00 0HLSIO4IGS4FH:00000002 [INF] The file "/user/js/aos.js" was not modified (f1f8d725)
+2020-01-06T23:20:36.0060137+07:00 0HLSIO4IGS4FH:00000002 [INF] Request finished in 374.4333ms 304 application/javascript (791a596a)
+2020-01-06T23:20:38.3024004+07:00 0HLSIO4IGS4FA:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/InfoPersional?email=thienvovan0112@gmail.com   (ca22a1cb)
+2020-01-06T23:20:38.3304516+07:00 0HLSIO4IGS4FA:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2020-01-06T23:20:38.3380448+07:00 0HLSIO4IGS4FA:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.InfoPersional (ShopMartWebsite)" with arguments (["thienvovan0112@gmail.com"]) - ModelState is Valid (ba7f4ac2)
+2020-01-06T23:20:38.3452237+07:00 0HLSIO4IGS4FA:00000002 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T23:20:38.3550901+07:00 0HLSIO4IGS4FA:00000002 [INF] Executed DbCommand ("1"ms) [Parameters=["@__normalizedEmail_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[address], [u].[birthDay], [u].[displayname], [u].[gender], [u].[password], [u].[phone], [u].[status]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedEmail] = @__normalizedEmail_0" (0723d8ff)
+2020-01-06T23:20:38.3813519+07:00 0HLSIO4IGS4FA:00000002 [INF] Executing ViewResult, running view at path "/Views/Home/InfoPersional.cshtml". (9707eebe)
+2020-01-06T23:20:38.3990041+07:00 0HLSIO4IGS4FA:00000002 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.InfoPersional (ShopMartWebsite)" in 51.809ms (afa2e885)
+2020-01-06T23:20:38.4086539+07:00 0HLSIO4IGS4FA:00000002 [INF] Request finished in 105.1033ms 200 text/html; charset=utf-8 (791a596a)
+2020-01-06T23:20:42.0300661+07:00 0HLSIO4IGS4F6:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2020-01-06T23:20:42.0371587+07:00 0HLSIO4IGS4F6:00000005 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2020-01-06T23:20:42.0471906+07:00 0HLSIO4IGS4F6:00000005 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2020-01-06T23:20:42.0614719+07:00 0HLSIO4IGS4F6:00000005 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2020-01-06T23:20:42.0710177+07:00 0HLSIO4IGS4F6:00000005 [INF] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[amount], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2020-01-06T23:20:42.0802228+07:00 0HLSIO4IGS4F6:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE ([x0].[status] = 1) AND ([x0].[amount] > 0)
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2020-01-06T23:20:42.0880998+07:00 0HLSIO4IGS4F6:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)" (0723d8ff)
+2020-01-06T23:20:42.0977023+07:00 0HLSIO4IGS4F6:00000005 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2020-01-06T23:20:42.1070676+07:00 0HLSIO4IGS4F6:00000005 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2020-01-06T23:20:42.1164046+07:00 0HLSIO4IGS4F6:00000005 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2020-01-06T23:20:42.1468734+07:00 0HLSIO4IGS4F6:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2020-01-06T23:20:42.1736023+07:00 0HLSIO4IGS4F6:00000005 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2020-01-06T23:20:42.1858523+07:00 0HLSIO4IGS4F6:00000005 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 140.6409ms (afa2e885)
+2020-01-06T23:20:42.2027516+07:00 0HLSIO4IGS4F6:00000005 [INF] Request finished in 167.0434ms 200 text/html; charset=utf-8 (791a596a)

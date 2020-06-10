@@ -1,0 +1,638 @@
+2019-12-23T11:19:52.7761440+07:00 0HLS7BTDQCPTU:00000001 [INF] Request starting HTTP/1.1 DEBUG http://localhost:51987/  0 (ca22a1cb)
+2019-12-23T11:19:52.7761441+07:00 0HLS7BTDQCPTT:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-12-23T11:19:52.9072839+07:00 0HLS7BTDQCPTU:00000001 [INF] Request finished in 162.1367ms 200  (791a596a)
+2019-12-23T11:19:53.0010264+07:00 0HLS7BTDQCPTT:00000001 [INF] "Identity.Application" was not authenticated. Failure message: "Unprotect ticket failed" (48071232)
+2019-12-23T11:19:53.9319312+07:00 0HLS7BTDQCPTT:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:19:55.4491923+07:00 0HLS7BTDQCPTT:00000001 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:19:57.0649772+07:00 0HLS7BTDQCPTT:00000001 [INF] Executed DbCommand ("103"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[amount], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-12-23T11:19:57.3931507+07:00 0HLS7BTDQCPTT:00000001 [INF] Executed DbCommand ("22"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE ([x0].[status] = 1) AND ([x0].[amount] > 0)
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-12-23T11:19:57.5287692+07:00 0HLS7BTDQCPTT:00000001 [INF] Executed DbCommand ("18"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)" (0723d8ff)
+2019-12-23T11:20:02.6336837+07:00 0HLS7BTDQCPTT:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-12-23T11:20:02.7685543+07:00 0HLS7BTDQCPTT:00000001 [INF] Executed DbCommand ("17"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-12-23T11:20:02.8033234+07:00 0HLS7BTDQCPTT:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-12-23T11:20:02.8632807+07:00 0HLS7BTDQCPTT:00000001 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-12-23T11:20:02.8896693+07:00 0HLS7BTDQCPTT:00000001 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-12-23T11:20:03.5220423+07:00 0HLS7BTDQCPTT:00000001 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 10108.6585ms (afa2e885)
+2019-12-23T11:20:03.5903788+07:00 0HLS7BTDQCPTT:00000001 [INF] Request finished in 10858.2827ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:20:04.1916966+07:00 0HLS7BTDQCPTT:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/ab73b434-047f-45bf-9fa4-61717ded95b1.jpg   (ca22a1cb)
+2019-12-23T11:20:04.2584971+07:00 0HLS7BTDQCPTU:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/f30fef4b-d7b8-459a-a2f6-81829d247aac.jpg   (ca22a1cb)
+2019-12-23T11:20:04.3143886+07:00 0HLS7BTDQCPU0:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/8daacaab-7ec6-4460-9d56-03cf5494b2a9.jpg   (ca22a1cb)
+2019-12-23T11:20:04.3371773+07:00 0HLS7BTDQCPU2:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/b6e01b40-d201-4a02-b13e-597ff2707d42.jpg   (ca22a1cb)
+2019-12-23T11:20:04.3660867+07:00 0HLS7BTDQCPU0:00000001 [INF] Sending file. Request path: '"/images/site/8daacaab-7ec6-4460-9d56-03cf5494b2a9.jpg"'. Physical path: '"D:\DoAnTieuLuan\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\images\site\8daacaab-7ec6-4460-9d56-03cf5494b2a9.jpg"' (27b0a520)
+2019-12-23T11:20:04.3980730+07:00 0HLS7BTDQCPTU:00000002 [INF] Sending file. Request path: '"/images/site/f30fef4b-d7b8-459a-a2f6-81829d247aac.jpg"'. Physical path: '"D:\DoAnTieuLuan\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\images\site\f30fef4b-d7b8-459a-a2f6-81829d247aac.jpg"' (27b0a520)
+2019-12-23T11:20:04.4193353+07:00 0HLS7BTDQCPTT:00000002 [INF] Sending file. Request path: '"/images/site/ab73b434-047f-45bf-9fa4-61717ded95b1.jpg"'. Physical path: '"D:\DoAnTieuLuan\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\images\site\ab73b434-047f-45bf-9fa4-61717ded95b1.jpg"' (27b0a520)
+2019-12-23T11:20:04.5305008+07:00 0HLS7BTDQCPTV:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/73ea8b43-8b95-4f75-bbb7-0b7219e6e4a9.png   (ca22a1cb)
+2019-12-23T11:20:04.6133846+07:00 0HLS7BTDQCPU1:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/0dc3c768-dc51-4d5e-858d-26316efddc21.jpg   (ca22a1cb)
+2019-12-23T11:20:04.6961248+07:00 0HLS7BTDQCPTT:00000002 [INF] Request finished in 296.2218ms 200 image/jpeg (791a596a)
+2019-12-23T11:20:04.7408034+07:00 0HLS7BTDQCPU1:00000001 [INF] Sending file. Request path: '"/images/site/0dc3c768-dc51-4d5e-858d-26316efddc21.jpg"'. Physical path: '"D:\DoAnTieuLuan\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\images\site\0dc3c768-dc51-4d5e-858d-26316efddc21.jpg"' (27b0a520)
+2019-12-23T11:20:04.7490435+07:00 0HLS7BTDQCPU2:00000001 [INF] Sending file. Request path: '"/images/site/b6e01b40-d201-4a02-b13e-597ff2707d42.jpg"'. Physical path: '"D:\DoAnTieuLuan\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\images\site\b6e01b40-d201-4a02-b13e-597ff2707d42.jpg"' (27b0a520)
+2019-12-23T11:20:04.7567059+07:00 0HLS7BTDQCPU3:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/56409b9a-f4ad-48c8-94c4-6c5a4bafd43a.jpg   (ca22a1cb)
+2019-12-23T11:20:04.8022038+07:00 0HLS7BTDQCPTV:00000001 [INF] Sending file. Request path: '"/images/site/73ea8b43-8b95-4f75-bbb7-0b7219e6e4a9.png"'. Physical path: '"D:\DoAnTieuLuan\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\images\site\73ea8b43-8b95-4f75-bbb7-0b7219e6e4a9.png"' (27b0a520)
+2019-12-23T11:20:04.9128893+07:00 0HLS7BTDQCPTU:00000002 [INF] Request finished in 651.1871ms 200 image/jpeg (791a596a)
+2019-12-23T11:20:04.9619076+07:00 0HLS7BTDQCPTV:00000001 [INF] Request finished in 403.3476ms 200 image/png (791a596a)
+2019-12-23T11:20:04.9875835+07:00 0HLS7BTDQCPU4:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/f42fddc0-2ee4-4ba0-933b-4f7d99f9f458.jpg   (ca22a1cb)
+2019-12-23T11:20:05.0526841+07:00 0HLS7BTDQCPU3:00000001 [INF] Sending file. Request path: '"/images/site/56409b9a-f4ad-48c8-94c4-6c5a4bafd43a.jpg"'. Physical path: '"D:\DoAnTieuLuan\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\images\site\56409b9a-f4ad-48c8-94c4-6c5a4bafd43a.jpg"' (27b0a520)
+2019-12-23T11:20:05.0893944+07:00 0HLS7BTDQCPU0:00000001 [INF] Request finished in 763.8993ms 200 image/jpeg (791a596a)
+2019-12-23T11:20:05.1282830+07:00 0HLS7BTDQCPU3:00000001 [INF] Request finished in 374.4504ms 200 image/jpeg (791a596a)
+2019-12-23T11:20:05.1433736+07:00 0HLS7BTDQCPU4:00000001 [INF] Sending file. Request path: '"/images/site/f42fddc0-2ee4-4ba0-933b-4f7d99f9f458.jpg"'. Physical path: '"D:\DoAnTieuLuan\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\images\site\f42fddc0-2ee4-4ba0-933b-4f7d99f9f458.jpg"' (27b0a520)
+2019-12-23T11:20:05.1627661+07:00 0HLS7BTDQCPU1:00000001 [INF] Request finished in 715.1117ms 200 image/jpeg (791a596a)
+2019-12-23T11:20:05.2209463+07:00 0HLS7BTDQCPU2:00000001 [INF] Request finished in 868.1738ms 200 image/jpeg (791a596a)
+2019-12-23T11:20:05.2377200+07:00 0HLS7BTDQCPU4:00000001 [INF] Request finished in 370.3058ms 200 image/jpeg (791a596a)
+2019-12-23T11:20:56.3274880+07:00 0HLS7BTDQCPTT:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin   (ca22a1cb)
+2019-12-23T11:20:56.3411600+07:00 0HLS7BTDQCPTT:00000003 [INF] "Identity.Application" was not authenticated. Failure message: "Unprotect ticket failed" (48071232)
+2019-12-23T11:20:56.3554324+07:00 0HLS7BTDQCPTT:00000003 [INF] Executing action method "ShopMartWebsite.Controllers.AdminController.Index (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:20:56.3629711+07:00 0HLS7BTDQCPTT:00000003 [INF] Executing RedirectResult, redirecting to "/AdminLogin". (d98d540e)
+2019-12-23T11:20:56.3690949+07:00 0HLS7BTDQCPTT:00000003 [INF] Executed action "ShopMartWebsite.Controllers.AdminController.Index (ShopMartWebsite)" in 18.3625ms (afa2e885)
+2019-12-23T11:20:56.3969858+07:00 0HLS7BTDQCPTT:00000003 [INF] Request finished in 50.3454ms 302  (791a596a)
+2019-12-23T11:20:56.4255848+07:00 0HLS7BTDQCPTU:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/AdminLogin   (ca22a1cb)
+2019-12-23T11:20:56.4505677+07:00 0HLS7BTDQCPTU:00000003 [INF] "Identity.Application" was not authenticated. Failure message: "Unprotect ticket failed" (48071232)
+2019-12-23T11:20:56.4779614+07:00 0HLS7BTDQCPTU:00000003 [INF] Executing action method "ShopMartWebsite.Controllers.AdminLoginController.Index (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:20:56.7293925+07:00 0HLS7BTDQCPTU:00000003 [INF] Executing ViewResult, running view at path "/Views/AdminLogin/Index.cshtml". (9707eebe)
+2019-12-23T11:20:56.7959864+07:00 0HLS7BTDQCPTU:00000003 [INF] Executed action "ShopMartWebsite.Controllers.AdminLoginController.Index (ShopMartWebsite)" in 333.7941ms (afa2e885)
+2019-12-23T11:20:56.8064536+07:00 0HLS7BTDQCPTU:00000003 [INF] Request finished in 399.8172ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:20:57.0609720+07:00 0HLS7BTDQCPTV:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/AdminLogin   (ca22a1cb)
+2019-12-23T11:20:57.0891662+07:00 0HLS7BTDQCPTV:00000002 [INF] "Identity.Application" was not authenticated. Failure message: "Unprotect ticket failed" (48071232)
+2019-12-23T11:20:57.0969004+07:00 0HLS7BTDQCPTV:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.AdminLoginController.Index (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:20:57.1220089+07:00 0HLS7BTDQCPTV:00000002 [INF] Executing ViewResult, running view at path "/Views/AdminLogin/Index.cshtml". (9707eebe)
+2019-12-23T11:20:57.1827553+07:00 0HLS7BTDQCPTV:00000002 [INF] Executed action "ShopMartWebsite.Controllers.AdminLoginController.Index (ShopMartWebsite)" in 34.1704ms (afa2e885)
+2019-12-23T11:20:57.2200372+07:00 0HLS7BTDQCPTV:00000002 [INF] Request finished in 151.5817ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:21:01.0099856+07:00 0HLS7BTDQCPU0:00000002 [INF] Request starting HTTP/1.1 POST http://localhost:44340/AdminLogin/Authen application/x-www-form-urlencoded; charset=UTF-8 32 (ca22a1cb)
+2019-12-23T11:21:01.0229545+07:00 0HLS7BTDQCPU0:00000002 [INF] "Identity.Application" was not authenticated. Failure message: "Unprotect ticket failed" (48071232)
+2019-12-23T11:21:01.1151212+07:00 0HLS7BTDQCPU0:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.AdminLoginController.Authen (ShopMartWebsite)" with arguments (["ShopMartWebsite.Models.LoginViewModel", ""]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:21:01.1407796+07:00 0HLS7BTDQCPU0:00000002 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:21:01.3285305+07:00 0HLS7BTDQCPU0:00000002 [INF] Executed DbCommand ("52"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[address], [u].[birthDay], [u].[displayname], [u].[gender], [u].[password], [u].[phone], [u].[status]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2019-12-23T11:21:01.5142308+07:00 0HLS7BTDQCPU0:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0" (0723d8ff)
+2019-12-23T11:21:01.5671532+07:00 0HLS7BTDQCPU0:00000002 [INF] Executed DbCommand ("4"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [AspNetUserRoles] AS [userRole]
+INNER JOIN [AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2019-12-23T11:21:01.5892035+07:00 0HLS7BTDQCPU0:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[CreationDate], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2019-12-23T11:21:01.6204259+07:00 0HLS7BTDQCPU0:00000002 [INF] Executed DbCommand ("4"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rc].[ClaimType], [rc].[ClaimValue]
+FROM [AspNetRoleClaims] AS [rc]
+WHERE [rc].[RoleId] = @__role_Id_0" (0723d8ff)
+2019-12-23T11:21:01.6527954+07:00 0HLS7BTDQCPU0:00000002 [INF] AuthenticationScheme: "Identity.Application" signed in. (c66dd7e7)
+2019-12-23T11:21:01.6814438+07:00 0HLS7BTDQCPU0:00000002 [INF] User logged in. (fdce0db4)
+2019-12-23T11:21:01.7131550+07:00 0HLS7BTDQCPU0:00000002 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2019-12-23T11:21:01.7773182+07:00 0HLS7BTDQCPU0:00000002 [INF] Executed action "ShopMartWebsite.Controllers.AdminLoginController.Authen (ShopMartWebsite)" in 718.0094ms (afa2e885)
+2019-12-23T11:21:01.7971949+07:00 0HLS7BTDQCPU0:00000002 [INF] Request finished in 775.9425ms 200 application/json; charset=utf-8 (791a596a)
+2019-12-23T11:21:01.8257522+07:00 0HLS7BTDQCPU2:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Admin/Index   (ca22a1cb)
+2019-12-23T11:21:01.8540629+07:00 0HLS7BTDQCPU2:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-23T11:21:01.8808110+07:00 0HLS7BTDQCPU2:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.AdminController.Index (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:21:02.0838329+07:00 0HLS7BTDQCPU2:00000002 [INF] Executing ViewResult, running view at path "/Views/Admin/Index.cshtml". (9707eebe)
+2019-12-23T11:21:02.5994788+07:00 0HLS7BTDQCPU2:00000002 [INF] Executed action "ShopMartWebsite.Controllers.AdminController.Index (ShopMartWebsite)" in 738.7301ms (afa2e885)
+2019-12-23T11:21:02.6135507+07:00 0HLS7BTDQCPU2:00000002 [INF] Request finished in 804.1897ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:21:04.7416921+07:00 0HLS7BTDQCPU3:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Chart   (ca22a1cb)
+2019-12-23T11:21:04.7508280+07:00 0HLS7BTDQCPU3:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-23T11:21:04.7585591+07:00 0HLS7BTDQCPU3:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.ChartController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:21:04.7753103+07:00 0HLS7BTDQCPU3:00000002 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:21:04.8645683+07:00 0HLS7BTDQCPU3:00000002 [INF] Executed DbCommand ("33"ms) [Parameters=["@__monthSearch_0='?' (DbType = Int32), @__yearSearch_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CONVERT(date, [o].[createDate]) AS [Key], COUNT(*) AS [Count], SUM([o].[total]) AS [Total]
+FROM [order] AS [o]
+GROUP BY CONVERT(date, [o].[createDate])
+HAVING (DATEPART(month, CONVERT(date, [o].[createDate])) = @__monthSearch_0) AND (DATEPART(year, CONVERT(date, [o].[createDate])) = @__yearSearch_1)" (0723d8ff)
+2019-12-23T11:21:05.1905336+07:00 0HLS7BTDQCPU3:00000002 [INF] Executing ViewResult, running view at path "/Views/Chart/Index.cshtml". (9707eebe)
+2019-12-23T11:21:05.4947984+07:00 0HLS7BTDQCPU3:00000002 [INF] Executed action "ShopMartWebsite.Controllers.ChartController.Index (ShopMartWebsite)" in 734.547ms (afa2e885)
+2019-12-23T11:21:05.5043284+07:00 0HLS7BTDQCPU3:00000002 [INF] Request finished in 762.2015ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:21:06.0727619+07:00 0HLS7BTDQCPTT:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Chart/ColumnChart?option=dayinmonth&monthSearch=12&yearSearch=2019   (ca22a1cb)
+2019-12-23T11:21:06.0783817+07:00 0HLS7BTDQCPTT:00000004 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-23T11:21:06.0889041+07:00 0HLS7BTDQCPTT:00000004 [INF] Executing action method "ShopMartWebsite.Controllers.ChartController.ColumnChart (ShopMartWebsite)" with arguments (["dayinmonth", "12", "2019"]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:21:06.0949201+07:00 0HLS7BTDQCPTT:00000004 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:21:06.1114683+07:00 0HLS7BTDQCPTT:00000004 [INF] Executed DbCommand ("0"ms) [Parameters=["@__monthSearch_0='?' (DbType = Int32), @__yearSearch_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CONVERT(date, [o].[createDate]) AS [Key], COUNT(*) AS [Count], SUM([o].[total]) AS [Total]
+FROM [order] AS [o]
+GROUP BY CONVERT(date, [o].[createDate])
+HAVING (DATEPART(month, CONVERT(date, [o].[createDate])) = @__monthSearch_0) AND (DATEPART(year, CONVERT(date, [o].[createDate])) = @__yearSearch_1)" (0723d8ff)
+2019-12-23T11:21:06.1207198+07:00 0HLS7BTDQCPTT:00000004 [INF] Executing JsonResult, writing value "System.Collections.Generic.List`1[ShopMartWebsite.Entities.Statistical]". (7bb75e80)
+2019-12-23T11:21:06.1357994+07:00 0HLS7BTDQCPTT:00000004 [INF] Executed action "ShopMartWebsite.Controllers.ChartController.ColumnChart (ShopMartWebsite)" in 44.4505ms (afa2e885)
+2019-12-23T11:21:06.1420219+07:00 0HLS7BTDQCPTT:00000004 [INF] Request finished in 71.6765ms 200 application/json; charset=utf-8 (791a596a)
+2019-12-23T11:21:11.3350613+07:00 0HLS7BTDQCPTU:00000004 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Chart application/x-www-form-urlencoded 275 (ca22a1cb)
+2019-12-23T11:21:11.3426202+07:00 0HLS7BTDQCPTU:00000004 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-23T11:21:11.3508345+07:00 0HLS7BTDQCPTU:00000004 [INF] Executing action method "ShopMartWebsite.Controllers.ChartController.Index (ShopMartWebsite)" with arguments (["monthinyear", "12", "2019"]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:21:11.3775971+07:00 0HLS7BTDQCPTU:00000004 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:21:11.4384131+07:00 0HLS7BTDQCPTU:00000004 [INF] Executed DbCommand ("23"ms) [Parameters=["@__yearSearch_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT DATEPART(month, [i].[createDate]) AS [Day], COUNT(*) AS [Count], SUM([i].[total]) AS [Total]
+FROM [order] AS [i]
+WHERE DATEPART(year, [i].[createDate]) = @__yearSearch_0
+GROUP BY DATEPART(month, [i].[createDate])" (0723d8ff)
+2019-12-23T11:21:11.4651546+07:00 0HLS7BTDQCPTU:00000004 [INF] Executing ViewResult, running view at path "/Views/Chart/Index.cshtml". (9707eebe)
+2019-12-23T11:21:11.4743422+07:00 0HLS7BTDQCPTU:00000004 [INF] Executed action "ShopMartWebsite.Controllers.ChartController.Index (ShopMartWebsite)" in 124.3489ms (afa2e885)
+2019-12-23T11:21:11.4847537+07:00 0HLS7BTDQCPTU:00000004 [INF] Request finished in 158.0417ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:21:11.9181062+07:00 0HLS7BTDQCPTV:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Chart/ColumnChart?option=monthinyear&monthSearch=0&yearSearch=2019   (ca22a1cb)
+2019-12-23T11:21:11.9234206+07:00 0HLS7BTDQCPTV:00000003 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-23T11:21:11.9353685+07:00 0HLS7BTDQCPTV:00000003 [INF] Executing action method "ShopMartWebsite.Controllers.ChartController.ColumnChart (ShopMartWebsite)" with arguments (["monthinyear", "0", "2019"]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:21:11.9450061+07:00 0HLS7BTDQCPTV:00000003 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:21:11.9519777+07:00 0HLS7BTDQCPTV:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=["@__yearSearch_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT DATEPART(month, [i].[createDate]) AS [Day], COUNT(*) AS [Count], SUM([i].[total]) AS [Total]
+FROM [order] AS [i]
+WHERE DATEPART(year, [i].[createDate]) = @__yearSearch_0
+GROUP BY DATEPART(month, [i].[createDate])" (0723d8ff)
+2019-12-23T11:21:11.9615466+07:00 0HLS7BTDQCPTV:00000003 [INF] Executing JsonResult, writing value "System.Collections.Generic.List`1[ShopMartWebsite.Entities.Statistical]". (7bb75e80)
+2019-12-23T11:21:11.9875515+07:00 0HLS7BTDQCPTV:00000003 [INF] Executed action "ShopMartWebsite.Controllers.ChartController.ColumnChart (ShopMartWebsite)" in 38.5515ms (afa2e885)
+2019-12-23T11:21:12.0216362+07:00 0HLS7BTDQCPTV:00000003 [INF] Request finished in 93.2874ms 200 application/json; charset=utf-8 (791a596a)
+2019-12-23T11:21:22.0586042+07:00 0HLS7BTDQCPU0:00000003 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Chart application/x-www-form-urlencoded 273 (ca22a1cb)
+2019-12-23T11:21:22.0869795+07:00 0HLS7BTDQCPU0:00000003 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-23T11:21:22.0927767+07:00 0HLS7BTDQCPU0:00000003 [INF] Executing action method "ShopMartWebsite.Controllers.ChartController.Index (ShopMartWebsite)" with arguments (["dayinmonth", "0", "2019"]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:21:22.1200113+07:00 0HLS7BTDQCPU0:00000003 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:21:22.1467319+07:00 0HLS7BTDQCPU0:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=["@__monthSearch_0='?' (DbType = Int32), @__yearSearch_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CONVERT(date, [o].[createDate]) AS [Key], COUNT(*) AS [Count], SUM([o].[total]) AS [Total]
+FROM [order] AS [o]
+GROUP BY CONVERT(date, [o].[createDate])
+HAVING (DATEPART(month, CONVERT(date, [o].[createDate])) = @__monthSearch_0) AND (DATEPART(year, CONVERT(date, [o].[createDate])) = @__yearSearch_1)" (0723d8ff)
+2019-12-23T11:21:22.1569683+07:00 0HLS7BTDQCPU0:00000003 [INF] Executing ViewResult, running view at path "/Views/Chart/Index.cshtml". (9707eebe)
+2019-12-23T11:21:22.1730459+07:00 0HLS7BTDQCPU0:00000003 [INF] Executed action "ShopMartWebsite.Controllers.ChartController.Index (ShopMartWebsite)" in 73.103ms (afa2e885)
+2019-12-23T11:21:22.2452744+07:00 0HLS7BTDQCPU0:00000003 [INF] Request finished in 127.3353ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:21:22.8712182+07:00 0HLS7BTDQCPU2:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Chart/ColumnChart?option=dayinmonth&monthSearch=12&yearSearch=2019   (ca22a1cb)
+2019-12-23T11:21:22.9043418+07:00 0HLS7BTDQCPU2:00000003 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-23T11:21:22.9299746+07:00 0HLS7BTDQCPU2:00000003 [INF] Executing action method "ShopMartWebsite.Controllers.ChartController.ColumnChart (ShopMartWebsite)" with arguments (["dayinmonth", "12", "2019"]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:21:22.9377724+07:00 0HLS7BTDQCPU2:00000003 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:21:22.9696721+07:00 0HLS7BTDQCPU2:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=["@__monthSearch_0='?' (DbType = Int32), @__yearSearch_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CONVERT(date, [o].[createDate]) AS [Key], COUNT(*) AS [Count], SUM([o].[total]) AS [Total]
+FROM [order] AS [o]
+GROUP BY CONVERT(date, [o].[createDate])
+HAVING (DATEPART(month, CONVERT(date, [o].[createDate])) = @__monthSearch_0) AND (DATEPART(year, CONVERT(date, [o].[createDate])) = @__yearSearch_1)" (0723d8ff)
+2019-12-23T11:21:22.9775669+07:00 0HLS7BTDQCPU2:00000003 [INF] Executing JsonResult, writing value "System.Collections.Generic.List`1[ShopMartWebsite.Entities.Statistical]". (7bb75e80)
+2019-12-23T11:21:22.9876362+07:00 0HLS7BTDQCPU2:00000003 [INF] Executed action "ShopMartWebsite.Controllers.ChartController.ColumnChart (ShopMartWebsite)" in 73.8069ms (afa2e885)
+2019-12-23T11:21:22.9941672+07:00 0HLS7BTDQCPU2:00000003 [INF] Request finished in 125.4475ms 200 application/json; charset=utf-8 (791a596a)
+2019-12-23T11:23:57.3941640+07:00 0HLS7BTDQCPU5:00000001 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Chart application/x-www-form-urlencoded 273 (ca22a1cb)
+2019-12-23T11:23:57.4006974+07:00 0HLS7BTDQCPU5:00000001 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-23T11:23:57.4063949+07:00 0HLS7BTDQCPU5:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.ChartController.Index (ShopMartWebsite)" with arguments (["dayinmonth", "0", "2019"]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:23:57.4340704+07:00 0HLS7BTDQCPU5:00000001 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:23:57.4428359+07:00 0HLS7BTDQCPU5:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__monthSearch_0='?' (DbType = Int32), @__yearSearch_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CONVERT(date, [o].[createDate]) AS [Key], COUNT(*) AS [Count], SUM([o].[total]) AS [Total]
+FROM [order] AS [o]
+GROUP BY CONVERT(date, [o].[createDate])
+HAVING (DATEPART(month, CONVERT(date, [o].[createDate])) = @__monthSearch_0) AND (DATEPART(year, CONVERT(date, [o].[createDate])) = @__yearSearch_1)" (0723d8ff)
+2019-12-23T11:23:57.8226905+07:00 0HLS7BTDQCPU5:00000001 [INF] Executing ViewResult, running view at path "/Views/Chart/Index.cshtml". (9707eebe)
+2019-12-23T11:23:57.9039083+07:00 0HLS7BTDQCPU5:00000001 [INF] Executed action "ShopMartWebsite.Controllers.ChartController.Index (ShopMartWebsite)" in 487.8053ms (afa2e885)
+2019-12-23T11:23:57.9693362+07:00 0HLS7BTDQCPU5:00000001 [INF] Request finished in 520.3588ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:23:58.8935461+07:00 0HLS7BTDQCPU5:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Chart/ColumnChart?option=dayinmonth&monthSearch=12&yearSearch=2019   (ca22a1cb)
+2019-12-23T11:23:58.9252107+07:00 0HLS7BTDQCPU6:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/images/favicon.ico   (ca22a1cb)
+2019-12-23T11:23:58.9701515+07:00 0HLS7BTDQCPU5:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-23T11:23:59.0023588+07:00 0HLS7BTDQCPU5:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.ChartController.ColumnChart (ShopMartWebsite)" with arguments (["dayinmonth", "12", "2019"]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:23:59.0326930+07:00 0HLS7BTDQCPU6:00000001 [INF] Sending file. Request path: '"/admin/images/favicon.ico"'. Physical path: '"D:\DoAnTieuLuan\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\admin\images\favicon.ico"' (27b0a520)
+2019-12-23T11:23:59.0391387+07:00 0HLS7BTDQCPU5:00000002 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:23:59.0549649+07:00 0HLS7BTDQCPU6:00000001 [INF] Request finished in 147.4096ms 200 image/x-icon (791a596a)
+2019-12-23T11:23:59.0724085+07:00 0HLS7BTDQCPU5:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@__monthSearch_0='?' (DbType = Int32), @__yearSearch_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CONVERT(date, [o].[createDate]) AS [Key], COUNT(*) AS [Count], SUM([o].[total]) AS [Total]
+FROM [order] AS [o]
+GROUP BY CONVERT(date, [o].[createDate])
+HAVING (DATEPART(month, CONVERT(date, [o].[createDate])) = @__monthSearch_0) AND (DATEPART(year, CONVERT(date, [o].[createDate])) = @__yearSearch_1)" (0723d8ff)
+2019-12-23T11:23:59.0837399+07:00 0HLS7BTDQCPU5:00000002 [INF] Executing JsonResult, writing value "System.Collections.Generic.List`1[ShopMartWebsite.Entities.Statistical]". (7bb75e80)
+2019-12-23T11:23:59.0985913+07:00 0HLS7BTDQCPU5:00000002 [INF] Executed action "ShopMartWebsite.Controllers.ChartController.ColumnChart (ShopMartWebsite)" in 113.7599ms (afa2e885)
+2019-12-23T11:23:59.1102272+07:00 0HLS7BTDQCPU5:00000002 [INF] Request finished in 221.0224ms 200 application/json; charset=utf-8 (791a596a)
+2019-12-23T11:24:17.1400886+07:00 0HLS7BTDQCPU6:00000002 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Chart application/x-www-form-urlencoded 273 (ca22a1cb)
+2019-12-23T11:24:17.1674694+07:00 0HLS7BTDQCPU6:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-23T11:24:17.1728161+07:00 0HLS7BTDQCPU6:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.ChartController.Index (ShopMartWebsite)" with arguments (["dayinmonth", "0", "2019"]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:24:17.1809117+07:00 0HLS7BTDQCPU6:00000002 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:24:17.2070823+07:00 0HLS7BTDQCPU6:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@__monthSearch_0='?' (DbType = Int32), @__yearSearch_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CONVERT(date, [o].[createDate]) AS [Key], COUNT(*) AS [Count], SUM([o].[total]) AS [Total]
+FROM [order] AS [o]
+GROUP BY CONVERT(date, [o].[createDate])
+HAVING (DATEPART(month, CONVERT(date, [o].[createDate])) = @__monthSearch_0) AND (DATEPART(year, CONVERT(date, [o].[createDate])) = @__yearSearch_1)" (0723d8ff)
+2019-12-23T11:24:17.5463655+07:00 0HLS7BTDQCPU6:00000002 [INF] Executing ViewResult, running view at path "/Views/Chart/Index.cshtml". (9707eebe)
+2019-12-23T11:24:17.6163861+07:00 0HLS7BTDQCPU6:00000002 [INF] Executed action "ShopMartWebsite.Controllers.ChartController.Index (ShopMartWebsite)" in 438.6149ms (afa2e885)
+2019-12-23T11:24:17.6902873+07:00 0HLS7BTDQCPU6:00000002 [INF] Request finished in 483.9564ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:24:18.6354103+07:00 0HLS7BTDQCPU5:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Chart/ColumnChart?option=dayinmonth&monthSearch=12&yearSearch=2019   (ca22a1cb)
+2019-12-23T11:24:18.6482176+07:00 0HLS7BTDQCPU6:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/admin/images/favicon.ico   (ca22a1cb)
+2019-12-23T11:24:18.6502457+07:00 0HLS7BTDQCPU5:00000003 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-23T11:24:18.6565596+07:00 0HLS7BTDQCPU6:00000003 [INF] Sending file. Request path: '"/admin/images/favicon.ico"'. Physical path: '"D:\DoAnTieuLuan\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\admin\images\favicon.ico"' (27b0a520)
+2019-12-23T11:24:18.7001034+07:00 0HLS7BTDQCPU5:00000003 [INF] Executing action method "ShopMartWebsite.Controllers.ChartController.ColumnChart (ShopMartWebsite)" with arguments (["dayinmonth", "12", "2019"]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:24:18.7072987+07:00 0HLS7BTDQCPU5:00000003 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:24:18.7183735+07:00 0HLS7BTDQCPU5:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=["@__monthSearch_0='?' (DbType = Int32), @__yearSearch_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT CONVERT(date, [o].[createDate]) AS [Key], COUNT(*) AS [Count], SUM([o].[total]) AS [Total]
+FROM [order] AS [o]
+GROUP BY CONVERT(date, [o].[createDate])
+HAVING (DATEPART(month, CONVERT(date, [o].[createDate])) = @__monthSearch_0) AND (DATEPART(year, CONVERT(date, [o].[createDate])) = @__yearSearch_1)" (0723d8ff)
+2019-12-23T11:24:18.7253975+07:00 0HLS7BTDQCPU5:00000003 [INF] Executing JsonResult, writing value "System.Collections.Generic.List`1[ShopMartWebsite.Entities.Statistical]". (7bb75e80)
+2019-12-23T11:24:18.7520745+07:00 0HLS7BTDQCPU6:00000003 [INF] Request finished in 26.7077ms 200 image/x-icon (791a596a)
+2019-12-23T11:24:18.7640603+07:00 0HLS7BTDQCPU5:00000003 [INF] Executed action "ShopMartWebsite.Controllers.ChartController.ColumnChart (ShopMartWebsite)" in 73.256ms (afa2e885)
+2019-12-23T11:24:18.7761344+07:00 0HLS7BTDQCPU5:00000003 [INF] Request finished in 148.386ms 200 application/json; charset=utf-8 (791a596a)
+2019-12-23T11:24:34.6027873+07:00 0HLS7BTDQCPU6:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/AdminLogin/Logout   (ca22a1cb)
+2019-12-23T11:24:34.6279883+07:00 0HLS7BTDQCPU6:00000004 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-12-23T11:24:34.6362215+07:00 0HLS7BTDQCPU6:00000004 [INF] Executing action method "ShopMartWebsite.Controllers.AdminLoginController.Logout (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:24:34.6456361+07:00 0HLS7BTDQCPU6:00000004 [INF] AuthenticationScheme: "Identity.Application" signed out. (d3f50c8d)
+2019-12-23T11:24:34.6732393+07:00 0HLS7BTDQCPU6:00000004 [INF] AuthenticationScheme: "Identity.External" signed out. (d3f50c8d)
+2019-12-23T11:24:34.6787364+07:00 0HLS7BTDQCPU6:00000004 [INF] AuthenticationScheme: "Identity.TwoFactorUserId" signed out. (d3f50c8d)
+2019-12-23T11:24:34.6842740+07:00 0HLS7BTDQCPU6:00000004 [INF] Executing ObjectResult, writing value "Microsoft.AspNetCore.Mvc.ControllerContext". (4e968210)
+2019-12-23T11:24:34.7097921+07:00 0HLS7BTDQCPU6:00000004 [INF] Executed action "ShopMartWebsite.Controllers.AdminLoginController.Logout (ShopMartWebsite)" in 54.0874ms (afa2e885)
+2019-12-23T11:24:34.7177206+07:00 0HLS7BTDQCPU6:00000004 [INF] Request finished in 132.952ms 200 application/json; charset=utf-8 (791a596a)
+2019-12-23T11:24:34.7571386+07:00 0HLS7BTDQCPU5:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/AdminLogin/Index   (ca22a1cb)
+2019-12-23T11:24:34.7630791+07:00 0HLS7BTDQCPU5:00000004 [INF] Executing action method "ShopMartWebsite.Controllers.AdminLoginController.Index (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:24:34.7713469+07:00 0HLS7BTDQCPU5:00000004 [INF] Executing ViewResult, running view at path "/Views/AdminLogin/Index.cshtml". (9707eebe)
+2019-12-23T11:24:34.7778876+07:00 0HLS7BTDQCPU5:00000004 [INF] Executed action "ShopMartWebsite.Controllers.AdminLoginController.Index (ShopMartWebsite)" in 14.469ms (afa2e885)
+2019-12-23T11:24:34.7880232+07:00 0HLS7BTDQCPU5:00000004 [INF] Request finished in 48.5939ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:24:38.6572846+07:00 0HLS7BTDQCPU6:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-12-23T11:24:38.6658905+07:00 0HLS7BTDQCPU6:00000005 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:24:38.6920556+07:00 0HLS7BTDQCPU6:00000005 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:24:38.7033352+07:00 0HLS7BTDQCPU6:00000005 [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[amount], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-12-23T11:24:38.7134897+07:00 0HLS7BTDQCPU6:00000005 [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE ([x0].[status] = 1) AND ([x0].[amount] > 0)
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-12-23T11:24:38.7433973+07:00 0HLS7BTDQCPU6:00000005 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)" (0723d8ff)
+2019-12-23T11:24:38.7506452+07:00 0HLS7BTDQCPU6:00000005 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-12-23T11:24:38.7572888+07:00 0HLS7BTDQCPU6:00000005 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-12-23T11:24:38.7659534+07:00 0HLS7BTDQCPU6:00000005 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-12-23T11:24:38.7727545+07:00 0HLS7BTDQCPU6:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-12-23T11:24:38.7845575+07:00 0HLS7BTDQCPU6:00000005 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-12-23T11:24:38.8000352+07:00 0HLS7BTDQCPU6:00000005 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 129.9248ms (afa2e885)
+2019-12-23T11:24:38.8681810+07:00 0HLS7BTDQCPU6:00000005 [INF] Request finished in 152.1889ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:24:50.4579292+07:00 0HLS7BTDQCPU5:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Cart   (ca22a1cb)
+2019-12-23T11:24:50.4666668+07:00 0HLS7BTDQCPU5:00000005 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:24:50.7058893+07:00 0HLS7BTDQCPU5:00000005 [INF] Executing ViewResult, running view at path "/Views/Home/Cart.cshtml". (9707eebe)
+2019-12-23T11:24:50.7194056+07:00 0HLS7BTDQCPU5:00000005 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" in 252.9191ms (afa2e885)
+2019-12-23T11:24:50.7326533+07:00 0HLS7BTDQCPU5:00000005 [INF] Request finished in 272.3732ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:24:51.2573929+07:00 0HLS7BTDQCPU6:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/fa0973f7-5cac-4d43-b4b8-4b5214dbc6ea.jpg   (ca22a1cb)
+2019-12-23T11:24:51.2868120+07:00 0HLS7BTDQCPU6:00000006 [INF] Request finished in 59.821ms 404  (791a596a)
+2019-12-23T11:25:00.2232807+07:00 0HLS7BTDQCPU5:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-12-23T11:25:00.2301404+07:00 0HLS7BTDQCPU5:00000006 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:25:00.2360059+07:00 0HLS7BTDQCPU5:00000006 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:25:00.2475410+07:00 0HLS7BTDQCPU5:00000006 [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[amount], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-12-23T11:25:00.2577297+07:00 0HLS7BTDQCPU5:00000006 [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE ([x0].[status] = 1) AND ([x0].[amount] > 0)
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-12-23T11:25:00.2695656+07:00 0HLS7BTDQCPU5:00000006 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)" (0723d8ff)
+2019-12-23T11:25:00.2761242+07:00 0HLS7BTDQCPU5:00000006 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-12-23T11:25:00.2857613+07:00 0HLS7BTDQCPU5:00000006 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-12-23T11:25:00.3016051+07:00 0HLS7BTDQCPU5:00000006 [INF] Executed DbCommand ("5"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-12-23T11:25:00.3163962+07:00 0HLS7BTDQCPU5:00000006 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-12-23T11:25:00.3319494+07:00 0HLS7BTDQCPU5:00000006 [INF] Executed DbCommand ("6"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-12-23T11:25:00.3568106+07:00 0HLS7BTDQCPU5:00000006 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 111.547ms (afa2e885)
+2019-12-23T11:25:00.4222511+07:00 0HLS7BTDQCPU5:00000006 [INF] Request finished in 170.8132ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:25:05.2661932+07:00 0HLS7BTDQCPU6:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Cart   (ca22a1cb)
+2019-12-23T11:25:05.2759966+07:00 0HLS7BTDQCPU6:00000007 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:25:05.2841609+07:00 0HLS7BTDQCPU6:00000007 [INF] Executing ViewResult, running view at path "/Views/Home/Cart.cshtml". (9707eebe)
+2019-12-23T11:25:05.2923166+07:00 0HLS7BTDQCPU6:00000007 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" in 18.4346ms (afa2e885)
+2019-12-23T11:25:05.3076057+07:00 0HLS7BTDQCPU6:00000007 [INF] Request finished in 34.2378ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:25:09.6659224+07:00 0HLS7BTDQCPU5:00000007 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Home/AddCart application/x-www-form-urlencoded; charset=UTF-8 220 (ca22a1cb)
+2019-12-23T11:25:09.7102707+07:00 0HLS7BTDQCPU5:00000007 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.AddCart (ShopMartWebsite)" with arguments (["ShopMartWebsite.Entities.OrderDetail[]", "Nguyen Thien", "thiennguyen.it.ute@gmail.com", "Hà Nội", "", "12000000"]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:25:09.7203369+07:00 0HLS7BTDQCPU5:00000007 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:25:09.9856487+07:00 0HLS7BTDQCPU5:00000007 [INF] Executed DbCommand ("33"ms) [Parameters=["@p0='?' (Size = 4000), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = Boolean), @p7='?' (DbType = Decimal), @p8='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [order] ([address], [confirm], [createDate], [customer], [info], [note], [status], [total], [userId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+SELECT [id]
+FROM [order]
+WHERE @@ROWCOUNT = 1 AND [id] = scope_identity();" (0723d8ff)
+2019-12-23T11:25:10.0671505+07:00 0HLS7BTDQCPU5:00000007 [INF] Executed DbCommand ("36"ms) [Parameters=["@p9='?' (DbType = Int32), @p10='?' (DbType = Int32), @p11='?' (DbType = Int32), @p12='?' (DbType = Decimal)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [orderdetail] ([orderId], [productId], [quantity], [unitPrice])
+VALUES (@p9, @p10, @p11, @p12);
+SELECT [id]
+FROM [orderdetail]
+WHERE @@ROWCOUNT = 1 AND [id] = scope_identity();" (0723d8ff)
+2019-12-23T11:25:10.1041711+07:00 0HLS7BTDQCPU5:00000007 [INF] Executing JsonResult, writing value "{ Success = True }". (7bb75e80)
+2019-12-23T11:25:10.1148280+07:00 0HLS7BTDQCPU5:00000007 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.AddCart (ShopMartWebsite)" in 416.9636ms (afa2e885)
+2019-12-23T11:25:10.1255142+07:00 0HLS7BTDQCPU5:00000007 [INF] Request finished in 454.9996ms 200 application/json; charset=utf-8 (791a596a)
+2019-12-23T11:25:11.7865770+07:00 0HLS7BTDQCPU6:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Cart   (ca22a1cb)
+2019-12-23T11:25:11.7939303+07:00 0HLS7BTDQCPU6:00000008 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:25:11.8034482+07:00 0HLS7BTDQCPU6:00000008 [INF] Executing ViewResult, running view at path "/Views/Home/Cart.cshtml". (9707eebe)
+2019-12-23T11:25:11.8122035+07:00 0HLS7BTDQCPU6:00000008 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" in 17.5743ms (afa2e885)
+2019-12-23T11:25:11.8766034+07:00 0HLS7BTDQCPU6:00000008 [INF] Request finished in 40.8175ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:25:14.4113865+07:00 0HLS7BTDQCPU5:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-12-23T11:25:14.4218904+07:00 0HLS7BTDQCPU5:00000008 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:25:14.4274104+07:00 0HLS7BTDQCPU5:00000008 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:25:14.4392066+07:00 0HLS7BTDQCPU5:00000008 [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[amount], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-12-23T11:25:14.4502234+07:00 0HLS7BTDQCPU5:00000008 [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE ([x0].[status] = 1) AND ([x0].[amount] > 0)
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-12-23T11:25:14.4802093+07:00 0HLS7BTDQCPU5:00000008 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)" (0723d8ff)
+2019-12-23T11:25:14.4864568+07:00 0HLS7BTDQCPU5:00000008 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-12-23T11:25:14.5138730+07:00 0HLS7BTDQCPU5:00000008 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-12-23T11:25:14.5212316+07:00 0HLS7BTDQCPU5:00000008 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-12-23T11:25:14.5498858+07:00 0HLS7BTDQCPU5:00000008 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-12-23T11:25:14.5553501+07:00 0HLS7BTDQCPU5:00000008 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-12-23T11:25:14.5632910+07:00 0HLS7BTDQCPU5:00000008 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 145.6512ms (afa2e885)
+2019-12-23T11:25:14.5773658+07:00 0HLS7BTDQCPU5:00000008 [INF] Request finished in 163.1555ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:25:19.1205552+07:00 0HLS7BTDQCPU6:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Cart   (ca22a1cb)
+2019-12-23T11:25:19.1304240+07:00 0HLS7BTDQCPU6:00000009 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:25:19.1372316+07:00 0HLS7BTDQCPU6:00000009 [INF] Executing ViewResult, running view at path "/Views/Home/Cart.cshtml". (9707eebe)
+2019-12-23T11:25:19.1444014+07:00 0HLS7BTDQCPU6:00000009 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" in 16.5939ms (afa2e885)
+2019-12-23T11:25:19.1555796+07:00 0HLS7BTDQCPU6:00000009 [INF] Request finished in 33.264ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:25:22.6733496+07:00 0HLS7BTDQCPU5:00000009 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Home/AddCart application/x-www-form-urlencoded; charset=UTF-8 220 (ca22a1cb)
+2019-12-23T11:25:22.6810217+07:00 0HLS7BTDQCPU5:00000009 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.AddCart (ShopMartWebsite)" with arguments (["ShopMartWebsite.Entities.OrderDetail[]", "Nguyen Thien", "thiennguyen.it.ute@gmail.com", "Hà Nội", "", "15000000"]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:25:22.7069677+07:00 0HLS7BTDQCPU5:00000009 [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:25:22.7164211+07:00 0HLS7BTDQCPU5:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=["@p0='?' (Size = 4000), @p1='?' (DbType = Boolean), @p2='?' (DbType = DateTime2), @p3='?' (Size = 4000), @p4='?' (Size = 4000), @p5='?' (Size = 4000), @p6='?' (DbType = Boolean), @p7='?' (DbType = Decimal), @p8='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [order] ([address], [confirm], [createDate], [customer], [info], [note], [status], [total], [userId])
+VALUES (@p0, @p1, @p2, @p3, @p4, @p5, @p6, @p7, @p8);
+SELECT [id]
+FROM [order]
+WHERE @@ROWCOUNT = 1 AND [id] = scope_identity();" (0723d8ff)
+2019-12-23T11:25:22.7277875+07:00 0HLS7BTDQCPU5:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=["@p9='?' (DbType = Int32), @p10='?' (DbType = Int32), @p11='?' (DbType = Int32), @p12='?' (DbType = Decimal)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [orderdetail] ([orderId], [productId], [quantity], [unitPrice])
+VALUES (@p9, @p10, @p11, @p12);
+SELECT [id]
+FROM [orderdetail]
+WHERE @@ROWCOUNT = 1 AND [id] = scope_identity();" (0723d8ff)
+2019-12-23T11:25:22.8183085+07:00 0HLS7BTDQCPU5:00000009 [INF] Executing JsonResult, writing value "{ Success = True }". (7bb75e80)
+2019-12-23T11:25:22.8259179+07:00 0HLS7BTDQCPU5:00000009 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.AddCart (ShopMartWebsite)" in 144.5537ms (afa2e885)
+2019-12-23T11:25:22.8326288+07:00 0HLS7BTDQCPU5:00000009 [INF] Request finished in 159.1793ms 200 application/json; charset=utf-8 (791a596a)
+2019-12-23T11:25:24.0314388+07:00 0HLS7BTDQCPU6:0000000A [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Cart   (ca22a1cb)
+2019-12-23T11:25:24.0589140+07:00 0HLS7BTDQCPU6:0000000A [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:25:24.0670949+07:00 0HLS7BTDQCPU6:0000000A [INF] Executing ViewResult, running view at path "/Views/Home/Cart.cshtml". (9707eebe)
+2019-12-23T11:25:24.0762271+07:00 0HLS7BTDQCPU6:0000000A [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" in 35.9394ms (afa2e885)
+2019-12-23T11:25:24.0826423+07:00 0HLS7BTDQCPU6:0000000A [INF] Request finished in 54.1888ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:25:25.5361629+07:00 0HLS7BTDQCPU5:0000000A [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-12-23T11:25:25.5436358+07:00 0HLS7BTDQCPU5:0000000A [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:25:25.5698237+07:00 0HLS7BTDQCPU5:0000000A [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:25:25.5778772+07:00 0HLS7BTDQCPU5:0000000A [INF] Executed DbCommand ("1"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[amount], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-12-23T11:25:25.5838408+07:00 0HLS7BTDQCPU5:0000000A [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?' (DbType = Int32), @__p_1='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE ([x0].[status] = 1) AND ([x0].[amount] > 0)
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-12-23T11:25:25.5935771+07:00 0HLS7BTDQCPU5:0000000A [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)" (0723d8ff)
+2019-12-23T11:25:25.5989603+07:00 0HLS7BTDQCPU5:0000000A [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-12-23T11:25:25.6253987+07:00 0HLS7BTDQCPU5:0000000A [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-12-23T11:25:25.6306466+07:00 0HLS7BTDQCPU5:0000000A [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-12-23T11:25:25.6582718+07:00 0HLS7BTDQCPU5:0000000A [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-12-23T11:25:25.6834830+07:00 0HLS7BTDQCPU5:0000000A [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-12-23T11:25:25.6919681+07:00 0HLS7BTDQCPU5:0000000A [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 148.1515ms (afa2e885)
+2019-12-23T11:25:25.7054661+07:00 0HLS7BTDQCPU5:0000000A [INF] Request finished in 164.9576ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:25:30.8303229+07:00 0HLS7BTDQCPU6:0000000B [INF] Request starting HTTP/1.1 GET http://localhost:44340/Account/Login   (ca22a1cb)
+2019-12-23T11:25:30.8405887+07:00 0HLS7BTDQCPU6:0000000B [INF] Executing action method "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" with arguments (["", ""]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:25:31.0966593+07:00 0HLS7BTDQCPU6:0000000B [INF] Executing ViewResult, running view at path "/Views/Account/Login.cshtml". (9707eebe)
+2019-12-23T11:25:31.1447346+07:00 0HLS7BTDQCPU6:0000000B [INF] Executed action "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" in 301.1724ms (afa2e885)
+2019-12-23T11:25:31.1596508+07:00 0HLS7BTDQCPU6:0000000B [INF] Request finished in 320.4299ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:25:31.2234730+07:00 0HLS7BTDQCPU5:0000000B [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/login.css   (ca22a1cb)
+2019-12-23T11:25:31.2471357+07:00 0HLS7BTDQCPU5:0000000B [INF] Sending file. Request path: '"/user/css/login.css"'. Physical path: '"D:\DoAnTieuLuan\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\css\login.css"' (27b0a520)
+2019-12-23T11:25:31.2799573+07:00 0HLS7BTDQCPU5:0000000B [INF] Request finished in 52.9768ms 200 text/css (791a596a)
+2019-12-23T11:26:07.1939972+07:00 0HLS7BTDQCPU6:0000000C [INF] Request starting HTTP/1.1 GET http://localhost:44340/?page=2   (ca22a1cb)
+2019-12-23T11:26:07.2208623+07:00 0HLS7BTDQCPU6:0000000C [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", "2"]) - ModelState is Valid (ba7f4ac2)
+2019-12-23T11:26:07.2458307+07:00 0HLS7BTDQCPU6:0000000C [INF] Entity Framework Core "2.2.0-rtm-35687" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-12-23T11:26:07.3109493+07:00 0HLS7BTDQCPU6:0000000C [INF] Executed DbCommand ("38"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[amount], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY" (0723d8ff)
+2019-12-23T11:26:07.3441605+07:00 0HLS7BTDQCPU6:0000000C [INF] Executed DbCommand ("5"ms) [Parameters=["@__p_0='?' (DbType = Int32)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE ([x0].[status] = 1) AND ([x0].[amount] > 0)
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_0 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-12-23T11:26:07.3508210+07:00 0HLS7BTDQCPU6:0000000C [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE ([x].[status] = 1) AND ([x].[amount] > 0)" (0723d8ff)
+2019-12-23T11:26:07.3758322+07:00 0HLS7BTDQCPU6:0000000C [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-12-23T11:26:07.4043979+07:00 0HLS7BTDQCPU6:0000000C [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-12-23T11:26:07.4118279+07:00 0HLS7BTDQCPU6:0000000C [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-12-23T11:26:07.4383692+07:00 0HLS7BTDQCPU6:0000000C [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-12-23T11:26:07.4631132+07:00 0HLS7BTDQCPU6:0000000C [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[amount], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-12-23T11:26:07.4735243+07:00 0HLS7BTDQCPU6:0000000C [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 270.3249ms (afa2e885)
+2019-12-23T11:26:07.5588635+07:00 0HLS7BTDQCPU6:0000000C [INF] Request finished in 288.3603ms 200 text/html; charset=utf-8 (791a596a)
+2019-12-23T11:26:07.5927279+07:00 0HLS7BTDQCPU6:0000000D [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/24b6fe79-ccc4-48dc-9107-bc150a8a1b34.jpg   (ca22a1cb)
+2019-12-23T11:26:07.6687160+07:00 0HLS7BTDQCPU5:0000000C [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/style.css   (ca22a1cb)
+2019-12-23T11:26:07.6710144+07:00 0HLS7BTDQCPU6:0000000D [INF] Sending file. Request path: '"/images/site/24b6fe79-ccc4-48dc-9107-bc150a8a1b34.jpg"'. Physical path: '"D:\DoAnTieuLuan\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\images\site\24b6fe79-ccc4-48dc-9107-bc150a8a1b34.jpg"' (27b0a520)
+2019-12-23T11:26:07.7047097+07:00 0HLS7BTDQCPU5:0000000C [INF] Sending file. Request path: '"/user/css/style.css"'. Physical path: '"D:\DoAnTieuLuan\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\user\css\style.css"' (27b0a520)
+2019-12-23T11:26:07.7126262+07:00 0HLS7BTDQCPU6:0000000D [INF] Request finished in 110.2749ms 200 image/jpeg (791a596a)
+2019-12-23T11:26:07.7457657+07:00 0HLS7BTDQCPU5:0000000C [INF] Request finished in 162.4059ms 200 text/css (791a596a)

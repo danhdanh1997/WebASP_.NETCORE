@@ -1,0 +1,98 @@
+﻿@model ShopMartWebsite.Models.CategoryListViewModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@if (Model != null && Model.Categories != null && Model.Categories.Count() > 0)
+{
+    <table class="table table-striped jambo_table bulk_action">
+        <thead>
+            <tr class="headings">
+
+                <th class="column-title">Tên danh mục </th>
+                <th class="column-title">Trạng thái </th>
+                <th class="column-title">Số lượng sản phẩm </th>
+                <th class="column-title no-link last">
+                    <span class="nobr">Action</span>
+                </th>
+                
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.Categories)
+            {
+                @if (item.status == true)
+                {
+                <tr class="even pointer">
+
+                    <td class=" ">@item.name</td>
+
+                    <td class=" " style="color: green;">Hiển thị</td>
+
+                    <td class=" ">@item.Products.Where(x=>x.status==true).Count()</td>
+                    
+                    <td class=" last">
+                        
+                        <button data-href="@Url.Action("Action", "Category", new { ID = item.id, page= Model.Pager.CurrentPage })" class="data-btn btn btn-primary" data-toggle="modal" data-target="#actionModal" title="Cập nhập Danh mục"><i class="fas fa-edit"></i></button>
+                        <button data-href="@Url.Action("Delete", "Category", new { ID = item.id, page= Model.Pager.CurrentPage })" class="data-btn btn btn-danger" data-toggle="modal" data-target="#actionModal" title="Xóa Danh Mục"><i class="fas fa-trash-alt"></i></button>
+                    </td>
+                </tr>
+                    }
+                }
+
+
+        </tbody>
+    </table>
+    <!-- pager - sử dụng bootstrap - pagination -->
+    if (Model.Pager.EndPage > 1)
+    {
+        <nav>
+            <ul class="pagination">
+                @if (Model.Pager.CurrentPage > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index","Category", new { searchTerm = Model.SearchTerm })">
+                            <i class="fas fa-angle-double-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index","Category", new { page = Model.Pager.CurrentPage - 1,
+                                                  searchTerm = Model.SearchTerm })">
+                            <i class="fas fa-angle-left"></i>
+                        </a>
+                    </li>
+                }
+
+                @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                {
+                    <li class="page-item @(page == Model.Pager.CurrentPage ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("Index","Category", new { page = page,
+                                                  searchTerm = Model.SearchTerm })">@(page)</a>
+                                            </li>}
+
+                @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index","Category", new { page = Model.Pager.CurrentPage + 1,
+                                                  searchTerm = Model.SearchTerm })">
+                            <i class="fas fa-angle-right"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index","Category", new { page = Model.Pager.TotalPages,
+                                                  searchTerm = Model.SearchTerm })">
+                            <i class="fas fa-angle-double-right"></i>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    }
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        Xin lỗi! Không tìm thấy dữ liệu!
+    </div>
+}
+

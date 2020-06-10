@@ -1,0 +1,157 @@
+﻿@using Microsoft.AspNetCore.Identity;
+@using ShopMartWebsite.Entities;
+@inject SignInManager<User> signInManager;
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <!-- custom style-->
+
+    <link href="~/user/css/style.css" rel="stylesheet" />
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/2.1.2/sweetalert.min.js"></script>
+    <script src="~/content/vendor/jquery/jquery.min.js"></script>
+
+    <!--fontawesome-->
+    <link rel="stylesheet" href="~/user/css/all.css" type="text/css" />
+    <!--Bootstrap CDN-->
+    <link rel="stylesheet" href="~/user/css/bootstrap.css">
+    <!-- Owl-Carousel -->
+    <link rel="stylesheet" href="~/user/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="~/user/css/owl.theme.default.min.css">
+    <!--AOS Library-->
+    <link rel="stylesheet" href="~/user/css/aos.css">
+
+    <!--Slick Slider-->
+    <link rel="stylesheet" type="text/css" href="~/user/css/slick.css" />
+
+
+    <title>Online Shop</title>
+</head>
+<body>
+    <!----------headder---------->
+
+    <div class="header-parent">
+        <div class="row">
+            <div class="">
+                <div>
+                    <img class="img-logo" src="~/user/assets/logo/logo.jpg" alt="logo">
+                </div>
+            </div>
+            <div class="online-shop text-center">
+                <h2 class="site-title text-white"><a style="color: white;" asp-controller="Home" asp-action="Index">Online Shop</a></h2>
+            </div>
+            <div class="" style="text-align: end;">
+                @if (signInManager.IsSignedIn(User))
+                {
+                    <p class="header-links">
+                        <a href="@Url.Action("InfoPersional","Home", new { email=User.Identity.Name})" class="px-2">@User.Identity.Name</a>
+                        <a class="px-1" asp-controller="Home" asp-action="Logout">Đăng xuất</a>
+                    </p>
+                }
+                else
+                {
+                    <p class="header-links">
+                        <a href="@Url.Action("Login","Account")" id="button-login" class="px-2">Đăng nhập</a>
+                    </p>
+                }
+            </div>
+            <div class="bar-btn" style="display: none;">
+                <div class="toggle-icons">
+                    <i class="fas fa-bars"></i>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <!-----x-----headder-----x----->
+    <!----------Main Section---------->
+    @RenderBody()
+
+    <!-----x-----Main Section-----x----->
+    <!--modal-->
+    <!--x--modal--x-->
+    <footer class="footer">
+        <div class="containerr">
+            <div class="about-us">
+                <h2>Thông tin</h2>
+                <p style="color: #f8f8f8;">Online Shop chuyên bán tất cả sản phẩm tiêu dùng hàng này!</p>
+            </div>
+            <div class="newsletter">
+                <h2>Hỗ trợ</h2>
+                <p style="color: #f8f8f8;">Hotline: +84336970895</p>
+
+            </div>
+            <div class="instagram">
+                <h2>Hình ảnh</h2>
+                <div class="flex-row">
+                    <img width="62" height="58" src="~/user/assets/instagram/anh1.jpg" alt="insta1">
+                    <img src="~/user/assets/instagram/anh11.jpg" alt="insta2">
+                    <img src="~/user/assets/instagram/anh33.jpg" alt="insta3">
+                </div>
+                <div class="flex-row">
+                    <img src="~/user/assets/instagram/anh44.jpg" alt="insta1">
+                    <img src="~/user/assets/instagram/anh55.jpg" alt="insta2">
+                    <img src="~/user/assets/instagram/anh66.jpg" alt="insta3">
+                </div>
+            </div>
+            <div class="follow">
+                <h2>Theo dõi</h2>
+
+                <div>
+                    <a href="https://www.facebook.com/Online-Shop-100549548138729/?modal=admin_todo_tour&notif_id=1577599572822783&notif_t=page_invite"><i class="fab fa-facebook-f"></i></a>
+                    <a href="https://www.instagram.com/_thienn_nguyenn_/"><i class="fab fa-instagram"></i></a>
+                    <a href="https://www.youtube.com/channel/UCpCZg48Fk4fbpYbWK5lNpig?view_as=subscriber"><i class="fab fa-youtube"></i></a>
+
+                </div>
+            </div>
+        </div>
+        <div class="rights flex-row">
+            <h4 style="color: white;" class="text-gray text-center">
+                Copyright 2019 All rights reserved | made by Shop Online
+            </h4>
+        </div>
+
+    </footer>
+    <a class="gotobutton" id="topBtn" href="#topBtn"><i class="fas fa-arrow-up"></i></a>
+
+    <!-- Jquery Library file-->
+    <script src="~/user/js/jquery3.4.1.min.js"></script>
+    <!-- Owl-Carousel js -->
+    <script src="~/user/js/owl.carousel.min.js"></script>
+    <!-- custom javascript-->
+    <script src="~/user/js/main.js"></script>
+
+    <!--AOS Library-->
+    <script src="~/user/js/aos.js"></script>
+    <!--Bootstrap CDN-->
+    <script src="~/user/js/bootstrap.js"></script>
+
+    <!--Stick Slider-->
+    <script type="text/javascript" src="~/user/js/slick.min.js"></script>
+    <script>
+        //scroll
+        $(document).ready(function () {
+            $('#topBtn').fadeOut();
+            $(window).scroll(function () {
+                if ($(this).scrollTop() > 40) {
+                    $('#topBtn').fadeIn();
+                }
+                else {
+                    $('#topBtn').fadeOut();
+                }
+            });
+            $('#topBtn').click(function () {
+                $('html, body').animate({ scrollTop: 0 }, 1000);
+            });
+        });
+    //
+
+    </script>
+
+</body>
+</html>

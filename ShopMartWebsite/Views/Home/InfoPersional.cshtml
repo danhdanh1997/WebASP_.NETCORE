@@ -1,0 +1,243 @@
+﻿@model ShopMartWebsite.Models.UserViewModel
+@{
+    var co = "no";
+    ViewData["Title"] = "InfoPersional";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+<style>
+    
+    .div-main{
+        width: 100%;
+        background-color: #f3f3f3;
+        min-height: 400px;
+    }
+    .div-container {
+        width: 80%;
+        margin: 0 auto;
+        display: flex;
+        padding-top: 20px;
+        padding-bottom: 50px;
+    }
+    .image-profile {
+        display: flex;
+        background-color: white;
+        box-shadow: 0 10px 16px 0;
+        padding: 20px;
+        flex-grow: 2;
+        margin-right: 20px;
+        border-radius: 10px;
+    }
+        .image-profile img{
+            margin-right: 20px;
+        }
+    .information {
+        box-shadow: 0 10px 16px 0;
+        flex-grow: 7;
+        background-color: white;
+        border-radius: 10px;
+    }
+    /**/
+    .info-container {
+        /*height: 50px;*/
+        width: 100%;
+        /*display: flex;
+        justify-content: center;
+        align-items: center;*/
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        padding: 30px;
+        grid-row-gap: 2rem;
+    }
+
+    .material-textfield {
+        position: relative;
+        width: 100%;
+        
+        text-align: center;
+        
+    }
+
+    label {
+        
+        position: absolute;
+        font-size: 1rem;
+        left: 5%;
+        top: 50%;
+        transform: translateY(-50%);
+        background-color: white;
+        color: gray;
+        padding: 0 0.3rem;
+        margin: 0 0.5rem;
+        transition: .1s ease-out;
+        transform-origin: left top;
+        pointer-events: none;
+    }
+
+    .info-container input {
+        font-size: 1rem;
+        outline: none;
+        border: 1px solid gray;
+        border-radius: 5px;
+        padding: .5rem 0.7rem;
+        width: 90%;
+        
+        color: gray;
+        transition: 0.1s ease-out;
+    }
+
+    input:focus {
+        /*border-color: #6200EE;  */
+        border-color: royalblue;
+    }
+
+        input:focus + label {
+            content: "Họ và tên";
+            color: royalblue;
+            top: 0;
+            
+            transform: translateY(-50%) scale(.9);
+        }
+    input:not(:placeholder-shown) + label {
+        top: 0;
+        transform: translateY(-50%) scale(.9);
+    }
+    
+    /**/
+    .gender {
+        width: 90%;
+        height: 100%;
+        margin: 0 auto;
+        display: flex;
+        
+    }
+    input[type="radio"]{
+        width: 25px;
+        height: 25px;
+        margin-left: 20px;
+    }
+        /**/
+    button {
+        padding: 8px 14px;
+        font-weight: bold;
+        color: white;
+    }
+    .btn-save {
+        border: 1px solid green;
+        background-color: green;
+        
+    }
+    .btn-update {
+        border: 1px solid #dc3545;
+        background-color: #dc3545;
+    }
+</style>
+<div class="div-main">
+    <h3 style="margin-left: 10%; padding-top: 15px; text-shadow: 0 10px 16px 0;">Quản lý thông tin cá nhân</h3>
+    <div class="div-container">
+
+        <div class="image-profile">
+            <div>
+                <img src="https://img1a.flixcart.com/www/linchpin/fk-cp-zion/img/profile-pic-male_2fd3e8.svg" />
+            </div>
+            <div>
+                <h6>Xin chào</h6>
+                <h5>@Model.displayname</h5>
+            </div>
+
+        </div>
+        <input type="hidden" id="flag" value="@co" />
+        <form class="information" asp-action="InfoPersional" asp-controller="Home" method="post">
+            <div class="info-container">
+
+                <div class="material-textfield">
+                    <input placeholder=" " name="displayname" value="@Model.displayname" type="text" readonly>
+                    <label>Họ và tên</label>
+                </div>
+                <div class="material-textfield">
+                    <input placeholder=" " name="email" value="@Model.email" type="text" readonly>
+                    <label>Email</label>
+                </div>
+                <div class="material-textfield">
+                    <input class="input-enable" name="address" value="@Model.address" placeholder=" " type="text">
+                    <label>Địa chỉ</label>
+                </div>
+                <div class="material-textfield">
+                    <input class="input-enable" name="phone" value="@Model.phone" placeholder=" " type="text">
+                    <label>Số điện thoại</label>
+                </div>
+                <div class="material-textfield">
+                    <input class="input-enable" name="birthDay" value="@Model.birthDay" placeholder=" " type="text">
+                    <label>Ngày sinh</label>
+                </div>
+                
+                    <div class="material-textfield">
+                        <div class="gender">
+                            <p>Giới:</p>
+                            <input class="input-enable" type="radio" id="male" value="1" asp-for="gender" name="tempGender" checked="@(Model.tempGender=="yes")" />&nbsp; Nam
+                            <input class="input-enable" type="radio" id="female" value="0" asp-for="gender" name="tempGender" checked="@(Model.tempGender=="no")" />&nbsp; Nữ
+                            
+                        </div>
+                    </div>
+                
+
+                <div class="material-textfield">
+                    <button type="button" class="btn-update">Chỉnh sửa</button>
+
+                </div>
+
+                <div class="material-textfield">
+                    <button type="submit" class="btn-save" disabled>Lưu thay đổi</button>
+
+                </div>
+            </div>
+        </form>
+    </div>
+
+</div>
+<script>
+
+    $(document).ready(function () {
+        console.log("cobandau", $('#flag').val());
+        console.log("gioi ban dau", $('.genderr').val());
+        if ($('#flag').val() === "no") {
+            $('input').attr('readonly', true);
+            $('.btn-save').css('background-color', 'gray');
+        }
+        
+    })
+
+    $('.btn-update').click(function () {
+        
+        
+        if ($('#flag').val() === "no") {
+            $('.input-enable').attr('readonly', false);
+            $('.btn-save').attr('disabled', false);
+            $('#flag').val("yes");
+            console.log("bam if", $('#flag').val());
+            $('.btn-save').css('background-color', 'green');
+            $('.btn-update').css('background-color', 'gray');
+            $(this).attr('disabled', true);
+        }
+    })
+    $('.btn-save').submit(function () {
+
+
+        if ($('#flag').val() === "yes") {
+            $('.input-enable').attr('readonly', true);
+            $('.btn-update').attr('disabled', false);
+            $('#flag').val("no");
+            console.log("bam if", $('#flag').val());
+            $(this).attr('disabled', true);
+            $('.btn-save').css('background-color', 'gray');
+            $('.btn-update').css('background-color', '#dc3545');
+
+        }
+    });
+
+    $('#male').click(function () {
+        $('.genderr').val("yes")
+    })
+    $('#female').click(function () {
+        $('.genderr').val("no")
+    })
+</script>

@@ -1,0 +1,324 @@
+﻿@{
+    ViewData["Title"] = "Home Page";
+}
+
+@model ShopMartWebsite.Models.ProductListViewModel
+<style>
+    
+</style>
+
+<!--------Navbar------->
+<div class="container-menu">
+    <nav class="menu-navbar">
+        <!---->
+        <div>
+            <ul class="dropdown">
+                <li>
+                    <a href="#">DANH MỤC SẢN PHẨM</a>
+                    <ul class="menu-area">
+                        <ul>
+                            @foreach (var item in @Model.Categories)
+                            {
+                                <li><a asp-action="Index" asp-controller="Home" asp-route-categoryId="@item.id">@item.name</a></li>
+                            }
+
+                        </ul>
+                    </ul>
+                </li>
+            </ul>
+
+        </div>
+        <!---->
+        <div class="search">
+            <form>
+                <div class="search-items">
+                    <select class="search-select" name="categoryId" style="width: 36%; border: none; border-right: 3px solid #f1f1f1; border-radius: 1px;">
+                        <option value="0">Tất cả sản phẩm</option>
+                        @foreach (var item in @Model.Categories)
+                        {
+                            <option value="@item.id" selected="@(Model.categoryId==item.id)">
+                                @item.name
+                            </option>
+                        }
+                    </select>
+                    <input class="search-input" type="text" name="searchterm"  value="@Model.SearchTerm" placeholder="Enter your search...">
+                    <button class="search-btn" type="submit">
+                        <i class="fas fa-search p-2"></i>
+                    </button>
+                </div>
+            </form>
+        </div>
+        <div style="text-align: end;">
+            <!--<li class="nav-item border rounded-circle mx-2 basket-icon">
+                <i class="fas fa-shopping-basket p-2"></i>
+            </li>-->
+            @if (!User.IsInRole("Admin"))
+            {
+                <a class="cart-btn" href="@Url.Action("Cart","Home")">
+
+                    <span class="nav-icon">
+                        <i class="fas fa-cart-plus"></i>
+                    </span>
+                    <div class="cart-items">0</div>
+                </a>
+            }
+            else
+            {
+                <a class="cart-btn disabledd" href="#">
+
+                    <span class="nav-icon">
+                        <i class="fas fa-cart-plus"></i>
+                    </span>
+                    <div class="cart-items">0</div>
+                </a>
+            }
+
+        </div>
+    </nav>
+</div>
+<!--navbar-->
+<main>
+    <!----------Slider---------->
+    <div class="container-fluid p-0">
+        <div class="wrapper">
+            <div class="site-slider">
+                <div class="slider-one">
+                    <div class="banner">
+                        <img src="~/user/assets/Banner/banner-1.jpg" class="img-fluid" alt="Banner 1">
+                    </div>
+                    <div class="banner">
+                        <img src="~/user/assets/Banner/banner-2.webp" class="img-fluid" alt="Banner 2">
+                    </div>
+                    <div class="banner">
+                        <img src="~/user/assets/Banner/banner-3.webp" class="img-fluid" alt="Banner 3">
+                    </div>
+                </div>
+                <div class="slider-btn">
+                    <span class="prev position-top"><i class="fas fa-chevron-left"></i></span>
+                    <span class="next position-top right-0"><i class="fas fa-chevron-right"></i></span>
+                </div>
+            </div>
+            <div class="banner-mini">
+                <img src="~/user/assets/MiniBanner/banner-mini1.png" class="img-fluid" alt="Banner 1">
+                <img src="~/user/assets/MiniBanner/banner-mini2.png" class="img-fluid" alt="Banner 1">
+                <img src="~/user/assets/MiniBanner/banner-mini3.png" class="img-fluid" alt="Banner 1">
+                <img src="~/user/assets/MiniBanner/banner-mini4.png" class="img-fluid" alt="Banner 1">
+            </div>
+        </div>
+    </div>
+    <!-----x-----Slider-----x----->
+    <!----------Products---------->
+    <section class="products">
+        <div class="section-title">
+            <h2>Các sản phẩm</h2>
+        </div>
+        @if (Model.Products != null)
+        {
+            <div id="san-pham" class="products-center">
+                <!-- single product -->
+
+                @foreach (var item in Model.Products)
+                {
+                    @if (item.amount > 0)
+                    {
+                        <article class="product">
+                            <div class="img-container">
+                                <img src="~/images/site/@item.image" style="max-height: 275px" alt="product" class="product-img">
+                                @if (!User.IsInRole("Admin"))
+                                {
+                                    <button class="bag-btn" data-id="@item.id" data-name="@item.name" data-image="@item.image"
+                                            data-description="@item.description" data-category="@item.category.name" data-price="@item.price"
+                                            data-color="@item.color" data-size="@item.size" data-amount="@item.amount">
+                                        <i class="fas fa-shopping-cart"></i>
+                                        thêm giỏ hàng
+                                    </button>
+                                }
+                            </div>
+                            <a asp-controller="Home" asp-action="Detail" asp-route-productID="@item.id"><h3>@item.name</h3></a>
+                            <h6>@item.price VNĐ</h6>
+                        </article>
+                    }
+
+                }
+
+                <!--x single product x-->
+            </div>
+            <!-- pager - sử dụng bootstrap - pagination -->
+            if (Model.Pager.EndPage > 1)
+            {
+
+                <nav>
+                    <ul class="pagination" style="outline: none;width: 150px; margin: 30px auto;">
+                        @if (Model.Pager.CurrentPage > 1)
+                        {
+                            <li class="page-item">
+                                <a style="color:black;outline: none;background-color: #f8f8f8;border-radius: 5px;" class="page-link" href="@Url.Action("Index","Home", new { searchTerm = Model.SearchTerm, categoryId = Model.categoryId })">
+                                    <i class="fas fa-angle-double-left"></i>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a style="color:black;outline: none;background-color: #f8f8f8;border-radius: 5px;" class="page-link" href="@Url.Action("Index","Home", new { page = Model.Pager.CurrentPage - 1,
+                                                  searchTerm = Model.SearchTerm, categoryId = Model.categoryId })">
+                                    <i class="fas fa-angle-left"></i>
+                                </a>
+                            </li>
+                        }
+
+                        @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                        {
+                            <li class="page-item @(page == Model.Pager.CurrentPage ? "active" : "")">
+                                <a style=" @(page == Model.Pager.CurrentPage ? "color:white;outline: none;background-color: green; border-radius: 5px" : "color:black;outline: none;background-color: #f8f8f8;border-radius: 5px")" class="page-link" href="@Url.Action("Index","Home", new { page = page,
+                                                  searchTerm = Model.SearchTerm, categoryId = Model.categoryId }) #san-pham">@(page)</a>
+                                            </li>}
+
+                        @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                        {
+                            <li class="page-item">
+                                <a style="color:black;outline: none;background-color: #f8f8f8;border-radius: 5px;" class="page-link" href="@Url.Action("Index","Home", new { page = Model.Pager.CurrentPage + 1,
+                                                  searchTerm = Model.SearchTerm, categoryId = Model.categoryId })">
+                                    <i class="fas fa-angle-right"></i>
+                                </a>
+                            </li>
+                            <li class="page-item">
+                                <a style="color:black;outline: none;background-color: #f8f8f8;border-radius: 5px;" class="page-link" href="@Url.Action("Index","Home", new { page = Model.Pager.TotalPages,
+                                                  searchTerm = Model.SearchTerm, categoryId = Model.categoryId })">
+                                    <i class="fas fa-angle-double-right"></i>
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                </nav>
+
+            }
+        }
+        else
+        {
+            <div class="alert alert-warning" role="alert">
+                Xin lỗi! Không tìm thấy sản phẩm!
+            </div>
+        }
+    </section>
+    
+    <!-----x-----Products-----x----->
+    <!--Map-->
+    <div style="width: 100%;  color: gray;">
+        <div style="width: 80%; margin: 0 auto;  border: 1px solid #f8f8f8;  padding: 30px 0 30px 0; display: flex; justify-content: space-between;">
+            <div style=" flex-basis: 38%;">
+                <h5 class="orange-color">HỆ THỐNG CỬA HÀNG</h5>
+                <p><i class="fa fa-map-marker-alt orange-color"></i> 232/17/6, Quốc lộ 13, Phường 26, Quận Bình Thạnh, TP.HCM</p>
+                <p><i class="fa fa-phone-alt orange-color"></i> +(84) 336 970 895</p>
+                <p><i class="fa fa-envelope orange-color"></i> thiennguyen.it.ute@gmail.com</p>
+            </div>
+            <div style=" flex-basis: 28%; ">
+                <h5 class="orange-color">FAN PAGE</h5>
+                <div  class="fb-page" data-href="https://www.facebook.com/Online-Shop-100549548138729/" data-width="400px" data-hide-cover="false"
+                     data-show-facepile="true"></div>
+            </div>
+            <div style="flex-basis: 28%;">
+                <h5 class="orange-color">BẢN ĐỒ</h5>
+                <iframe width='100%' height="400" src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3918.9322903619263!2d106.71160921474927!3d10.816493692294342!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3175289a3bac3373%3A0x9376707fd4ad09ab!2zMjMyLzE3LzYgUUwxMywgUGjGsOG7nW5nIDI2LCBCw6xuaCBUaOG6oW5oLCBI4buTIENow60gTWluaCwgVmnhu4d0IE5hbQ!5e0!3m2!1svi!2s!4v1577580051510!5m2!1svi!2s" width="600" height="450" frameborder="0" style="border:0;" allowfullscreen=""></iframe>
+            </div>
+            
+
+        </div>
+    </div>
+
+</main>
+
+<script async defer crossorigin="anonymous" src="https://connect.facebook.net/vi_VN/sdk.js#xfbml=1&version=v5.0"></script>
+<script>
+    
+    var lstItem = [];
+    const cartItems = document.querySelector('.cart-items');
+    if (window.localStorage)
+        lstItem = JSON.parse(window.localStorage.getItem("carts"));
+    if (!lstItem)
+        lstItem = [];
+    console.log("giohangton truoc", lstItem);
+    $(".bag-btn").click(function () {
+        var exist = 1;
+        var productId = $(this).attr("data-id");
+        for (i in lstItem) {
+            if (lstItem[i].id == productId && lstItem[i].quantity < lstItem[i].amount) {
+                lstItem[i].quantity = parseInt(lstItem[i].quantity) + 1;
+                exist = 2;
+            }
+            else if (lstItem[i].id == productId && lstItem[i].quantity >= lstItem[i].amount){
+                exist = 3;
+                //alert("sản phẩm chỉ còn lại " + lstItem[i].amount + " sản phẩm");
+                swal({
+                    title: "Thông báo!",
+                    text: "sản phẩm chỉ còn lại " + lstItem[i].amount + " sản phẩm",
+                    icon: "warning",
+                    buttons: "OK"
+
+                })
+                    .then((willDelete) => {
+                        //location.reload();
+                    });
+            }
+        }
+        console.log("giohangton sau", lstItem);
+        console.log("exist", exist);
+        if (exist == 1) {
+            var productId = $(this).attr("data-id");
+            var name = $(this).attr("data-name");
+            var image = $(this).attr("data-image");
+            var description = $(this).attr("data-description");
+            var category = $(this).attr("data-category");
+            var color = $(this).attr("data-color");
+            var size = $(this).attr("data-size");
+            var price = $(this).attr("data-price");
+            var amount = $(this).attr("data-amount");
+            var item = {
+                id: productId, name: name, image: image, description: description, category: category, color: color,
+                size: size, price: price, quantity: 1, amount: amount
+            }
+
+            lstItem.push(item);
+            let itemsTotal = 0;
+            lstItem.map(item => {
+                itemsTotal = itemsTotal + parseInt(item.quantity);
+            });
+            cartItems.innerText = itemsTotal;
+            window.localStorage.setItem("carts", JSON.stringify(lstItem));
+            //alert("đã thêm vào giỏ hàng!!!");
+            swal({
+                title: "Thông báo!",
+                text: "đã thêm vào giỏ hàng!!!",
+                icon: "success",
+                buttons: "OK"
+
+            })
+                .then((willDelete) => {
+                    //location.reload();
+                });
+        }
+        else if (exist == 2) {
+            let itemsTotal = 0;
+            //console.log("ban đầu" + itemsTotal + "giohang", lstItem);
+            lstItem.map(item => {
+                console.log("quantity", item.quantity)
+                itemsTotal = parseInt(itemsTotal) + parseInt(item.quantity);
+            });
+            //console.log(itemsTotal);
+            cartItems.innerText = itemsTotal;
+            window.localStorage.setItem("carts", JSON.stringify(lstItem));
+            //alert("đã thêm vào giỏ hàng!!!");
+            swal({
+                title: "Thông báo!",
+                text: "đã thêm vào giỏ hàng!!!",
+                icon: "success",
+                buttons: "OK"
+
+            })
+                .then((willDelete) => {
+                    //location.reload();
+                });
+        }
+        else {
+
+        }
+        
+    });
+</script>

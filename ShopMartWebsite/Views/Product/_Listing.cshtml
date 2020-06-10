@@ -1,0 +1,125 @@
+﻿@model ShopMartWebsite.Models.ProductListViewModel
+@{ 
+    
+}
+@*
+    var page = Model.Pager.StartPage;
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@if (Model != null && Model.Products != null && Model.Products.Count() > 0)
+{
+    <table class="table table-striped jambo_table bulk_action">
+        <thead>
+            <tr class="headings">
+
+                <th class="column-title">Sản phẩm </th>
+                <th class="column-title">Giá </th>
+                <th class="column-title">Trạng thái </th>
+                <th class="column-title">Số lượng </th>
+                <th class="column-title">Size</th>
+                <th class="column-title">Color</th>
+                <th class="column-title">Danh mục</th>
+                <th class="column-title no-link last">
+                    <span class="nobr">Action</span>
+                </th>
+                <th class="bulk-actions" colspan="7">
+                    <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.Products)
+            {
+                 @if (item.status == true)
+                 {
+            <tr class="even pointer">
+
+                <td class=" ">@item.name</td>
+                <td class=" ">@item.price</td>
+                <td class=" " style="color: green;">Hiển thị</td>
+
+                @if (item.amount < 1)
+                {
+                    <td class=" " style="color: red;">Hết hàng</td>
+                }
+                else
+                {
+                    <td class=" ">@item.amount</td>
+                }
+                <td class=" ">@item.size</td>
+                <td class=" ">@item.color</td>
+                @if (@item.category == null)
+                {
+                    <td class="a-right a-right ">Trống</td>
+                }
+                else
+                {
+                    <td class="a-right a-right ">@item.category.name</td>
+                }
+                <td class=" last">
+                    <button data-href="@Url.Action("Viewss", "Product", new { ID = item.id })" class="data-btn-view btn btn-info" data-toggle="modal" data-target="#actionView" title="Xem Chi tiết Sản phẩm"><i class="fas fa-eye"></i></button>
+                    <button data-href="@Url.Action("Action", "Product", new { ID = item.id })" class="data-btn btn btn-primary" data-toggle="modal" data-target="#actionModal" title="Cập nhập Sản phẩm"><i class="fas fa-edit"></i></button>
+                    <button data-href="@Url.Action("Delete", "Product", new { ID = item.id })" class="data-btn btn btn-danger" data-toggle="modal" data-target="#actionModal" title="Xóa Sản phẩm"><i class="fas fa-trash-alt"></i></button>
+                </td>
+            </tr>
+                 }
+
+            }
+
+
+        </tbody>
+    </table>
+    <!-- pager - sử dụng bootstrap - pagination -->
+    if (Model.Pager.EndPage > 1)
+    {
+        <nav>
+            <ul class="pagination">
+                @if (Model.Pager.CurrentPage > 1)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index","Product", new { searchTerm = Model.SearchTerm, categoryId = Model.categoryId })">
+                            <i class="fas fa-angle-double-left"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index","Product", new { page = Model.Pager.CurrentPage - 1,
+                                                  searchTerm = Model.SearchTerm, categoryId = Model.categoryId })">
+                            <i class="fas fa-angle-left"></i>
+                        </a>
+                    </li>
+                }
+
+                @for (var page = Model.Pager.StartPage; page <= Model.Pager.EndPage; page++)
+                {
+                    <li class="page-item @(page == Model.Pager.CurrentPage ? "active" : "")">
+                        <a class="page-link" href="@Url.Action("Index","Product", new { page = page,
+                                                  searchTerm = Model.SearchTerm, categoryId = Model.categoryId })">@(page)</a>
+                    </li>}
+
+                @if (Model.Pager.CurrentPage < Model.Pager.TotalPages)
+                {
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index","Product", new { page = Model.Pager.CurrentPage + 1,
+                                                  searchTerm = Model.SearchTerm, categoryId = Model.categoryId })">
+                            <i class="fas fa-angle-right"></i>
+                        </a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="@Url.Action("Index","Product", new { page = Model.Pager.TotalPages,
+                                                  searchTerm = Model.SearchTerm, categoryId = Model.categoryId })">
+                            <i class="fas fa-angle-double-right"></i>
+                        </a>
+                    </li>
+                }
+            </ul>
+        </nav>
+    }
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        Xin lỗi! Không tìm thấy dữ liệu!
+    </div>
+}
+

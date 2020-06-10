@@ -1,0 +1,90 @@
+﻿@model ShopMartWebsite.Models.OrderListViewModel;
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+
+<div class="col-md-12 col-sm-12  ">
+    <div class="x_panel">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item"><a href="#">Dashboard</a></li>
+                <li class="breadcrumb-item active" aria-current="page">Quản lý Đơn hàng</li>
+            </ol>
+        </nav>
+        <h2>QUẢN LÝ ĐƠN HÀNG</h2>
+        <div class="row mb-3">
+            <div class="col col-lg-12">
+                <form>
+                    <div class="input-group">
+                        <input type="text" class="form-control" name="searchterm" placeholder="Tìm kiếm..." value="@Model.SearchTerm" style=" margin-right: 5px;">
+                        <div class="col-md-3">
+
+
+                            <fieldset>
+                                <div class="control-group">
+                                    <div class="controls">
+                                        <div class="col-md-11 xdisplay_inputx form-group row has-feedback">
+                                            <input type="text" class="form-control has-feedback-left" name="searchDate" value="@Model.searchDate" id="single_cal1" placeholder="First Name" aria-describedby="inputSuccess2Status">
+                                            <span class="fa fa-calendar-o form-control-feedback left" aria-hidden="true"></span>
+                                            <span id="inputSuccess2Status" class="sr-only">(success)</span>
+                                        </div>
+                                    </div>
+                                </div>
+                            </fieldset>
+
+                        </div>
+
+                        <div class="input-group-append" id="button-addon4" style="margin-left: 5px;">
+                            <button id="search-btn" class="btn btn-outline-primary" type="submit"><i class="fa fa-search mr-1"></i> Search</button>
+                            <a class="btn btn-outline-secondary" href="@Url.Action("Index","Order", new { searchterm = "", searchDate=string.Empty})"><i class="fa fa-sync mr-1"></i> Reset</a>
+
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+
+
+        <div class="x_content">
+            <div class="table-responsive">
+                @{ Html.RenderPartial("_Listing", Model);}
+            </div>
+
+
+        </div>
+    </div>
+</div>
+<!-- Modal -->
+
+<div class="modal fade bd-example-modal-lg" id="actionModal" tabindex="-1" role="dialog">
+    <div class="modal-dialog modal-lg" role="document">
+    </div>
+</div>
+<!---->
+<div class="modal fade bd-example-modal-xl" id="actionView" tabindex="-1" role="dialog" aria-labelledby="myLargeModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-xl">
+
+    </div>
+</div>
+<script>
+    $("#search-btn").click(function () {
+        var date = $('#single_cal1').val();
+        alert(date);
+    })
+    $('.data-btn').click(function () {
+        $.ajax({
+            url: $(this).attr("data-href"),
+        }).done(function (response) {
+            $('#actionModal .modal-dialog').html(response);
+        });
+    });
+    $('.data-btn-view').click(function () {
+        $.ajax({
+            url: $(this).attr("data-href"),
+        }).done(function (response) {
+            $('#actionView .modal-dialog').html(response);
+        });
+    });
+</script>
+

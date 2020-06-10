@@ -1,0 +1,94 @@
+﻿@model ShopMartWebsite.Models.UserListingViewModel
+@using Microsoft.AspNetCore.Identity;
+@using ShopMartWebsite.Entities;
+@inject RoleManager<Role> roleManager;
+@inject UserManager<User> userManager;
+@{
+    var userRole ="";
+}
+@*
+
+    
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@if (Model != null && Model.Users != null && Model.Users.Count() > 0)
+{
+    <table class="table table-striped jambo_table bulk_action">
+        <thead>
+            <tr class="headings">
+
+                <th class="column-title">Tên User </th>
+                <th class="column-title">Email </th>
+                <th class="column-title">Giới </th>
+                <th class="column-title">Ngày sinh </th>
+                <th class="column-title">Địa chỉ</th>
+                <th class="column-title">SĐT</th>
+                
+                <th class="column-title">Trạng thái</th>
+                <th class="column-title no-link last">
+                    <span class="nobr">Action</span>
+                </th>
+                <th class="bulk-actions" colspan="7">
+                    <a class="antoo" style="color:#fff; font-weight:500;">Bulk Actions ( <span class="action-cnt"> </span> ) <i class="fa fa-chevron-down"></i></a>
+                </th>
+            </tr>
+        </thead>
+
+        <tbody>
+            @foreach (var item in Model.Users)
+            {
+
+            <tr class="even pointer">
+
+                <td class=" ">@item.displayname</td>
+                <td class=" ">@item.Email</td>
+                @if (item.gender == false)
+                {
+                    <td class=" " style="color: green;">Nam</td>
+                }
+                else
+                {
+                    <td class=" " style="color: green;">Nữ</td>
+                }
+
+
+                <td class=" ">@item.birthDay</td>
+                <td class=" ">@item.address</td>
+                <td class=" ">@item.phone</td>
+                @if (item.LockoutEnd == null)
+                {
+                    <td class=" " style="color: green;">Đang sử dụng</td>
+                }
+                else
+                {
+                    <td class=" " style="color: red;">Đã khóa</td>
+                }
+
+                <td class=" last">
+                    @if (item.LockoutEnd == null)
+                    {
+                    <button data-href="@Url.Action("Lockout", "User", new { ID = item.Id, Lockout = "true" })" class="data-btn btn btn-danger" data-toggle="modal" data-target="#actionModal" title="Khóa Tài khoản"><i class="fas fa-trash-alt"></i></button>
+                }
+                else
+                {
+                    <button data-href="@Url.Action("Lockout", "User", new { ID = item.Id, Lockout = "false"  })" title="Mở khóa Tài khoản" class="data-btn btn btn-success" data-toggle="modal" data-target="#actionModal"><i class="fas fa-check"></i></button>
+                }
+                    
+                    </td>
+                </tr>
+
+
+            }
+
+
+        </tbody>
+    </table>
+    <!-- pager - sử dụng bootstrap - pagination -->
+    
+}
+else
+{
+    <div class="alert alert-warning" role="alert">
+        Xin lỗi! Không tìm thấy dữ liệu!
+    </div>
+}

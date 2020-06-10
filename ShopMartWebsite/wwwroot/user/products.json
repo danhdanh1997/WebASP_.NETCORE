@@ -1,0 +1,69 @@
+{
+    "items": [
+      {
+        "sys": { "id": "1" },
+        "fields": {
+          "title": "Tivi",
+          "price": 15000000,
+          "image": { "fields": { "file": { "url": "./assets/products/product-1.jpg" } } }
+        }
+      },
+      {
+        "sys": { "id": "2" },
+        "fields": {
+          "title": "Tủ lạnh",
+          "price": 20000000,
+          "image": { "fields": { "file": { "url": "./assets/products/product-2.jpg" } } }
+        }
+      },
+      {
+        "sys": { "id": "3" },
+        "fields": {
+          "title": "Máy giặt",
+          "price": 25000000,
+          "image": { "fields": { "file": { "url": "./assets/products/product-3.jpg" } } }
+        }
+      },
+      {
+        "sys": { "id": "4" },
+        "fields": {
+          "title": "Sneaker",
+          "price": 1000000,
+          "image": { "fields": { "file": { "url": "./assets/products/product-4.jpg" } } }
+        }
+      },
+      {
+        "sys": { "id": "5" },
+        "fields": {
+          "title": "Sách",
+          "price": 100000,
+          "image": { "fields": { "file": { "url": "./assets/products/product-5.jpg" } } }
+        }
+      },
+      {
+        "sys": { "id": "6" },
+        "fields": {
+          "title": "Điện thoại",
+          "price": 12000000,
+          "image": { "fields": { "file": { "url": "./assets/products/product-6.png" } } }
+        }
+      },
+      {
+        "sys": { "id": "7" },
+        "fields": {
+          "title": "Coffee",
+          "price": 300000,
+          "image": { "fields": { "file": { "url": "./assets/products/product-7.jpg" } } }
+        }
+      },
+      {
+        "sys": { "id": "8" },
+        "fields": {
+          "title": "Máy ảnh",
+          "price": 18000000,
+          "image": { "fields": { "file": { "url": "./assets/products/product-8.jpg" } } }
+        }
+      }
+    ]
+  }
+  

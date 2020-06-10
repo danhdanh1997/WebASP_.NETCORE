@@ -1,0 +1,1836 @@
+2019-11-30T21:25:37.2856591+07:00 0HLRLK4LINBM4:00000001 [INF] Request starting HTTP/1.1 DEBUG http://localhost:51987/  0 (ca22a1cb)
+2019-11-30T21:25:37.2856591+07:00 0HLRLK4LINBM5:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-11-30T21:25:37.4260880+07:00 0HLRLK4LINBM4:00000001 [INF] Request finished in 192.0042ms 200  (791a596a)
+2019-11-30T21:25:37.9979429+07:00 0HLRLK4LINBM5:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:25:38.3228050+07:00 0HLRLK4LINBM5:00000001 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:25:38.9114059+07:00 0HLRLK4LINBM5:00000001 [INF] Executed DbCommand ("28"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T21:25:39.0369935+07:00 0HLRLK4LINBM5:00000001 [INF] Executed DbCommand ("11"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:25:39.2292602+07:00 0HLRLK4LINBM5:00000001 [INF] Executed DbCommand ("36"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE [x].[status] = 1
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-11-30T21:25:39.2743026+07:00 0HLRLK4LINBM5:00000001 [INF] Executed DbCommand ("8"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-11-30T21:25:39.3336848+07:00 0HLRLK4LINBM5:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-11-30T21:25:43.9335656+07:00 0HLRLK4LINBM5:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T21:25:44.3829919+07:00 0HLRLK4LINBM5:00000001 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 6593.0713ms (afa2e885)
+2019-11-30T21:25:44.4728942+07:00 0HLRLK4LINBM7:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/aos.css   (ca22a1cb)
+2019-11-30T21:25:44.5251509+07:00 0HLRLK4LINBM4:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/style.css   (ca22a1cb)
+2019-11-30T21:25:44.5281281+07:00 0HLRLK4LINBM6:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/content/vendor/jquery/jquery.min.js   (ca22a1cb)
+2019-11-30T21:25:44.5449600+07:00 0HLRLK4LINBM7:00000001 [INF] The file "/user/css/aos.css" was not modified (f1f8d725)
+2019-11-30T21:25:44.5602962+07:00 0HLRLK4LINBM5:00000001 [INF] Request finished in 7209.4842ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:25:44.6257742+07:00 0HLRLK4LINBM5:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/all.css   (ca22a1cb)
+2019-11-30T21:25:44.6308361+07:00 0HLRLK4LINBM4:00000002 [INF] The file "/user/css/style.css" was not modified (f1f8d725)
+2019-11-30T21:25:44.6638108+07:00 0HLRLK4LINBM6:00000001 [INF] The file "/content/vendor/jquery/jquery.min.js" was not modified (f1f8d725)
+2019-11-30T21:25:44.6923236+07:00 0HLRLK4LINBM6:00000001 [INF] Request finished in 225.0133ms 304 application/javascript (791a596a)
+2019-11-30T21:25:44.7034603+07:00 0HLRLK4LINBM4:00000002 [INF] Request finished in 192.6929ms 304 text/css (791a596a)
+2019-11-30T21:25:44.7127456+07:00 0HLRLK4LINBM7:00000001 [INF] Request finished in 99.3047ms 304 text/css (791a596a)
+2019-11-30T21:25:44.7393218+07:00 0HLRLK4LINBM5:00000002 [INF] The file "/user/css/all.css" was not modified (f1f8d725)
+2019-11-30T21:25:44.9072812+07:00 0HLRLK4LINBM5:00000002 [INF] Request finished in 158.4562ms 304 text/css (791a596a)
+2019-11-30T21:25:44.9139612+07:00 0HLRLK4LINBM9:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/owl.carousel.min.css   (ca22a1cb)
+2019-11-30T21:25:44.9561623+07:00 0HLRLK4LINBM8:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/bootstrap.css   (ca22a1cb)
+2019-11-30T21:25:44.9696234+07:00 0HLRLK4LINBM8:00000001 [INF] The file "/user/css/bootstrap.css" was not modified (f1f8d725)
+2019-11-30T21:25:44.9835581+07:00 0HLRLK4LINBMA:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/logo/logo.jpg   (ca22a1cb)
+2019-11-30T21:25:45.0210360+07:00 0HLRLK4LINBM8:00000001 [INF] Request finished in 177.1992ms 304 text/css (791a596a)
+2019-11-30T21:25:45.0302340+07:00 0HLRLK4LINBM9:00000001 [INF] The file "/user/css/owl.carousel.min.css" was not modified (f1f8d725)
+2019-11-30T21:25:45.0626583+07:00 0HLRLK4LINBMC:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/slick.css   (ca22a1cb)
+2019-11-30T21:25:45.1071243+07:00 0HLRLK4LINBM9:00000001 [INF] Request finished in 232.3561ms 304 text/css (791a596a)
+2019-11-30T21:25:45.1145130+07:00 0HLRLK4LINBMB:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/owl.theme.default.min.css   (ca22a1cb)
+2019-11-30T21:25:45.1428619+07:00 0HLRLK4LINBMC:00000001 [INF] The file "/user/css/slick.css" was not modified (f1f8d725)
+2019-11-30T21:25:45.1511047+07:00 0HLRLK4LINBMA:00000001 [INF] The file "/user/assets/logo/logo.jpg" was not modified (f1f8d725)
+2019-11-30T21:25:45.1733142+07:00 0HLRLK4LINBMA:00000001 [INF] Request finished in 310.1405ms 304 image/jpeg (791a596a)
+2019-11-30T21:25:45.1868513+07:00 0HLRLK4LINBMB:00000001 [INF] The file "/user/css/owl.theme.default.min.css" was not modified (f1f8d725)
+2019-11-30T21:25:45.2111720+07:00 0HLRLK4LINBMC:00000001 [INF] Request finished in 201.5817ms 304 text/css (791a596a)
+2019-11-30T21:25:45.2965860+07:00 0HLRLK4LINBMB:00000001 [INF] Request finished in 103.1943ms 304 text/css (791a596a)
+2019-11-30T21:25:45.3016927+07:00 0HLRLK4LINBMD:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/Banner/banner-1.jpg   (ca22a1cb)
+2019-11-30T21:25:45.3388980+07:00 0HLRLK4LINBMD:00000001 [INF] The file "/user/assets/Banner/banner-1.jpg" was not modified (f1f8d725)
+2019-11-30T21:25:45.3554300+07:00 0HLRLK4LINBM7:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/detailproduct.css   (ca22a1cb)
+2019-11-30T21:25:45.3984720+07:00 0HLRLK4LINBM6:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/cart.css   (ca22a1cb)
+2019-11-30T21:25:45.4039881+07:00 0HLRLK4LINBM7:00000002 [INF] The file "/user/css/detailproduct.css" was not modified (f1f8d725)
+2019-11-30T21:25:45.4424931+07:00 0HLRLK4LINBMD:00000001 [INF] Request finished in 198.5478ms 304 image/jpeg (791a596a)
+2019-11-30T21:25:45.4690579+07:00 0HLRLK4LINBM7:00000002 [INF] Request finished in 148.2528ms 304 text/css (791a596a)
+2019-11-30T21:25:45.5052428+07:00 0HLRLK4LINBM5:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/jquery3.4.1.min.js   (ca22a1cb)
+2019-11-30T21:25:45.5362175+07:00 0HLRLK4LINBM4:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/fonts.css   (ca22a1cb)
+2019-11-30T21:25:45.5586798+07:00 0HLRLK4LINBM6:00000002 [INF] The file "/user/css/cart.css" was not modified (f1f8d725)
+2019-11-30T21:25:45.5943789+07:00 0HLRLK4LINBM5:00000003 [INF] The file "/user/js/jquery3.4.1.min.js" was not modified (f1f8d725)
+2019-11-30T21:25:45.6661702+07:00 0HLRLK4LINBM6:00000002 [INF] Request finished in 183.0327ms 304 text/css (791a596a)
+2019-11-30T21:25:45.7116083+07:00 0HLRLK4LINBM5:00000003 [INF] Request finished in 118.9576ms 304 application/javascript (791a596a)
+2019-11-30T21:25:45.7616711+07:00 0HLRLK4LINBM9:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/main.js   (ca22a1cb)
+2019-11-30T21:25:45.7888749+07:00 0HLRLK4LINBM8:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/owl.carousel.min.js   (ca22a1cb)
+2019-11-30T21:25:45.8108704+07:00 0HLRLK4LINBM4:00000003 [INF] The file "/user/css/fonts.css" was not modified (f1f8d725)
+2019-11-30T21:25:45.8414527+07:00 0HLRLK4LINBM8:00000002 [INF] The file "/user/js/owl.carousel.min.js" was not modified (f1f8d725)
+2019-11-30T21:25:45.8808908+07:00 0HLRLK4LINBM8:00000002 [INF] Request finished in 256.3752ms 304 application/javascript (791a596a)
+2019-11-30T21:25:45.9603261+07:00 0HLRLK4LINBMC:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/slick.min.js   (ca22a1cb)
+2019-11-30T21:25:45.9698525+07:00 0HLRLK4LINBM8:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/ab73b434-047f-45bf-9fa4-61717ded95b1.jpg   (ca22a1cb)
+2019-11-30T21:25:45.9885685+07:00 0HLRLK4LINBMC:00000002 [INF] The file "/user/js/slick.min.js" was not modified (f1f8d725)
+2019-11-30T21:25:46.0333948+07:00 0HLRLK4LINBM4:00000003 [INF] Request finished in 483.8089ms 304 text/css (791a596a)
+2019-11-30T21:25:46.1000028+07:00 0HLRLK4LINBM4:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/thumb-card3.png   (ca22a1cb)
+2019-11-30T21:25:46.1281618+07:00 0HLRLK4LINBM4:00000004 [INF] The file "/user/assets/instagram/thumb-card3.png" was not modified (f1f8d725)
+2019-11-30T21:25:46.1745669+07:00 0HLRLK4LINBM8:00000003 [INF] The file "/images/site/ab73b434-047f-45bf-9fa4-61717ded95b1.jpg" was not modified (f1f8d725)
+2019-11-30T21:25:46.1997265+07:00 0HLRLK4LINBM4:00000004 [INF] Request finished in 90.6761ms 304 image/png (791a596a)
+2019-11-30T21:25:46.2502720+07:00 0HLRLK4LINBM9:00000002 [INF] The file "/user/js/main.js" was not modified (f1f8d725)
+2019-11-30T21:25:46.2962697+07:00 0HLRLK4LINBM9:00000002 [INF] Request finished in 539.7965ms 304 application/javascript (791a596a)
+2019-11-30T21:25:46.3252326+07:00 0HLRLK4LINBM4:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/webfonts/fa-brands-400.woff2   (ca22a1cb)
+2019-11-30T21:25:46.3770353+07:00 0HLRLK4LINBM4:00000005 [INF] The file "/user/webfonts/fa-brands-400.woff2" was not modified (f1f8d725)
+2019-11-30T21:25:46.3861674+07:00 0HLRLK4LINBMA:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/aos.js   (ca22a1cb)
+2019-11-30T21:25:46.4636778+07:00 0HLRLK4LINBM8:00000003 [INF] Request finished in 267.8102ms 304 image/jpeg (791a596a)
+2019-11-30T21:25:46.4874211+07:00 0HLRLK4LINBMA:00000002 [INF] The file "/user/js/aos.js" was not modified (f1f8d725)
+2019-11-30T21:25:46.5093932+07:00 0HLRLK4LINBMC:00000002 [INF] Request finished in 99.4785ms 304 application/javascript (791a596a)
+2019-11-30T21:25:46.5677280+07:00 0HLRLK4LINBM6:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/MiniBanner/banner-mini3.png   (ca22a1cb)
+2019-11-30T21:25:46.6022667+07:00 0HLRLK4LINBM4:00000005 [INF] Request finished in 99.1997ms 304 font/woff2 (791a596a)
+2019-11-30T21:25:46.6519762+07:00 0HLRLK4LINBMA:00000002 [INF] Request finished in 138.7307ms 304 application/javascript (791a596a)
+2019-11-30T21:25:46.6996523+07:00 0HLRLK4LINBMC:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/webfonts/fa-solid-900.woff2   (ca22a1cb)
+2019-11-30T21:25:46.7200734+07:00 0HLRLK4LINBMF:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/f42fddc0-2ee4-4ba0-933b-4f7d99f9f458.jpg   (ca22a1cb)
+2019-11-30T21:25:46.7319411+07:00 0HLRLK4LINBME:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/thumb-card8.png   (ca22a1cb)
+2019-11-30T21:25:46.7389250+07:00 0HLRLK4LINBM6:00000003 [INF] The file "/user/assets/MiniBanner/banner-mini3.png" was not modified (f1f8d725)
+2019-11-30T21:25:46.7938809+07:00 0HLRLK4LINBMG:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/bootstrap.js   (ca22a1cb)
+2019-11-30T21:25:46.8121637+07:00 0HLRLK4LINBMC:00000003 [INF] The file "/user/webfonts/fa-solid-900.woff2" was not modified (f1f8d725)
+2019-11-30T21:25:46.8492896+07:00 0HLRLK4LINBM6:00000003 [INF] Request finished in 241.2049ms 304 image/png (791a596a)
+2019-11-30T21:25:46.8516837+07:00 0HLRLK4LINBME:00000001 [INF] The file "/user/assets/instagram/thumb-card8.png" was not modified (f1f8d725)
+2019-11-30T21:25:46.8905157+07:00 0HLRLK4LINBME:00000001 [INF] Request finished in 329.8412ms 304 image/png (791a596a)
+2019-11-30T21:25:46.9260672+07:00 0HLRLK4LINBMC:00000003 [INF] Request finished in 289.0289ms 304 font/woff2 (791a596a)
+2019-11-30T21:25:46.9593672+07:00 0HLRLK4LINBMF:00000001 [INF] The file "/images/site/f42fddc0-2ee4-4ba0-933b-4f7d99f9f458.jpg" was not modified (f1f8d725)
+2019-11-30T21:25:46.9874889+07:00 0HLRLK4LINBMF:00000001 [INF] Request finished in 325.9562ms 304 image/jpeg (791a596a)
+2019-11-30T21:25:47.0318255+07:00 0HLRLK4LINBMG:00000001 [INF] The file "/user/js/bootstrap.js" was not modified (f1f8d725)
+2019-11-30T21:25:47.0782442+07:00 0HLRLK4LINBMG:00000001 [INF] Request finished in 268.4229ms 304 application/javascript (791a596a)
+2019-11-30T21:25:47.0858234+07:00 0HLRLK4LINBMI:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/thumb-card4.png   (ca22a1cb)
+2019-11-30T21:25:47.1027805+07:00 0HLRLK4LINBMH:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/b6e01b40-d201-4a02-b13e-597ff2707d42.jpg   (ca22a1cb)
+2019-11-30T21:25:47.1341064+07:00 0HLRLK4LINBMJ:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/thumb-card6.png   (ca22a1cb)
+2019-11-30T21:25:47.1585369+07:00 0HLRLK4LINBMH:00000001 [INF] The file "/images/site/b6e01b40-d201-4a02-b13e-597ff2707d42.jpg" was not modified (f1f8d725)
+2019-11-30T21:25:47.1934378+07:00 0HLRLK4LINBMK:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/MiniBanner/banner-mini2.png   (ca22a1cb)
+2019-11-30T21:25:47.2592670+07:00 0HLRLK4LINBMK:00000001 [INF] The file "/user/assets/MiniBanner/banner-mini2.png" was not modified (f1f8d725)
+2019-11-30T21:25:47.3042280+07:00 0HLRLK4LINBMJ:00000001 [INF] The file "/user/assets/instagram/thumb-card6.png" was not modified (f1f8d725)
+2019-11-30T21:25:47.3310301+07:00 0HLRLK4LINBMH:00000001 [INF] Request finished in 240.9735ms 304 image/jpeg (791a596a)
+2019-11-30T21:25:47.3573738+07:00 0HLRLK4LINBMI:00000001 [INF] The file "/user/assets/instagram/thumb-card4.png" was not modified (f1f8d725)
+2019-11-30T21:25:47.3919940+07:00 0HLRLK4LINBMK:00000001 [INF] Request finished in 228.1029ms 304 image/png (791a596a)
+2019-11-30T21:25:47.4393561+07:00 0HLRLK4LINBMJ:00000001 [INF] Request finished in 296.6465ms 304 image/png (791a596a)
+2019-11-30T21:25:47.4617566+07:00 0HLRLK4LINBMI:00000001 [INF] Request finished in 420.9849ms 304 image/png (791a596a)
+2019-11-30T21:25:47.4917002+07:00 0HLRLK4LINBMB:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/Banner/banner-2.webp   (ca22a1cb)
+2019-11-30T21:25:47.5672897+07:00 0HLRLK4LINBM5:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/MiniBanner/banner-mini1.png   (ca22a1cb)
+2019-11-30T21:25:47.5958904+07:00 0HLRLK4LINBMD:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/MiniBanner/banner-mini4.png   (ca22a1cb)
+2019-11-30T21:25:47.6073784+07:00 0HLRLK4LINBM5:00000004 [INF] The file "/user/assets/MiniBanner/banner-mini1.png" was not modified (f1f8d725)
+2019-11-30T21:25:47.6282036+07:00 0HLRLK4LINBM5:00000004 [INF] Request finished in 105.3017ms 304 image/png (791a596a)
+2019-11-30T21:25:47.6815706+07:00 0HLRLK4LINBMB:00000002 [INF] The file "/user/assets/Banner/banner-2.webp" was not modified (f1f8d725)
+2019-11-30T21:25:47.7013388+07:00 0HLRLK4LINBM7:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/Banner/banner-3.webp   (ca22a1cb)
+2019-11-30T21:25:47.7560348+07:00 0HLRLK4LINBMD:00000002 [INF] The file "/user/assets/MiniBanner/banner-mini4.png" was not modified (f1f8d725)
+2019-11-30T21:25:47.8258446+07:00 0HLRLK4LINBML:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/f30fef4b-d7b8-459a-a2f6-81829d247aac.jpg   (ca22a1cb)
+2019-11-30T21:25:47.8349939+07:00 0HLRLK4LINBMB:00000002 [INF] Request finished in 442.6125ms 304 image/webp (791a596a)
+2019-11-30T21:25:47.8460708+07:00 0HLRLK4LINBML:00000001 [INF] The file "/images/site/f30fef4b-d7b8-459a-a2f6-81829d247aac.jpg" was not modified (f1f8d725)
+2019-11-30T21:25:47.8638742+07:00 0HLRLK4LINBMM:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/56409b9a-f4ad-48c8-94c4-6c5a4bafd43a.jpg   (ca22a1cb)
+2019-11-30T21:25:47.8761394+07:00 0HLRLK4LINBMD:00000002 [INF] Request finished in 374.4272ms 304 image/png (791a596a)
+2019-11-30T21:25:47.9042072+07:00 0HLRLK4LINBMM:00000001 [INF] The file "/images/site/56409b9a-f4ad-48c8-94c4-6c5a4bafd43a.jpg" was not modified (f1f8d725)
+2019-11-30T21:25:47.9104631+07:00 0HLRLK4LINBM7:00000003 [INF] The file "/user/assets/Banner/banner-3.webp" was not modified (f1f8d725)
+2019-11-30T21:25:47.9977956+07:00 0HLRLK4LINBMO:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/0dc3c768-dc51-4d5e-858d-26316efddc21.jpg   (ca22a1cb)
+2019-11-30T21:25:48.0209131+07:00 0HLRLK4LINBMO:00000001 [INF] The file "/images/site/0dc3c768-dc51-4d5e-858d-26316efddc21.jpg" was not modified (f1f8d725)
+2019-11-30T21:25:48.0432073+07:00 0HLRLK4LINBMM:00000001 [INF] Request finished in 116.8875ms 304 image/jpeg (791a596a)
+2019-11-30T21:25:48.0522375+07:00 0HLRLK4LINBMN:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/8f421057-3a1b-443f-8c62-9cb419deec91.jpg   (ca22a1cb)
+2019-11-30T21:25:48.0653654+07:00 0HLRLK4LINBM7:00000003 [INF] Request finished in 462.9668ms 304 image/webp (791a596a)
+2019-11-30T21:25:48.1377478+07:00 0HLRLK4LINBML:00000001 [INF] Request finished in 335.3801ms 304 image/jpeg (791a596a)
+2019-11-30T21:25:48.1598087+07:00 0HLRLK4LINBMQ:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/8daacaab-7ec6-4460-9d56-03cf5494b2a9.jpg   (ca22a1cb)
+2019-11-30T21:25:48.1739365+07:00 0HLRLK4LINBMP:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/thumb-card7.png   (ca22a1cb)
+2019-11-30T21:25:48.1900760+07:00 0HLRLK4LINBMO:00000001 [INF] Request finished in 37.5313ms 304 image/jpeg (791a596a)
+2019-11-30T21:25:48.1983385+07:00 0HLRLK4LINBMN:00000001 [INF] The file "/images/site/8f421057-3a1b-443f-8c62-9cb419deec91.jpg" was not modified (f1f8d725)
+2019-11-30T21:25:48.2498961+07:00 0HLRLK4LINBMQ:00000001 [INF] The file "/images/site/8daacaab-7ec6-4460-9d56-03cf5494b2a9.jpg" was not modified (f1f8d725)
+2019-11-30T21:25:48.2864592+07:00 0HLRLK4LINBMR:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/assets/instagram/thumb-card5.png   (ca22a1cb)
+2019-11-30T21:25:48.3223814+07:00 0HLRLK4LINBMP:00000001 [INF] The file "/user/assets/instagram/thumb-card7.png" was not modified (f1f8d725)
+2019-11-30T21:25:48.3548243+07:00 0HLRLK4LINBMP:00000001 [INF] Request finished in 271.526ms 304 image/png (791a596a)
+2019-11-30T21:25:48.3863603+07:00 0HLRLK4LINBMQ:00000001 [INF] Request finished in 113.1819ms 304 image/jpeg (791a596a)
+2019-11-30T21:25:48.4222204+07:00 0HLRLK4LINBMR:00000001 [INF] The file "/user/assets/instagram/thumb-card5.png" was not modified (f1f8d725)
+2019-11-30T21:25:48.4307036+07:00 0HLRLK4LINBMS:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/fonts/Lexend_Deca/LexendDeca-Regular.ttf   (ca22a1cb)
+2019-11-30T21:25:48.4748799+07:00 0HLRLK4LINBMN:00000001 [INF] Request finished in 259.1207ms 304 image/jpeg (791a596a)
+2019-11-30T21:25:48.5558697+07:00 0HLRLK4LINBMS:00000001 [INF] The file "/user/fonts/Lexend_Deca/LexendDeca-Regular.ttf" was not modified (f1f8d725)
+2019-11-30T21:25:48.5807759+07:00 0HLRLK4LINBMR:00000001 [INF] Request finished in 181.4379ms 304 image/png (791a596a)
+2019-11-30T21:25:48.6219757+07:00 0HLRLK4LINBMT:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/fonts/Josefin_Sans/JosefinSans-Regular.ttf   (ca22a1cb)
+2019-11-30T21:25:48.6412213+07:00 0HLRLK4LINBMS:00000001 [INF] Request finished in 233.4293ms 304 application/x-font-ttf (791a596a)
+2019-11-30T21:25:48.6744434+07:00 0HLRLK4LINBMT:00000001 [INF] The file "/user/fonts/Josefin_Sans/JosefinSans-Regular.ttf" was not modified (f1f8d725)
+2019-11-30T21:25:48.6822879+07:00 0HLRLK4LINBMT:00000001 [INF] Request finished in 185.884ms 304 application/x-font-ttf (791a596a)
+2019-11-30T21:25:52.5539475+07:00 0HLRLK4LINBM8:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Detail?productID=3   (ca22a1cb)
+2019-11-30T21:25:52.5962568+07:00 0HLRLK4LINBM8:00000004 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" with arguments (["3"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:25:52.6084990+07:00 0HLRLK4LINBM8:00000004 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:25:52.6498446+07:00 0HLRLK4LINBM8:00000004 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [pro].[id], [pro].[categoryId], [pro].[color], [pro].[description], [pro].[image], [pro].[name], [pro].[price], [pro].[size], [pro].[status], [pro.category].[id], [pro.category].[name], [pro.category].[status]
+FROM [product] AS [pro]
+LEFT JOIN [category] AS [pro.category] ON [pro].[categoryId] = [pro.category].[id]
+WHERE [pro].[id] = @__id_0
+ORDER BY [pro].[id]" (0723d8ff)
+2019-11-30T21:25:52.6666130+07:00 0HLRLK4LINBM8:00000004 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [pro.Comments].[id], [pro.Comments].[content], [pro.Comments].[createDate], [pro.Comments].[productId], [pro.Comments].[status], [pro.Comments].[userId]
+FROM [comment] AS [pro.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [pro0].[id]
+        FROM [product] AS [pro0]
+        LEFT JOIN [category] AS [pro.category0] ON [pro0].[categoryId] = [pro.category0].[id]
+        WHERE [pro0].[id] = @__id_0
+        ORDER BY [pro0].[id]
+    ) AS [t]
+) AS [t0] ON [pro.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[id]" (0723d8ff)
+2019-11-30T21:25:52.7788932+07:00 0HLRLK4LINBM8:00000004 [INF] Executed DbCommand ("37"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp].[id], [rp].[content], [rp].[createDate], [rp].[productId], [rp].[status], [rp].[userId], [rp.user].[Id], [rp.user].[AccessFailedCount], [rp.user].[ConcurrencyStamp], [rp.user].[Email], [rp.user].[EmailConfirmed], [rp.user].[LockoutEnabled], [rp.user].[LockoutEnd], [rp.user].[NormalizedEmail], [rp.user].[NormalizedUserName], [rp.user].[PasswordHash], [rp.user].[PhoneNumber], [rp.user].[PhoneNumberConfirmed], [rp.user].[SecurityStamp], [rp.user].[TwoFactorEnabled], [rp.user].[UserName], [rp.user].[address], [rp.user].[birthDay], [rp.user].[displayname], [rp.user].[gender], [rp.user].[password], [rp.user].[phone], [rp.user].[status]
+FROM [comment] AS [rp]
+LEFT JOIN [AspNetUsers] AS [rp.user] ON [rp].[userId] = [rp.user].[Id]
+WHERE [rp].[productId] = @__productId_0
+ORDER BY [rp].[id]" (0723d8ff)
+2019-11-30T21:25:53.0783750+07:00 0HLRLK4LINBM8:00000004 [INF] Executing ViewResult, running view at path "/Views/Home/Detail.cshtml". (9707eebe)
+2019-11-30T21:25:53.1780649+07:00 0HLRLK4LINBM8:00000004 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" in 600.1912ms (afa2e885)
+2019-11-30T21:25:53.2356950+07:00 0HLRLK4LINBM8:00000004 [INF] Request finished in 634.462ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:26:03.7052726+07:00 0HLRLK4LINBM9:00000003 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Home/Comment application/x-www-form-urlencoded 212 (ca22a1cb)
+2019-11-30T21:26:03.7540128+07:00 0HLRLK4LINBM9:00000003 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Comment (ShopMartWebsite)" with arguments (["3", "Panasonic"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:26:03.7820925+07:00 0HLRLK4LINBM9:00000003 [INF] Executing RedirectResult, redirecting to "/Account/Login?productId=3". (d98d540e)
+2019-11-30T21:26:03.7878759+07:00 0HLRLK4LINBM9:00000003 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Comment (ShopMartWebsite)" in 74.4867ms (afa2e885)
+2019-11-30T21:26:03.7956030+07:00 0HLRLK4LINBM9:00000003 [INF] Request finished in 95.4817ms 302  (791a596a)
+2019-11-30T21:26:03.8064504+07:00 0HLRLK4LINBM4:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Account/Login?productId=3   (ca22a1cb)
+2019-11-30T21:26:03.8218231+07:00 0HLRLK4LINBM4:00000006 [INF] Executing action method "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" with arguments (["", "3"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:26:04.1038698+07:00 0HLRLK4LINBM4:00000006 [INF] Executing ViewResult, running view at path "/Views/Account/Login.cshtml". (9707eebe)
+2019-11-30T21:26:04.1573305+07:00 0HLRLK4LINBM4:00000006 [INF] Executed action "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" in 336.0374ms (afa2e885)
+2019-11-30T21:26:04.1716777+07:00 0HLRLK4LINBM4:00000006 [INF] Request finished in 358.8683ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:26:04.2381525+07:00 0HLRLK4LINBMA:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/login.css   (ca22a1cb)
+2019-11-30T21:26:04.2450519+07:00 0HLRLK4LINBMA:00000003 [INF] The file "/user/css/login.css" was not modified (f1f8d725)
+2019-11-30T21:26:04.2612213+07:00 0HLRLK4LINBMA:00000003 [INF] Request finished in 24.9437ms 304 text/css (791a596a)
+2019-11-30T21:26:14.0024738+07:00 0HLRLK4LINBM6:00000004 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Account/Login application/x-www-form-urlencoded 257 (ca22a1cb)
+2019-11-30T21:26:14.0643626+07:00 0HLRLK4LINBM6:00000004 [INF] Executing action method "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" with arguments (["ShopMartWebsite.Models.RegisterViewModel"]) - ModelState is Invalid (ba7f4ac2)
+2019-11-30T21:26:14.0933361+07:00 0HLRLK4LINBM6:00000004 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:26:14.1352274+07:00 0HLRLK4LINBM6:00000004 [INF] Executed DbCommand ("4"ms) [Parameters=["@__Username_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [x].[Id], [x].[AccessFailedCount], [x].[ConcurrencyStamp], [x].[Email], [x].[EmailConfirmed], [x].[LockoutEnabled], [x].[LockoutEnd], [x].[NormalizedEmail], [x].[NormalizedUserName], [x].[PasswordHash], [x].[PhoneNumber], [x].[PhoneNumberConfirmed], [x].[SecurityStamp], [x].[TwoFactorEnabled], [x].[UserName], [x].[address], [x].[birthDay], [x].[displayname], [x].[gender], [x].[password], [x].[phone], [x].[status]
+FROM [AspNetUsers] AS [x]
+WHERE [x].[UserName] = @__Username_0" (0723d8ff)
+2019-11-30T21:26:14.2841693+07:00 0HLRLK4LINBM6:00000004 [INF] Executed DbCommand ("18"ms) [Parameters=["@__normalizedUserName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [u].[Id], [u].[AccessFailedCount], [u].[ConcurrencyStamp], [u].[Email], [u].[EmailConfirmed], [u].[LockoutEnabled], [u].[LockoutEnd], [u].[NormalizedEmail], [u].[NormalizedUserName], [u].[PasswordHash], [u].[PhoneNumber], [u].[PhoneNumberConfirmed], [u].[SecurityStamp], [u].[TwoFactorEnabled], [u].[UserName], [u].[address], [u].[birthDay], [u].[displayname], [u].[gender], [u].[password], [u].[phone], [u].[status]
+FROM [AspNetUsers] AS [u]
+WHERE [u].[NormalizedUserName] = @__normalizedUserName_0" (0723d8ff)
+2019-11-30T21:26:14.4300699+07:00 0HLRLK4LINBM6:00000004 [INF] Executed DbCommand ("9"ms) [Parameters=["@__user_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [uc].[Id], [uc].[ClaimType], [uc].[ClaimValue], [uc].[UserId]
+FROM [AspNetUserClaims] AS [uc]
+WHERE [uc].[UserId] = @__user_Id_0" (0723d8ff)
+2019-11-30T21:26:14.4966817+07:00 0HLRLK4LINBM6:00000004 [INF] Executed DbCommand ("8"ms) [Parameters=["@__userId_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [role].[Name]
+FROM [AspNetUserRoles] AS [userRole]
+INNER JOIN [AspNetRoles] AS [role] ON [userRole].[RoleId] = [role].[Id]
+WHERE [userRole].[UserId] = @__userId_0" (0723d8ff)
+2019-11-30T21:26:14.5229279+07:00 0HLRLK4LINBM6:00000004 [INF] Executed DbCommand ("2"ms) [Parameters=["@__normalizedName_0='?' (Size = 256)"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [r].[Id], [r].[ConcurrencyStamp], [r].[CreationDate], [r].[Description], [r].[Name], [r].[NormalizedName]
+FROM [AspNetRoles] AS [r]
+WHERE [r].[NormalizedName] = @__normalizedName_0" (0723d8ff)
+2019-11-30T21:26:14.5965297+07:00 0HLRLK4LINBM6:00000004 [INF] Executed DbCommand ("28"ms) [Parameters=["@__role_Id_0='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rc].[ClaimType], [rc].[ClaimValue]
+FROM [AspNetRoleClaims] AS [rc]
+WHERE [rc].[RoleId] = @__role_Id_0" (0723d8ff)
+2019-11-30T21:26:14.6354152+07:00 0HLRLK4LINBM6:00000004 [INF] AuthenticationScheme: "Identity.Application" signed in. (c66dd7e7)
+2019-11-30T21:26:14.6423359+07:00 0HLRLK4LINBM6:00000004 [INF] Executing RedirectResult, redirecting to "/Home/Detail?productId=3". (d98d540e)
+2019-11-30T21:26:14.6472410+07:00 0HLRLK4LINBM6:00000004 [INF] Executed action "ShopMartWebsite.Controllers.AccountController.Login (ShopMartWebsite)" in 616.385ms (afa2e885)
+2019-11-30T21:26:14.6555088+07:00 0HLRLK4LINBM6:00000004 [INF] Request finished in 656.8292ms 302  (791a596a)
+2019-11-30T21:26:14.6644608+07:00 0HLRLK4LINBMC:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Detail?productId=3   (ca22a1cb)
+2019-11-30T21:26:14.6981410+07:00 0HLRLK4LINBMC:00000004 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:26:14.7236956+07:00 0HLRLK4LINBMC:00000004 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" with arguments (["3"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:26:14.7482250+07:00 0HLRLK4LINBMC:00000004 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:26:14.7584238+07:00 0HLRLK4LINBMC:00000004 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [pro].[id], [pro].[categoryId], [pro].[color], [pro].[description], [pro].[image], [pro].[name], [pro].[price], [pro].[size], [pro].[status], [pro.category].[id], [pro.category].[name], [pro.category].[status]
+FROM [product] AS [pro]
+LEFT JOIN [category] AS [pro.category] ON [pro].[categoryId] = [pro.category].[id]
+WHERE [pro].[id] = @__id_0
+ORDER BY [pro].[id]" (0723d8ff)
+2019-11-30T21:26:14.7671166+07:00 0HLRLK4LINBMC:00000004 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [pro.Comments].[id], [pro.Comments].[content], [pro.Comments].[createDate], [pro.Comments].[productId], [pro.Comments].[status], [pro.Comments].[userId]
+FROM [comment] AS [pro.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [pro0].[id]
+        FROM [product] AS [pro0]
+        LEFT JOIN [category] AS [pro.category0] ON [pro0].[categoryId] = [pro.category0].[id]
+        WHERE [pro0].[id] = @__id_0
+        ORDER BY [pro0].[id]
+    ) AS [t]
+) AS [t0] ON [pro.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[id]" (0723d8ff)
+2019-11-30T21:26:14.8045009+07:00 0HLRLK4LINBMC:00000004 [INF] Executed DbCommand ("3"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp].[id], [rp].[content], [rp].[createDate], [rp].[productId], [rp].[status], [rp].[userId], [rp.user].[Id], [rp.user].[AccessFailedCount], [rp.user].[ConcurrencyStamp], [rp.user].[Email], [rp.user].[EmailConfirmed], [rp.user].[LockoutEnabled], [rp.user].[LockoutEnd], [rp.user].[NormalizedEmail], [rp.user].[NormalizedUserName], [rp.user].[PasswordHash], [rp.user].[PhoneNumber], [rp.user].[PhoneNumberConfirmed], [rp.user].[SecurityStamp], [rp.user].[TwoFactorEnabled], [rp.user].[UserName], [rp.user].[address], [rp.user].[birthDay], [rp.user].[displayname], [rp.user].[gender], [rp.user].[password], [rp.user].[phone], [rp.user].[status]
+FROM [comment] AS [rp]
+LEFT JOIN [AspNetUsers] AS [rp.user] ON [rp].[userId] = [rp.user].[Id]
+WHERE [rp].[productId] = @__productId_0
+ORDER BY [rp].[id]" (0723d8ff)
+2019-11-30T21:26:14.8165436+07:00 0HLRLK4LINBMC:00000004 [INF] Executing ViewResult, running view at path "/Views/Home/Detail.cshtml". (9707eebe)
+2019-11-30T21:26:14.8362123+07:00 0HLRLK4LINBMC:00000004 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" in 125.4552ms (afa2e885)
+2019-11-30T21:26:14.9129465+07:00 0HLRLK4LINBMC:00000004 [INF] Request finished in 179.5523ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:26:24.0115649+07:00 0HLRLK4LINBME:00000002 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Home/Comment application/x-www-form-urlencoded 255 (ca22a1cb)
+2019-11-30T21:26:24.0271323+07:00 0HLRLK4LINBME:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:26:24.0359927+07:00 0HLRLK4LINBME:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Comment (ShopMartWebsite)" with arguments (["3", "Panasonic"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:26:24.0467748+07:00 0HLRLK4LINBME:00000002 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:26:24.1359021+07:00 0HLRLK4LINBME:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@p0='?' (Size = 4000), @p1='?', @p2='?', @p3='?', @p4='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [comment] ([content], [createDate], [productId], [status], [userId])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [id]
+FROM [comment]
+WHERE @@ROWCOUNT = 1 AND [id] = scope_identity();" (0723d8ff)
+2019-11-30T21:26:24.1727838+07:00 0HLRLK4LINBME:00000002 [INF] Executing RedirectResult, redirecting to "/Home/Detail?productId=3". (d98d540e)
+2019-11-30T21:26:24.1783173+07:00 0HLRLK4LINBME:00000002 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Comment (ShopMartWebsite)" in 145.3101ms (afa2e885)
+2019-11-30T21:26:24.1898707+07:00 0HLRLK4LINBME:00000002 [INF] Request finished in 187.537ms 302  (791a596a)
+2019-11-30T21:26:24.2026967+07:00 0HLRLK4LINBMF:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Detail?productId=3   (ca22a1cb)
+2019-11-30T21:26:24.2362802+07:00 0HLRLK4LINBMF:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:26:24.2442169+07:00 0HLRLK4LINBMF:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" with arguments (["3"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:26:24.2558961+07:00 0HLRLK4LINBMF:00000002 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:26:24.2836855+07:00 0HLRLK4LINBMF:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [pro].[id], [pro].[categoryId], [pro].[color], [pro].[description], [pro].[image], [pro].[name], [pro].[price], [pro].[size], [pro].[status], [pro.category].[id], [pro.category].[name], [pro.category].[status]
+FROM [product] AS [pro]
+LEFT JOIN [category] AS [pro.category] ON [pro].[categoryId] = [pro.category].[id]
+WHERE [pro].[id] = @__id_0
+ORDER BY [pro].[id]" (0723d8ff)
+2019-11-30T21:26:24.3098025+07:00 0HLRLK4LINBMF:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [pro.Comments].[id], [pro.Comments].[content], [pro.Comments].[createDate], [pro.Comments].[productId], [pro.Comments].[status], [pro.Comments].[userId]
+FROM [comment] AS [pro.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [pro0].[id]
+        FROM [product] AS [pro0]
+        LEFT JOIN [category] AS [pro.category0] ON [pro0].[categoryId] = [pro.category0].[id]
+        WHERE [pro0].[id] = @__id_0
+        ORDER BY [pro0].[id]
+    ) AS [t]
+) AS [t0] ON [pro.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[id]" (0723d8ff)
+2019-11-30T21:26:24.3385815+07:00 0HLRLK4LINBMF:00000002 [INF] Executed DbCommand ("1"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp].[id], [rp].[content], [rp].[createDate], [rp].[productId], [rp].[status], [rp].[userId], [rp.user].[Id], [rp.user].[AccessFailedCount], [rp.user].[ConcurrencyStamp], [rp.user].[Email], [rp.user].[EmailConfirmed], [rp.user].[LockoutEnabled], [rp.user].[LockoutEnd], [rp.user].[NormalizedEmail], [rp.user].[NormalizedUserName], [rp.user].[PasswordHash], [rp.user].[PhoneNumber], [rp.user].[PhoneNumberConfirmed], [rp.user].[SecurityStamp], [rp.user].[TwoFactorEnabled], [rp.user].[UserName], [rp.user].[address], [rp.user].[birthDay], [rp.user].[displayname], [rp.user].[gender], [rp.user].[password], [rp.user].[phone], [rp.user].[status]
+FROM [comment] AS [rp]
+LEFT JOIN [AspNetUsers] AS [rp.user] ON [rp].[userId] = [rp.user].[Id]
+WHERE [rp].[productId] = @__productId_0
+ORDER BY [rp].[id]" (0723d8ff)
+2019-11-30T21:26:24.3969309+07:00 0HLRLK4LINBMF:00000002 [INF] Executed DbCommand ("29"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp.Replies].[id], [rp.Replies].[commentId], [rp.Replies].[content], [rp.Replies].[createDate], [rp.Replies].[status], [rp.Replies].[userId]
+FROM [reply] AS [rp.Replies]
+INNER JOIN (
+    SELECT DISTINCT [rp0].[id]
+    FROM [comment] AS [rp0]
+    LEFT JOIN [AspNetUsers] AS [rp.user0] ON [rp0].[userId] = [rp.user0].[Id]
+    WHERE [rp0].[productId] = @__productId_0
+) AS [t] ON [rp.Replies].[commentId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:26:24.4252951+07:00 0HLRLK4LINBMF:00000002 [INF] Executing ViewResult, running view at path "/Views/Home/Detail.cshtml". (9707eebe)
+2019-11-30T21:26:24.4574128+07:00 0HLRLK4LINBMF:00000002 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" in 195.2815ms (afa2e885)
+2019-11-30T21:26:24.5424030+07:00 0HLRLK4LINBMF:00000002 [INF] Request finished in 328.9709ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:26:33.7082866+07:00 0HLRLK4LINBMG:00000002 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Home/Reply application/x-www-form-urlencoded 263 (ca22a1cb)
+2019-11-30T21:26:33.7147481+07:00 0HLRLK4LINBMG:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:26:33.7485495+07:00 0HLRLK4LINBMG:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Reply (ShopMartWebsite)" with arguments (["5", "right", "3"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:26:33.7779234+07:00 0HLRLK4LINBMG:00000002 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:26:33.7993031+07:00 0HLRLK4LINBMG:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@p0='?', @p1='?' (Size = 4000), @p2='?', @p3='?', @p4='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [reply] ([commentId], [content], [createDate], [status], [userId])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [id]
+FROM [reply]
+WHERE @@ROWCOUNT = 1 AND [id] = scope_identity();" (0723d8ff)
+2019-11-30T21:26:33.8279406+07:00 0HLRLK4LINBMG:00000002 [INF] Executing RedirectResult, redirecting to "/Home/Detail?productId=3". (d98d540e)
+2019-11-30T21:26:33.8336415+07:00 0HLRLK4LINBMG:00000002 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Reply (ShopMartWebsite)" in 106.127ms (afa2e885)
+2019-11-30T21:26:33.8435505+07:00 0HLRLK4LINBMG:00000002 [INF] Request finished in 134.1031ms 302  (791a596a)
+2019-11-30T21:26:33.8729651+07:00 0HLRLK4LINBMH:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Detail?productId=3   (ca22a1cb)
+2019-11-30T21:26:33.8820974+07:00 0HLRLK4LINBMH:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:26:33.8933388+07:00 0HLRLK4LINBMH:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" with arguments (["3"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:26:33.9049382+07:00 0HLRLK4LINBMH:00000002 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:26:33.9328811+07:00 0HLRLK4LINBMH:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [pro].[id], [pro].[categoryId], [pro].[color], [pro].[description], [pro].[image], [pro].[name], [pro].[price], [pro].[size], [pro].[status], [pro.category].[id], [pro.category].[name], [pro.category].[status]
+FROM [product] AS [pro]
+LEFT JOIN [category] AS [pro.category] ON [pro].[categoryId] = [pro.category].[id]
+WHERE [pro].[id] = @__id_0
+ORDER BY [pro].[id]" (0723d8ff)
+2019-11-30T21:26:33.9599905+07:00 0HLRLK4LINBMH:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [pro.Comments].[id], [pro.Comments].[content], [pro.Comments].[createDate], [pro.Comments].[productId], [pro.Comments].[status], [pro.Comments].[userId]
+FROM [comment] AS [pro.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [pro0].[id]
+        FROM [product] AS [pro0]
+        LEFT JOIN [category] AS [pro.category0] ON [pro0].[categoryId] = [pro.category0].[id]
+        WHERE [pro0].[id] = @__id_0
+        ORDER BY [pro0].[id]
+    ) AS [t]
+) AS [t0] ON [pro.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[id]" (0723d8ff)
+2019-11-30T21:26:33.9878180+07:00 0HLRLK4LINBMH:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp].[id], [rp].[content], [rp].[createDate], [rp].[productId], [rp].[status], [rp].[userId], [rp.user].[Id], [rp.user].[AccessFailedCount], [rp.user].[ConcurrencyStamp], [rp.user].[Email], [rp.user].[EmailConfirmed], [rp.user].[LockoutEnabled], [rp.user].[LockoutEnd], [rp.user].[NormalizedEmail], [rp.user].[NormalizedUserName], [rp.user].[PasswordHash], [rp.user].[PhoneNumber], [rp.user].[PhoneNumberConfirmed], [rp.user].[SecurityStamp], [rp.user].[TwoFactorEnabled], [rp.user].[UserName], [rp.user].[address], [rp.user].[birthDay], [rp.user].[displayname], [rp.user].[gender], [rp.user].[password], [rp.user].[phone], [rp.user].[status]
+FROM [comment] AS [rp]
+LEFT JOIN [AspNetUsers] AS [rp.user] ON [rp].[userId] = [rp.user].[Id]
+WHERE [rp].[productId] = @__productId_0
+ORDER BY [rp].[id]" (0723d8ff)
+2019-11-30T21:26:33.9958132+07:00 0HLRLK4LINBMH:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp.Replies].[id], [rp.Replies].[commentId], [rp.Replies].[content], [rp.Replies].[createDate], [rp.Replies].[status], [rp.Replies].[userId]
+FROM [reply] AS [rp.Replies]
+INNER JOIN (
+    SELECT DISTINCT [rp0].[id]
+    FROM [comment] AS [rp0]
+    LEFT JOIN [AspNetUsers] AS [rp.user0] ON [rp0].[userId] = [rp.user0].[Id]
+    WHERE [rp0].[productId] = @__productId_0
+) AS [t] ON [rp.Replies].[commentId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:26:34.0070223+07:00 0HLRLK4LINBMH:00000002 [INF] Executing ViewResult, running view at path "/Views/Home/Detail.cshtml". (9707eebe)
+2019-11-30T21:26:34.0220371+07:00 0HLRLK4LINBMH:00000002 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" in 130.6384ms (afa2e885)
+2019-11-30T21:26:34.0342553+07:00 0HLRLK4LINBMH:00000002 [INF] Request finished in 180.2255ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:26:44.3254852+07:00 0HLRLK4LINBMK:00000002 [INF] Request starting HTTP/1.1 POST http://localhost:44340/Home/Reply application/x-www-form-urlencoded 261 (ca22a1cb)
+2019-11-30T21:26:44.3335084+07:00 0HLRLK4LINBMK:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:26:44.3604729+07:00 0HLRLK4LINBMK:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Reply (ShopMartWebsite)" with arguments (["5", "yes", "3"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:26:44.3882860+07:00 0HLRLK4LINBMK:00000002 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:26:44.4168552+07:00 0HLRLK4LINBMK:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@p0='?', @p1='?' (Size = 4000), @p2='?', @p3='?', @p4='?' (Size = 450)"], CommandType='Text', CommandTimeout='30']"
+""SET NOCOUNT ON;
+INSERT INTO [reply] ([commentId], [content], [createDate], [status], [userId])
+VALUES (@p0, @p1, @p2, @p3, @p4);
+SELECT [id]
+FROM [reply]
+WHERE @@ROWCOUNT = 1 AND [id] = scope_identity();" (0723d8ff)
+2019-11-30T21:26:44.4602560+07:00 0HLRLK4LINBMK:00000002 [INF] Executing RedirectResult, redirecting to "/Home/Detail?productId=3". (d98d540e)
+2019-11-30T21:26:44.4691563+07:00 0HLRLK4LINBMK:00000002 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Reply (ShopMartWebsite)" in 126.1677ms (afa2e885)
+2019-11-30T21:26:44.4856184+07:00 0HLRLK4LINBMK:00000002 [INF] Request finished in 152.0458ms 302  (791a596a)
+2019-11-30T21:26:44.5026466+07:00 0HLRLK4LINBMJ:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Detail?productId=3   (ca22a1cb)
+2019-11-30T21:26:44.5346867+07:00 0HLRLK4LINBMJ:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:26:44.5439368+07:00 0HLRLK4LINBMJ:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" with arguments (["3"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:26:44.5548165+07:00 0HLRLK4LINBMJ:00000002 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:26:44.5886116+07:00 0HLRLK4LINBMJ:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [pro].[id], [pro].[categoryId], [pro].[color], [pro].[description], [pro].[image], [pro].[name], [pro].[price], [pro].[size], [pro].[status], [pro.category].[id], [pro.category].[name], [pro.category].[status]
+FROM [product] AS [pro]
+LEFT JOIN [category] AS [pro.category] ON [pro].[categoryId] = [pro.category].[id]
+WHERE [pro].[id] = @__id_0
+ORDER BY [pro].[id]" (0723d8ff)
+2019-11-30T21:26:44.6189450+07:00 0HLRLK4LINBMJ:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [pro.Comments].[id], [pro.Comments].[content], [pro.Comments].[createDate], [pro.Comments].[productId], [pro.Comments].[status], [pro.Comments].[userId]
+FROM [comment] AS [pro.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [pro0].[id]
+        FROM [product] AS [pro0]
+        LEFT JOIN [category] AS [pro.category0] ON [pro0].[categoryId] = [pro.category0].[id]
+        WHERE [pro0].[id] = @__id_0
+        ORDER BY [pro0].[id]
+    ) AS [t]
+) AS [t0] ON [pro.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[id]" (0723d8ff)
+2019-11-30T21:26:44.6490912+07:00 0HLRLK4LINBMJ:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp].[id], [rp].[content], [rp].[createDate], [rp].[productId], [rp].[status], [rp].[userId], [rp.user].[Id], [rp.user].[AccessFailedCount], [rp.user].[ConcurrencyStamp], [rp.user].[Email], [rp.user].[EmailConfirmed], [rp.user].[LockoutEnabled], [rp.user].[LockoutEnd], [rp.user].[NormalizedEmail], [rp.user].[NormalizedUserName], [rp.user].[PasswordHash], [rp.user].[PhoneNumber], [rp.user].[PhoneNumberConfirmed], [rp.user].[SecurityStamp], [rp.user].[TwoFactorEnabled], [rp.user].[UserName], [rp.user].[address], [rp.user].[birthDay], [rp.user].[displayname], [rp.user].[gender], [rp.user].[password], [rp.user].[phone], [rp.user].[status]
+FROM [comment] AS [rp]
+LEFT JOIN [AspNetUsers] AS [rp.user] ON [rp].[userId] = [rp.user].[Id]
+WHERE [rp].[productId] = @__productId_0
+ORDER BY [rp].[id]" (0723d8ff)
+2019-11-30T21:26:44.6759152+07:00 0HLRLK4LINBMJ:00000002 [INF] Executed DbCommand ("0"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp.Replies].[id], [rp.Replies].[commentId], [rp.Replies].[content], [rp.Replies].[createDate], [rp.Replies].[status], [rp.Replies].[userId]
+FROM [reply] AS [rp.Replies]
+INNER JOIN (
+    SELECT DISTINCT [rp0].[id]
+    FROM [comment] AS [rp0]
+    LEFT JOIN [AspNetUsers] AS [rp.user0] ON [rp0].[userId] = [rp.user0].[Id]
+    WHERE [rp0].[productId] = @__productId_0
+) AS [t] ON [rp.Replies].[commentId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:26:44.6842642+07:00 0HLRLK4LINBMJ:00000002 [INF] Executing ViewResult, running view at path "/Views/Home/Detail.cshtml". (9707eebe)
+2019-11-30T21:26:44.6925202+07:00 0HLRLK4LINBMJ:00000002 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" in 150.743ms (afa2e885)
+2019-11-30T21:26:44.7247466+07:00 0HLRLK4LINBMJ:00000002 [INF] Request finished in 216.5677ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:26:54.9373219+07:00 0HLRLK4LINBM9:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-11-30T21:26:54.9675476+07:00 0HLRLK4LINBM9:00000004 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:26:54.9749350+07:00 0HLRLK4LINBM9:00000004 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:26:55.0011800+07:00 0HLRLK4LINBM9:00000004 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:26:55.0277820+07:00 0HLRLK4LINBM9:00000004 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T21:26:55.0560623+07:00 0HLRLK4LINBM9:00000004 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:26:55.0880837+07:00 0HLRLK4LINBM9:00000004 [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE [x].[status] = 1
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-11-30T21:26:55.0982433+07:00 0HLRLK4LINBM9:00000004 [INF] Executed DbCommand ("4"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-11-30T21:26:55.1101307+07:00 0HLRLK4LINBM9:00000004 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-11-30T21:26:55.1369656+07:00 0HLRLK4LINBM9:00000004 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T21:26:55.1462404+07:00 0HLRLK4LINBM9:00000004 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 172.099ms (afa2e885)
+2019-11-30T21:26:55.1620619+07:00 0HLRLK4LINBM9:00000004 [INF] Request finished in 216.8472ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:26:56.6140822+07:00 0HLRLK4LINBM4:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Cart   (ca22a1cb)
+2019-11-30T21:26:56.6242011+07:00 0HLRLK4LINBM4:00000007 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:26:56.6319129+07:00 0HLRLK4LINBM4:00000007 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:26:56.8078292+07:00 0HLRLK4LINBM4:00000007 [INF] Executing ViewResult, running view at path "/Views/Home/Cart.cshtml". (9707eebe)
+2019-11-30T21:26:56.8268205+07:00 0HLRLK4LINBM4:00000007 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" in 190.4223ms (afa2e885)
+2019-11-30T21:26:56.8521379+07:00 0HLRLK4LINBM4:00000007 [INF] Request finished in 227.0616ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:26:57.0875512+07:00 0HLRLK4LINBMA:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/webfonts/fa-regular-400.woff2   (ca22a1cb)
+2019-11-30T21:26:57.0949240+07:00 0HLRLK4LINBMA:00000004 [INF] The file "/user/webfonts/fa-regular-400.woff2" was not modified (f1f8d725)
+2019-11-30T21:26:57.1088187+07:00 0HLRLK4LINBMA:00000004 [INF] Request finished in 53.8808ms 304 font/woff2 (791a596a)
+2019-11-30T21:26:58.8552070+07:00 0HLRLK4LINBM6:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-11-30T21:26:58.8853675+07:00 0HLRLK4LINBM6:00000005 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:26:58.8945521+07:00 0HLRLK4LINBM6:00000005 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:26:58.9038249+07:00 0HLRLK4LINBM6:00000005 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:26:58.9325339+07:00 0HLRLK4LINBM6:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T21:26:58.9592513+07:00 0HLRLK4LINBM6:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:26:58.9876569+07:00 0HLRLK4LINBM6:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE [x].[status] = 1
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-11-30T21:26:59.0141871+07:00 0HLRLK4LINBM6:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-11-30T21:26:59.0415616+07:00 0HLRLK4LINBM6:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-11-30T21:26:59.0673290+07:00 0HLRLK4LINBM6:00000005 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T21:26:59.0766144+07:00 0HLRLK4LINBM6:00000005 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 183.5484ms (afa2e885)
+2019-11-30T21:26:59.1545806+07:00 0HLRLK4LINBM6:00000005 [INF] Request finished in 230.1045ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:27:04.7227368+07:00 0HLRLK4LINBMC:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Cart   (ca22a1cb)
+2019-11-30T21:27:04.7324513+07:00 0HLRLK4LINBMC:00000005 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:27:04.7595541+07:00 0HLRLK4LINBMC:00000005 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:27:04.7880189+07:00 0HLRLK4LINBMC:00000005 [INF] Executing ViewResult, running view at path "/Views/Home/Cart.cshtml". (9707eebe)
+2019-11-30T21:27:04.8521940+07:00 0HLRLK4LINBMC:00000005 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" in 55.6786ms (afa2e885)
+2019-11-30T21:27:04.9170065+07:00 0HLRLK4LINBMC:00000005 [INF] Request finished in 137.7314ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:27:06.9556778+07:00 0HLRLK4LINBME:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-11-30T21:27:06.9638975+07:00 0HLRLK4LINBME:00000003 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:27:06.9902283+07:00 0HLRLK4LINBME:00000003 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:27:07.0175904+07:00 0HLRLK4LINBME:00000003 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:27:07.0446913+07:00 0HLRLK4LINBME:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T21:27:07.0712204+07:00 0HLRLK4LINBME:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:27:07.0979167+07:00 0HLRLK4LINBME:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE [x].[status] = 1
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-11-30T21:27:07.1040346+07:00 0HLRLK4LINBME:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-11-30T21:27:07.1321025+07:00 0HLRLK4LINBME:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-11-30T21:27:07.1378555+07:00 0HLRLK4LINBME:00000003 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T21:27:07.1508971+07:00 0HLRLK4LINBME:00000003 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 180.8084ms (afa2e885)
+2019-11-30T21:27:07.1675018+07:00 0HLRLK4LINBME:00000003 [INF] Request finished in 204.2489ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:27:08.7087989+07:00 0HLRLK4LINBMF:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Cart   (ca22a1cb)
+2019-11-30T21:27:08.7158694+07:00 0HLRLK4LINBMF:00000003 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:27:08.7215880+07:00 0HLRLK4LINBMF:00000003 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:27:08.7292292+07:00 0HLRLK4LINBMF:00000003 [INF] Executing ViewResult, running view at path "/Views/Home/Cart.cshtml". (9707eebe)
+2019-11-30T21:27:08.7367826+07:00 0HLRLK4LINBMF:00000003 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" in 14.0328ms (afa2e885)
+2019-11-30T21:27:08.7531965+07:00 0HLRLK4LINBMF:00000003 [INF] Request finished in 48.8879ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:27:13.3877824+07:00 0HLRLK4LINBMG:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-11-30T21:27:13.3931062+07:00 0HLRLK4LINBMG:00000003 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:27:13.4201215+07:00 0HLRLK4LINBMG:00000003 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:27:13.4470846+07:00 0HLRLK4LINBMG:00000003 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:27:13.4734501+07:00 0HLRLK4LINBMG:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T21:27:13.4992982+07:00 0HLRLK4LINBMG:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:27:13.5070061+07:00 0HLRLK4LINBMG:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE [x].[status] = 1
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-11-30T21:27:13.5331072+07:00 0HLRLK4LINBMG:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-11-30T21:27:13.5397483+07:00 0HLRLK4LINBMG:00000003 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-11-30T21:27:13.5459577+07:00 0HLRLK4LINBMG:00000003 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T21:27:13.5756443+07:00 0HLRLK4LINBMG:00000003 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 154.4633ms (afa2e885)
+2019-11-30T21:27:13.6586380+07:00 0HLRLK4LINBMG:00000003 [INF] Request finished in 200.7388ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:27:14.9972614+07:00 0HLRLK4LINBMH:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Cart   (ca22a1cb)
+2019-11-30T21:27:15.0125562+07:00 0HLRLK4LINBMH:00000003 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:27:15.0201773+07:00 0HLRLK4LINBMH:00000003 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:27:15.0298766+07:00 0HLRLK4LINBMH:00000003 [INF] Executing ViewResult, running view at path "/Views/Home/Cart.cshtml". (9707eebe)
+2019-11-30T21:27:15.0665236+07:00 0HLRLK4LINBMH:00000003 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" in 18.2979ms (afa2e885)
+2019-11-30T21:27:15.1700587+07:00 0HLRLK4LINBMH:00000003 [INF] Request finished in 128.165ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:27:16.7275269+07:00 0HLRLK4LINBMK:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-11-30T21:27:16.7359827+07:00 0HLRLK4LINBMK:00000003 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:27:16.7626166+07:00 0HLRLK4LINBMK:00000003 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:27:16.7689119+07:00 0HLRLK4LINBMK:00000003 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:27:16.7963892+07:00 0HLRLK4LINBMK:00000003 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T21:27:16.8059544+07:00 0HLRLK4LINBMK:00000003 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:27:16.8364609+07:00 0HLRLK4LINBMK:00000003 [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE [x].[status] = 1
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-11-30T21:27:16.8645080+07:00 0HLRLK4LINBMK:00000003 [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-11-30T21:27:16.8752790+07:00 0HLRLK4LINBMK:00000003 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-11-30T21:27:16.9047460+07:00 0HLRLK4LINBMK:00000003 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T21:27:16.9151857+07:00 0HLRLK4LINBMK:00000003 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 171.1605ms (afa2e885)
+2019-11-30T21:27:16.9989634+07:00 0HLRLK4LINBMK:00000003 [INF] Request finished in 199.9707ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:27:19.4208323+07:00 0HLRLK4LINBMJ:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Cart   (ca22a1cb)
+2019-11-30T21:27:19.4273881+07:00 0HLRLK4LINBMJ:00000003 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:27:19.4349786+07:00 0HLRLK4LINBMJ:00000003 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:27:19.4457118+07:00 0HLRLK4LINBMJ:00000003 [INF] Executing ViewResult, running view at path "/Views/Home/Cart.cshtml". (9707eebe)
+2019-11-30T21:27:19.4646644+07:00 0HLRLK4LINBMJ:00000003 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" in 19.1075ms (afa2e885)
+2019-11-30T21:27:19.4764101+07:00 0HLRLK4LINBMJ:00000003 [INF] Request finished in 54.9296ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:27:20.6940612+07:00 0HLRLK4LINBM9:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-11-30T21:27:20.7023475+07:00 0HLRLK4LINBM9:00000005 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:27:20.7078246+07:00 0HLRLK4LINBM9:00000005 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:27:20.7342413+07:00 0HLRLK4LINBM9:00000005 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:27:20.7598481+07:00 0HLRLK4LINBM9:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T21:27:20.7890270+07:00 0HLRLK4LINBM9:00000005 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:27:20.8191762+07:00 0HLRLK4LINBM9:00000005 [INF] Executed DbCommand ("2"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE [x].[status] = 1
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-11-30T21:27:20.8472424+07:00 0HLRLK4LINBM9:00000005 [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-11-30T21:27:20.8730020+07:00 0HLRLK4LINBM9:00000005 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-11-30T21:27:20.8800154+07:00 0HLRLK4LINBM9:00000005 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T21:27:20.9088891+07:00 0HLRLK4LINBM9:00000005 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 182.6577ms (afa2e885)
+2019-11-30T21:27:20.9596489+07:00 0HLRLK4LINBM9:00000005 [INF] Request finished in 225.3108ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:27:31.9522666+07:00 0HLRLK4LINBM4:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Cart   (ca22a1cb)
+2019-11-30T21:27:31.9606061+07:00 0HLRLK4LINBM4:00000008 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:27:31.9660402+07:00 0HLRLK4LINBM4:00000008 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:27:31.9735778+07:00 0HLRLK4LINBM4:00000008 [INF] Executing ViewResult, running view at path "/Views/Home/Cart.cshtml". (9707eebe)
+2019-11-30T21:27:31.9808155+07:00 0HLRLK4LINBM4:00000008 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" in 13.6015ms (afa2e885)
+2019-11-30T21:27:32.0310621+07:00 0HLRLK4LINBM4:00000008 [INF] Request finished in 45.7961ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:27:35.8473916+07:00 0HLRLK4LINBMA:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-11-30T21:27:35.8568216+07:00 0HLRLK4LINBMA:00000005 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:27:35.8850644+07:00 0HLRLK4LINBMA:00000005 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:27:35.8909765+07:00 0HLRLK4LINBMA:00000005 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:27:35.9171290+07:00 0HLRLK4LINBMA:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T21:27:35.9432453+07:00 0HLRLK4LINBMA:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:27:35.9712183+07:00 0HLRLK4LINBMA:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE [x].[status] = 1
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-11-30T21:27:35.9964881+07:00 0HLRLK4LINBMA:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-11-30T21:27:36.0241501+07:00 0HLRLK4LINBMA:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-11-30T21:27:36.0296927+07:00 0HLRLK4LINBMA:00000005 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T21:27:36.0396270+07:00 0HLRLK4LINBMA:00000005 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 174.5728ms (afa2e885)
+2019-11-30T21:27:36.0540887+07:00 0HLRLK4LINBMA:00000005 [INF] Request finished in 200.8269ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:27:46.6870069+07:00 0HLRLK4LINBM6:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Cart   (ca22a1cb)
+2019-11-30T21:27:46.7131924+07:00 0HLRLK4LINBM6:00000006 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:27:46.7381319+07:00 0HLRLK4LINBM6:00000006 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" with arguments (null) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:27:46.7447474+07:00 0HLRLK4LINBM6:00000006 [INF] Executing ViewResult, running view at path "/Views/Home/Cart.cshtml". (9707eebe)
+2019-11-30T21:27:46.7510983+07:00 0HLRLK4LINBM6:00000006 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Cart (ShopMartWebsite)" in 32.1665ms (afa2e885)
+2019-11-30T21:27:46.7645297+07:00 0HLRLK4LINBM6:00000006 [INF] Request finished in 72.6045ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:28:23.4005947+07:00 0HLRLK4LINBM4:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-11-30T21:28:23.4267205+07:00 0HLRLK4LINBM4:00000009 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:28:23.4522575+07:00 0HLRLK4LINBM4:00000009 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:28:23.4778724+07:00 0HLRLK4LINBM4:00000009 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:28:23.5058344+07:00 0HLRLK4LINBM4:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T21:28:23.5358690+07:00 0HLRLK4LINBM4:00000009 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:28:23.5669902+07:00 0HLRLK4LINBM4:00000009 [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE [x].[status] = 1
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-11-30T21:28:23.5968328+07:00 0HLRLK4LINBM4:00000009 [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-11-30T21:28:23.6250831+07:00 0HLRLK4LINBM4:00000009 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-11-30T21:28:23.6518808+07:00 0HLRLK4LINBM4:00000009 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T21:28:23.6590392+07:00 0HLRLK4LINBM4:00000009 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 226.8456ms (afa2e885)
+2019-11-30T21:28:23.6665005+07:00 0HLRLK4LINBM4:00000009 [INF] Request finished in 287.8065ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:28:34.0982752+07:00 0HLRLK4LINBMA:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:44340/?categoryId=1&searchterm=   (ca22a1cb)
+2019-11-30T21:28:34.1260688+07:00 0HLRLK4LINBMA:00000006 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:28:34.1538956+07:00 0HLRLK4LINBMA:00000006 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "1", ""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:28:34.1787241+07:00 0HLRLK4LINBMA:00000006 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:28:34.1860911+07:00 0HLRLK4LINBMA:00000006 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T21:28:34.2139904+07:00 0HLRLK4LINBMA:00000006 [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:28:34.2815133+07:00 0HLRLK4LINBMA:00000006 [INF] Executed DbCommand ("2"ms) [Parameters=["@__categoryId_Value_0='?', @__p_1='?', @__p_2='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE (([x].[status] = 1) AND ([x].[categoryId] = @__categoryId_Value_0)) AND ([x].[status] = 1)
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY" (0723d8ff)
+2019-11-30T21:28:34.3144588+07:00 0HLRLK4LINBMA:00000006 [INF] Executed DbCommand ("4"ms) [Parameters=["@__categoryId_Value_0='?', @__p_1='?', @__p_2='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE (([x0].[status] = 1) AND ([x0].[categoryId] = @__categoryId_Value_0)) AND ([x0].[status] = 1)
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-11-30T21:28:34.3476404+07:00 0HLRLK4LINBMA:00000006 [INF] Executed DbCommand ("2"ms) [Parameters=["@__categoryId_Value_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE (([x].[status] = 1) AND ([x].[categoryId] = @__categoryId_Value_0)) AND ([x].[status] = 1)" (0723d8ff)
+2019-11-30T21:28:34.3543469+07:00 0HLRLK4LINBMA:00000006 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T21:28:34.3621733+07:00 0HLRLK4LINBMA:00000006 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 229.7796ms (afa2e885)
+2019-11-30T21:28:34.3755579+07:00 0HLRLK4LINBMA:00000006 [INF] Request finished in 272.449ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:28:37.8985640+07:00 0HLRLK4LINBM6:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:44340/?categoryId=1   (ca22a1cb)
+2019-11-30T21:28:37.9252632+07:00 0HLRLK4LINBM6:00000007 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:28:37.9518528+07:00 0HLRLK4LINBM6:00000007 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "1", ""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:28:37.9775719+07:00 0HLRLK4LINBM6:00000007 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:28:37.9864332+07:00 0HLRLK4LINBM6:00000007 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T21:28:38.0138586+07:00 0HLRLK4LINBM6:00000007 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:28:38.0428317+07:00 0HLRLK4LINBM6:00000007 [INF] Executed DbCommand ("0"ms) [Parameters=["@__categoryId_Value_0='?', @__p_1='?', @__p_2='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE (([x].[status] = 1) AND ([x].[categoryId] = @__categoryId_Value_0)) AND ([x].[status] = 1)
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY" (0723d8ff)
+2019-11-30T21:28:38.0509383+07:00 0HLRLK4LINBM6:00000007 [INF] Executed DbCommand ("0"ms) [Parameters=["@__categoryId_Value_0='?', @__p_1='?', @__p_2='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE (([x0].[status] = 1) AND ([x0].[categoryId] = @__categoryId_Value_0)) AND ([x0].[status] = 1)
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-11-30T21:28:38.0778687+07:00 0HLRLK4LINBM6:00000007 [INF] Executed DbCommand ("0"ms) [Parameters=["@__categoryId_Value_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE (([x].[status] = 1) AND ([x].[categoryId] = @__categoryId_Value_0)) AND ([x].[status] = 1)" (0723d8ff)
+2019-11-30T21:28:38.0854627+07:00 0HLRLK4LINBM6:00000007 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T21:28:38.0981185+07:00 0HLRLK4LINBM6:00000007 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 162.4175ms (afa2e885)
+2019-11-30T21:28:38.1084260+07:00 0HLRLK4LINBM6:00000007 [INF] Request finished in 207.3324ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:28:39.8292235+07:00 0HLRLK4LINBM4:0000000A [INF] Request starting HTTP/1.1 GET http://localhost:44340/?categoryId=3   (ca22a1cb)
+2019-11-30T21:28:39.8575675+07:00 0HLRLK4LINBM4:0000000A [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:28:39.8660553+07:00 0HLRLK4LINBM4:0000000A [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "3", ""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:28:39.8721464+07:00 0HLRLK4LINBM4:0000000A [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:28:39.8998709+07:00 0HLRLK4LINBM4:0000000A [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T21:28:39.9259433+07:00 0HLRLK4LINBM4:0000000A [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:28:39.9540103+07:00 0HLRLK4LINBM4:0000000A [INF] Executed DbCommand ("0"ms) [Parameters=["@__categoryId_Value_0='?', @__p_1='?', @__p_2='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE (([x].[status] = 1) AND ([x].[categoryId] = @__categoryId_Value_0)) AND ([x].[status] = 1)
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY" (0723d8ff)
+2019-11-30T21:28:39.9807380+07:00 0HLRLK4LINBM4:0000000A [INF] Executed DbCommand ("0"ms) [Parameters=["@__categoryId_Value_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE (([x].[status] = 1) AND ([x].[categoryId] = @__categoryId_Value_0)) AND ([x].[status] = 1)" (0723d8ff)
+2019-11-30T21:28:40.0065319+07:00 0HLRLK4LINBM4:0000000A [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T21:28:40.1023432+07:00 0HLRLK4LINBM4:0000000A [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 150.824ms (afa2e885)
+2019-11-30T21:28:40.1532609+07:00 0HLRLK4LINBM4:0000000A [INF] Request finished in 285.1465ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:28:43.5701800+07:00 0HLRLK4LINBMA:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:44340/?categoryId=8   (ca22a1cb)
+2019-11-30T21:28:43.5785277+07:00 0HLRLK4LINBMA:00000007 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:28:43.6042197+07:00 0HLRLK4LINBMA:00000007 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "8", ""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:28:43.6121168+07:00 0HLRLK4LINBMA:00000007 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:28:43.6379787+07:00 0HLRLK4LINBMA:00000007 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T21:28:43.6638637+07:00 0HLRLK4LINBMA:00000007 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:28:43.6912123+07:00 0HLRLK4LINBMA:00000007 [INF] Executed DbCommand ("0"ms) [Parameters=["@__categoryId_Value_0='?', @__p_1='?', @__p_2='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE (([x].[status] = 1) AND ([x].[categoryId] = @__categoryId_Value_0)) AND ([x].[status] = 1)
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY" (0723d8ff)
+2019-11-30T21:28:43.7177108+07:00 0HLRLK4LINBMA:00000007 [INF] Executed DbCommand ("0"ms) [Parameters=["@__categoryId_Value_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE (([x].[status] = 1) AND ([x].[categoryId] = @__categoryId_Value_0)) AND ([x].[status] = 1)" (0723d8ff)
+2019-11-30T21:28:43.7240553+07:00 0HLRLK4LINBMA:00000007 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T21:28:43.7716898+07:00 0HLRLK4LINBMA:00000007 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 146.6341ms (afa2e885)
+2019-11-30T21:28:43.7879409+07:00 0HLRLK4LINBMA:00000007 [INF] Request finished in 209.4952ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:28:48.1069103+07:00 0HLRLK4LINBM6:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:44340/?categoryId=5   (ca22a1cb)
+2019-11-30T21:28:48.1327256+07:00 0HLRLK4LINBM6:00000008 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:28:48.1424696+07:00 0HLRLK4LINBM6:00000008 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "5", ""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:28:48.1680285+07:00 0HLRLK4LINBM6:00000008 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:28:48.1743751+07:00 0HLRLK4LINBM6:00000008 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T21:28:48.1999295+07:00 0HLRLK4LINBM6:00000008 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:28:48.2072780+07:00 0HLRLK4LINBM6:00000008 [INF] Executed DbCommand ("0"ms) [Parameters=["@__categoryId_Value_0='?', @__p_1='?', @__p_2='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE (([x].[status] = 1) AND ([x].[categoryId] = @__categoryId_Value_0)) AND ([x].[status] = 1)
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY" (0723d8ff)
+2019-11-30T21:28:48.2331297+07:00 0HLRLK4LINBM6:00000008 [INF] Executed DbCommand ("0"ms) [Parameters=["@__categoryId_Value_0='?', @__p_1='?', @__p_2='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE (([x0].[status] = 1) AND ([x0].[categoryId] = @__categoryId_Value_0)) AND ([x0].[status] = 1)
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_1 ROWS FETCH NEXT @__p_2 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-11-30T21:28:48.2400023+07:00 0HLRLK4LINBM6:00000008 [INF] Executed DbCommand ("0"ms) [Parameters=["@__categoryId_Value_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE (([x].[status] = 1) AND ([x].[categoryId] = @__categoryId_Value_0)) AND ([x].[status] = 1)" (0723d8ff)
+2019-11-30T21:28:48.2457806+07:00 0HLRLK4LINBM6:00000008 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T21:28:48.2543451+07:00 0HLRLK4LINBM6:00000008 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 114.3412ms (afa2e885)
+2019-11-30T21:28:48.2627943+07:00 0HLRLK4LINBM6:00000008 [INF] Request finished in 157.3542ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:29:00.0409134+07:00 0HLRLK4LINBM4:0000000B [INF] Request starting HTTP/1.1 GET http://localhost:44340/?categoryId=0&searchterm=   (ca22a1cb)
+2019-11-30T21:29:00.0481355+07:00 0HLRLK4LINBM4:0000000B [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:29:00.0738866+07:00 0HLRLK4LINBM4:0000000B [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "0", ""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:29:00.0989552+07:00 0HLRLK4LINBM4:0000000B [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:29:00.1236436+07:00 0HLRLK4LINBM4:0000000B [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T21:29:00.1296647+07:00 0HLRLK4LINBM4:0000000B [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:29:00.1606108+07:00 0HLRLK4LINBM4:0000000B [INF] Executed DbCommand ("2"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE [x].[status] = 1
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-11-30T21:29:00.1901474+07:00 0HLRLK4LINBM4:0000000B [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-11-30T21:29:00.2183110+07:00 0HLRLK4LINBM4:0000000B [INF] Executed DbCommand ("2"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-11-30T21:29:00.2421181+07:00 0HLRLK4LINBM4:0000000B [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T21:29:00.2517180+07:00 0HLRLK4LINBM4:0000000B [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 197.0384ms (afa2e885)
+2019-11-30T21:29:00.2646357+07:00 0HLRLK4LINBM4:0000000B [INF] Request finished in 217.2782ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:29:11.2051655+07:00 0HLRLK4LINBMA:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:44340/?page=2&categoryId=0   (ca22a1cb)
+2019-11-30T21:29:11.2304127+07:00 0HLRLK4LINBMA:00000008 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:29:11.2561772+07:00 0HLRLK4LINBMA:00000008 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "0", "2"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:29:11.2814762+07:00 0HLRLK4LINBMA:00000008 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:29:11.3074054+07:00 0HLRLK4LINBMA:00000008 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T21:29:11.3126405+07:00 0HLRLK4LINBMA:00000008 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:29:11.3207277+07:00 0HLRLK4LINBMA:00000008 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE [x].[status] = 1
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-11-30T21:29:11.3477918+07:00 0HLRLK4LINBMA:00000008 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-11-30T21:29:11.3543954+07:00 0HLRLK4LINBMA:00000008 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-11-30T21:29:11.3598789+07:00 0HLRLK4LINBMA:00000008 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T21:29:11.4246013+07:00 0HLRLK4LINBMA:00000008 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 131.5189ms (afa2e885)
+2019-11-30T21:29:11.5036682+07:00 0HLRLK4LINBMA:00000008 [INF] Request finished in 232.6803ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:29:11.5121804+07:00 0HLRLK4LINBM6:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/24b6fe79-ccc4-48dc-9107-bc150a8a1b34.jpg   (ca22a1cb)
+2019-11-30T21:29:11.5189568+07:00 0HLRLK4LINBM6:00000009 [INF] The file "/images/site/24b6fe79-ccc4-48dc-9107-bc150a8a1b34.jpg" was not modified (f1f8d725)
+2019-11-30T21:29:11.5892465+07:00 0HLRLK4LINBM4:0000000C [INF] Request starting HTTP/1.1 GET http://localhost:44340/images/site/73ea8b43-8b95-4f75-bbb7-0b7219e6e4a9.png   (ca22a1cb)
+2019-11-30T21:29:11.6121742+07:00 0HLRLK4LINBM6:00000009 [INF] Request finished in 94.4225ms 304 image/jpeg (791a596a)
+2019-11-30T21:29:11.6644771+07:00 0HLRLK4LINBM4:0000000C [INF] The file "/images/site/73ea8b43-8b95-4f75-bbb7-0b7219e6e4a9.png" was not modified (f1f8d725)
+2019-11-30T21:29:11.6772894+07:00 0HLRLK4LINBM4:0000000C [INF] Request finished in 238.5932ms 304 image/png (791a596a)
+2019-11-30T21:29:14.4589278+07:00 0HLRLK4LINBMA:00000009 [INF] Request starting HTTP/1.1 GET http://localhost:44340/?page=1&categoryId=0   (ca22a1cb)
+2019-11-30T21:29:14.4863101+07:00 0HLRLK4LINBMA:00000009 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:29:14.5149500+07:00 0HLRLK4LINBMA:00000009 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "0", "1"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:29:14.5228269+07:00 0HLRLK4LINBMA:00000009 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:29:14.5519025+07:00 0HLRLK4LINBMA:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T21:29:14.5796755+07:00 0HLRLK4LINBMA:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:29:14.6090116+07:00 0HLRLK4LINBMA:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE [x].[status] = 1
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-11-30T21:29:14.6346232+07:00 0HLRLK4LINBMA:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-11-30T21:29:14.6625895+07:00 0HLRLK4LINBMA:00000009 [INF] Executed DbCommand ("0"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-11-30T21:29:14.6698329+07:00 0HLRLK4LINBMA:00000009 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T21:29:14.6781620+07:00 0HLRLK4LINBMA:00000009 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 184.9906ms (afa2e885)
+2019-11-30T21:29:14.6933371+07:00 0HLRLK4LINBMA:00000009 [INF] Request finished in 228.68ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:29:21.3541855+07:00 0HLRLK4LINBM6:0000000A [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Detail?productID=3   (ca22a1cb)
+2019-11-30T21:29:21.3612131+07:00 0HLRLK4LINBM6:0000000A [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:29:21.3879142+07:00 0HLRLK4LINBM6:0000000A [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" with arguments (["3"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:29:21.4142043+07:00 0HLRLK4LINBM6:0000000A [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:29:21.4453452+07:00 0HLRLK4LINBM6:0000000A [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [pro].[id], [pro].[categoryId], [pro].[color], [pro].[description], [pro].[image], [pro].[name], [pro].[price], [pro].[size], [pro].[status], [pro.category].[id], [pro.category].[name], [pro.category].[status]
+FROM [product] AS [pro]
+LEFT JOIN [category] AS [pro.category] ON [pro].[categoryId] = [pro.category].[id]
+WHERE [pro].[id] = @__id_0
+ORDER BY [pro].[id]" (0723d8ff)
+2019-11-30T21:29:21.4734690+07:00 0HLRLK4LINBM6:0000000A [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [pro.Comments].[id], [pro.Comments].[content], [pro.Comments].[createDate], [pro.Comments].[productId], [pro.Comments].[status], [pro.Comments].[userId]
+FROM [comment] AS [pro.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [pro0].[id]
+        FROM [product] AS [pro0]
+        LEFT JOIN [category] AS [pro.category0] ON [pro0].[categoryId] = [pro.category0].[id]
+        WHERE [pro0].[id] = @__id_0
+        ORDER BY [pro0].[id]
+    ) AS [t]
+) AS [t0] ON [pro.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[id]" (0723d8ff)
+2019-11-30T21:29:21.4840323+07:00 0HLRLK4LINBM6:0000000A [INF] Executed DbCommand ("5"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp].[id], [rp].[content], [rp].[createDate], [rp].[productId], [rp].[status], [rp].[userId], [rp.user].[Id], [rp.user].[AccessFailedCount], [rp.user].[ConcurrencyStamp], [rp.user].[Email], [rp.user].[EmailConfirmed], [rp.user].[LockoutEnabled], [rp.user].[LockoutEnd], [rp.user].[NormalizedEmail], [rp.user].[NormalizedUserName], [rp.user].[PasswordHash], [rp.user].[PhoneNumber], [rp.user].[PhoneNumberConfirmed], [rp.user].[SecurityStamp], [rp.user].[TwoFactorEnabled], [rp.user].[UserName], [rp.user].[address], [rp.user].[birthDay], [rp.user].[displayname], [rp.user].[gender], [rp.user].[password], [rp.user].[phone], [rp.user].[status]
+FROM [comment] AS [rp]
+LEFT JOIN [AspNetUsers] AS [rp.user] ON [rp].[userId] = [rp.user].[Id]
+WHERE [rp].[productId] = @__productId_0
+ORDER BY [rp].[id]" (0723d8ff)
+2019-11-30T21:29:21.4942936+07:00 0HLRLK4LINBM6:0000000A [INF] Executed DbCommand ("3"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp.Replies].[id], [rp.Replies].[commentId], [rp.Replies].[content], [rp.Replies].[createDate], [rp.Replies].[status], [rp.Replies].[userId]
+FROM [reply] AS [rp.Replies]
+INNER JOIN (
+    SELECT DISTINCT [rp0].[id]
+    FROM [comment] AS [rp0]
+    LEFT JOIN [AspNetUsers] AS [rp.user0] ON [rp0].[userId] = [rp.user0].[Id]
+    WHERE [rp0].[productId] = @__productId_0
+) AS [t] ON [rp.Replies].[commentId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:29:21.5202831+07:00 0HLRLK4LINBM6:0000000A [INF] Executing ViewResult, running view at path "/Views/Home/Detail.cshtml". (9707eebe)
+2019-11-30T21:29:21.5302689+07:00 0HLRLK4LINBM6:0000000A [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" in 159.6926ms (afa2e885)
+2019-11-30T21:29:21.5454173+07:00 0HLRLK4LINBM6:0000000A [INF] Request finished in 192.9368ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:29:25.0841972+07:00 0HLRLK4LINBM4:0000000D [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Detail?   (ca22a1cb)
+2019-11-30T21:29:25.1119569+07:00 0HLRLK4LINBM4:0000000D [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:29:25.1191248+07:00 0HLRLK4LINBM4:0000000D [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" with arguments ([""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:29:25.1260597+07:00 0HLRLK4LINBM4:0000000D [INF] Executing ViewResult, running view at path "/Views/Home/Detail.cshtml". (9707eebe)
+2019-11-30T21:29:25.3221926+07:00 0HLRLK4LINBM4:0000000D [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" in 183.2886ms (afa2e885)
+2019-11-30T21:29:25.4589044+07:00 0HLRLK4LINBM4:0000000D [ERR] An unhandled exception has occurred while executing the request (cf926119)
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at AspNetCore._Views_Home_Detail_cshtml.<ExecuteAsync>d__15.MoveNext() in D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\Views\Home\Detail.cshtml:line 105
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.<RenderPageCoreAsync>d__16.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.<RenderPageAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.<RenderAsync>d__14.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.<ExecuteAsync>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.<ExecuteAsync>d__21.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.ViewResult.<ExecuteResultAsync>d__26.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeResultAsync>d__19.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResultFilterAsync>d__24.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2019-11-30T21:29:25.6450052+07:00 0HLRLK4LINBM4:0000000D [INF] Request finished in 556.3539ms 500 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:29:29.0542133+07:00 0HLRLK4LINBMA:0000000A [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Detail?productID=3   (ca22a1cb)
+2019-11-30T21:29:29.0600893+07:00 0HLRLK4LINBMA:0000000A [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:29:29.0667740+07:00 0HLRLK4LINBMA:0000000A [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" with arguments (["3"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:29:29.0770392+07:00 0HLRLK4LINBMA:0000000A [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:29:29.0951655+07:00 0HLRLK4LINBMA:0000000A [INF] Executed DbCommand ("9"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [pro].[id], [pro].[categoryId], [pro].[color], [pro].[description], [pro].[image], [pro].[name], [pro].[price], [pro].[size], [pro].[status], [pro.category].[id], [pro.category].[name], [pro.category].[status]
+FROM [product] AS [pro]
+LEFT JOIN [category] AS [pro.category] ON [pro].[categoryId] = [pro.category].[id]
+WHERE [pro].[id] = @__id_0
+ORDER BY [pro].[id]" (0723d8ff)
+2019-11-30T21:29:29.1082143+07:00 0HLRLK4LINBMA:0000000A [INF] Executed DbCommand ("4"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [pro.Comments].[id], [pro.Comments].[content], [pro.Comments].[createDate], [pro.Comments].[productId], [pro.Comments].[status], [pro.Comments].[userId]
+FROM [comment] AS [pro.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [pro0].[id]
+        FROM [product] AS [pro0]
+        LEFT JOIN [category] AS [pro.category0] ON [pro0].[categoryId] = [pro.category0].[id]
+        WHERE [pro0].[id] = @__id_0
+        ORDER BY [pro0].[id]
+    ) AS [t]
+) AS [t0] ON [pro.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[id]" (0723d8ff)
+2019-11-30T21:29:29.1382009+07:00 0HLRLK4LINBMA:0000000A [INF] Executed DbCommand ("4"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp].[id], [rp].[content], [rp].[createDate], [rp].[productId], [rp].[status], [rp].[userId], [rp.user].[Id], [rp.user].[AccessFailedCount], [rp.user].[ConcurrencyStamp], [rp.user].[Email], [rp.user].[EmailConfirmed], [rp.user].[LockoutEnabled], [rp.user].[LockoutEnd], [rp.user].[NormalizedEmail], [rp.user].[NormalizedUserName], [rp.user].[PasswordHash], [rp.user].[PhoneNumber], [rp.user].[PhoneNumberConfirmed], [rp.user].[SecurityStamp], [rp.user].[TwoFactorEnabled], [rp.user].[UserName], [rp.user].[address], [rp.user].[birthDay], [rp.user].[displayname], [rp.user].[gender], [rp.user].[password], [rp.user].[phone], [rp.user].[status]
+FROM [comment] AS [rp]
+LEFT JOIN [AspNetUsers] AS [rp.user] ON [rp].[userId] = [rp.user].[Id]
+WHERE [rp].[productId] = @__productId_0
+ORDER BY [rp].[id]" (0723d8ff)
+2019-11-30T21:29:29.1656666+07:00 0HLRLK4LINBMA:0000000A [INF] Executed DbCommand ("2"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp.Replies].[id], [rp.Replies].[commentId], [rp.Replies].[content], [rp.Replies].[createDate], [rp.Replies].[status], [rp.Replies].[userId]
+FROM [reply] AS [rp.Replies]
+INNER JOIN (
+    SELECT DISTINCT [rp0].[id]
+    FROM [comment] AS [rp0]
+    LEFT JOIN [AspNetUsers] AS [rp.user0] ON [rp0].[userId] = [rp.user0].[Id]
+    WHERE [rp0].[productId] = @__productId_0
+) AS [t] ON [rp.Replies].[commentId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:29:29.1734786+07:00 0HLRLK4LINBMA:0000000A [INF] Executing ViewResult, running view at path "/Views/Home/Detail.cshtml". (9707eebe)
+2019-11-30T21:29:29.1813043+07:00 0HLRLK4LINBMA:0000000A [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" in 114.4771ms (afa2e885)
+2019-11-30T21:29:29.1979058+07:00 0HLRLK4LINBMA:0000000A [INF] Request finished in 136.438ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:30:30.9199403+07:00 0HLRLK4LINBMU:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Detail?   (ca22a1cb)
+2019-11-30T21:30:30.9269178+07:00 0HLRLK4LINBMU:00000001 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:30:30.9533464+07:00 0HLRLK4LINBMU:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" with arguments ([""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:30:30.9591973+07:00 0HLRLK4LINBMU:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Detail.cshtml". (9707eebe)
+2019-11-30T21:30:31.0183711+07:00 0HLRLK4LINBMU:00000001 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" in 85.0579ms (afa2e885)
+2019-11-30T21:30:31.0829515+07:00 0HLRLK4LINBMU:00000001 [ERR] An unhandled exception has occurred while executing the request (cf926119)
+System.NullReferenceException: Object reference not set to an instance of an object.
+   at AspNetCore._Views_Home_Detail_cshtml.<ExecuteAsync>d__15.MoveNext() in D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\Views\Home\Detail.cshtml:line 105
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.<RenderPageCoreAsync>d__16.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.<RenderPageAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at System.Runtime.CompilerServices.TaskAwaiter`1.GetResult()
+   at Microsoft.AspNetCore.Mvc.Razor.RazorView.<RenderAsync>d__14.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.<ExecuteAsync>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.ViewFeatures.ViewExecutor.<ExecuteAsync>d__21.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.ViewResult.<ExecuteResultAsync>d__26.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeResultAsync>d__19.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResultFilterAsync>d__24.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResultExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeNextResourceFilter>d__22.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Rethrow(ResourceExecutedContext context)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.Next(State& next, Scope& scope, Object& state, Boolean& isCompleted)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeFilterPipelineAsync>d__17.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Mvc.Internal.ResourceInvoker.<InvokeAsync>d__15.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Builder.RouterMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Authentication.AuthenticationMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.MigrationsEndPointMiddleware.<Invoke>d__4.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at Microsoft.AspNetCore.Diagnostics.EntityFrameworkCore.DatabaseErrorPageMiddleware.<Invoke>d__6.MoveNext()
+--- End of stack trace from previous location where exception was thrown ---
+   at System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw()
+   at System.Runtime.CompilerServices.TaskAwaiter.HandleNonSuccessAndDebuggerNotification(Task task)
+   at Microsoft.AspNetCore.Diagnostics.DeveloperExceptionPageMiddleware.<Invoke>d__7.MoveNext()
+2019-11-30T21:30:31.2678991+07:00 0HLRLK4LINBMU:00000001 [INF] Request finished in 347.3557ms 500 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:30:32.4913048+07:00 0HLRLK4LINBMU:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Detail?productID=3   (ca22a1cb)
+2019-11-30T21:30:32.5033307+07:00 0HLRLK4LINBMU:00000002 [INF] AuthenticationScheme: "Identity.Application" was successfully authenticated. (1805f3b3)
+2019-11-30T21:30:32.5098997+07:00 0HLRLK4LINBMU:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" with arguments (["3"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:30:32.5190601+07:00 0HLRLK4LINBMU:00000002 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:30:32.5321290+07:00 0HLRLK4LINBMU:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [pro].[id], [pro].[categoryId], [pro].[color], [pro].[description], [pro].[image], [pro].[name], [pro].[price], [pro].[size], [pro].[status], [pro.category].[id], [pro.category].[name], [pro.category].[status]
+FROM [product] AS [pro]
+LEFT JOIN [category] AS [pro.category] ON [pro].[categoryId] = [pro.category].[id]
+WHERE [pro].[id] = @__id_0
+ORDER BY [pro].[id]" (0723d8ff)
+2019-11-30T21:30:32.5510520+07:00 0HLRLK4LINBMU:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [pro.Comments].[id], [pro.Comments].[content], [pro.Comments].[createDate], [pro.Comments].[productId], [pro.Comments].[status], [pro.Comments].[userId]
+FROM [comment] AS [pro.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [pro0].[id]
+        FROM [product] AS [pro0]
+        LEFT JOIN [category] AS [pro.category0] ON [pro0].[categoryId] = [pro.category0].[id]
+        WHERE [pro0].[id] = @__id_0
+        ORDER BY [pro0].[id]
+    ) AS [t]
+) AS [t0] ON [pro.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[id]" (0723d8ff)
+2019-11-30T21:30:32.5888543+07:00 0HLRLK4LINBMU:00000002 [INF] Executed DbCommand ("4"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp].[id], [rp].[content], [rp].[createDate], [rp].[productId], [rp].[status], [rp].[userId], [rp.user].[Id], [rp.user].[AccessFailedCount], [rp.user].[ConcurrencyStamp], [rp.user].[Email], [rp.user].[EmailConfirmed], [rp.user].[LockoutEnabled], [rp.user].[LockoutEnd], [rp.user].[NormalizedEmail], [rp.user].[NormalizedUserName], [rp.user].[PasswordHash], [rp.user].[PhoneNumber], [rp.user].[PhoneNumberConfirmed], [rp.user].[SecurityStamp], [rp.user].[TwoFactorEnabled], [rp.user].[UserName], [rp.user].[address], [rp.user].[birthDay], [rp.user].[displayname], [rp.user].[gender], [rp.user].[password], [rp.user].[phone], [rp.user].[status]
+FROM [comment] AS [rp]
+LEFT JOIN [AspNetUsers] AS [rp.user] ON [rp].[userId] = [rp.user].[Id]
+WHERE [rp].[productId] = @__productId_0
+ORDER BY [rp].[id]" (0723d8ff)
+2019-11-30T21:30:32.6543868+07:00 0HLRLK4LINBMU:00000002 [INF] Executed DbCommand ("37"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp.Replies].[id], [rp.Replies].[commentId], [rp.Replies].[content], [rp.Replies].[createDate], [rp.Replies].[status], [rp.Replies].[userId]
+FROM [reply] AS [rp.Replies]
+INNER JOIN (
+    SELECT DISTINCT [rp0].[id]
+    FROM [comment] AS [rp0]
+    LEFT JOIN [AspNetUsers] AS [rp.user0] ON [rp0].[userId] = [rp.user0].[Id]
+    WHERE [rp0].[productId] = @__productId_0
+) AS [t] ON [rp.Replies].[commentId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:30:32.6712574+07:00 0HLRLK4LINBMU:00000002 [INF] Executing ViewResult, running view at path "/Views/Home/Detail.cshtml". (9707eebe)
+2019-11-30T21:30:32.8041106+07:00 0HLRLK4LINBMU:00000002 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" in 172.7601ms (afa2e885)
+2019-11-30T21:30:32.8701305+07:00 0HLRLK4LINBMU:00000002 [INF] Request finished in 326.2291ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:49:39.9923751+07:00 0HLRLKI3HEE4I:00000001 [INF] Request starting HTTP/1.1 DEBUG http://localhost:51987/  0 (ca22a1cb)
+2019-11-30T21:49:39.9923659+07:00 0HLRLKI3HEE4J:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-11-30T21:49:40.0837108+07:00 0HLRLKI3HEE4I:00000001 [INF] Request finished in 185.6833ms 200  (791a596a)
+2019-11-30T21:49:40.6308832+07:00 0HLRLKI3HEE4J:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:49:40.9279518+07:00 0HLRLKI3HEE4J:00000001 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:49:41.3391081+07:00 0HLRLKI3HEE4J:00000001 [INF] Executed DbCommand ("24"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T21:49:41.4406413+07:00 0HLRLKI3HEE4J:00000001 [INF] Executed DbCommand ("8"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T21:49:41.6363626+07:00 0HLRLKI3HEE4J:00000001 [INF] Executed DbCommand ("31"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE [x].[status] = 1
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-11-30T21:49:41.6714171+07:00 0HLRLKI3HEE4J:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-11-30T21:49:41.7349109+07:00 0HLRLKI3HEE4J:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-11-30T21:49:47.5912675+07:00 0HLRLKI3HEE4J:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T21:49:48.2738109+07:00 0HLRLKI3HEE4J:00000001 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 7894.1073ms (afa2e885)
+2019-11-30T21:49:48.2859647+07:00 0HLRLKI3HEE4J:00000001 [INF] Request finished in 8399.422ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:49:59.3436490+07:00 0HLRLKI3HEE4I:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Detail?productID=7   (ca22a1cb)
+2019-11-30T21:49:59.3902370+07:00 0HLRLKI3HEE4I:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" with arguments (["7"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:49:59.4053160+07:00 0HLRLKI3HEE4I:00000002 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:49:59.4528259+07:00 0HLRLKI3HEE4I:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [pro].[id], [pro].[categoryId], [pro].[color], [pro].[description], [pro].[image], [pro].[name], [pro].[price], [pro].[size], [pro].[status], [pro.category].[id], [pro.category].[name], [pro.category].[status]
+FROM [product] AS [pro]
+LEFT JOIN [category] AS [pro.category] ON [pro].[categoryId] = [pro.category].[id]
+WHERE [pro].[id] = @__id_0
+ORDER BY [pro].[id]" (0723d8ff)
+2019-11-30T21:49:59.4788721+07:00 0HLRLKI3HEE4I:00000002 [INF] Executed DbCommand ("5"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [pro.Comments].[id], [pro.Comments].[content], [pro.Comments].[createDate], [pro.Comments].[productId], [pro.Comments].[status], [pro.Comments].[userId]
+FROM [comment] AS [pro.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [pro0].[id]
+        FROM [product] AS [pro0]
+        LEFT JOIN [category] AS [pro.category0] ON [pro0].[categoryId] = [pro.category0].[id]
+        WHERE [pro0].[id] = @__id_0
+        ORDER BY [pro0].[id]
+    ) AS [t]
+) AS [t0] ON [pro.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[id]" (0723d8ff)
+2019-11-30T21:49:59.5318345+07:00 0HLRLKI3HEE4I:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp].[id], [rp].[content], [rp].[createDate], [rp].[productId], [rp].[status], [rp].[userId], [rp.user].[Id], [rp.user].[AccessFailedCount], [rp.user].[ConcurrencyStamp], [rp.user].[Email], [rp.user].[EmailConfirmed], [rp.user].[LockoutEnabled], [rp.user].[LockoutEnd], [rp.user].[NormalizedEmail], [rp.user].[NormalizedUserName], [rp.user].[PasswordHash], [rp.user].[PhoneNumber], [rp.user].[PhoneNumberConfirmed], [rp.user].[SecurityStamp], [rp.user].[TwoFactorEnabled], [rp.user].[UserName], [rp.user].[address], [rp.user].[birthDay], [rp.user].[displayname], [rp.user].[gender], [rp.user].[password], [rp.user].[phone], [rp.user].[status]
+FROM [comment] AS [rp]
+LEFT JOIN [AspNetUsers] AS [rp.user] ON [rp].[userId] = [rp.user].[Id]
+WHERE [rp].[productId] = @__productId_0
+ORDER BY [rp].[id]" (0723d8ff)
+2019-11-30T21:49:59.8691227+07:00 0HLRLKI3HEE4I:00000002 [INF] Executing ViewResult, running view at path "/Views/Home/Detail.cshtml". (9707eebe)
+2019-11-30T21:49:59.9505213+07:00 0HLRLKI3HEE4I:00000002 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" in 578.5561ms (afa2e885)
+2019-11-30T21:50:00.0529652+07:00 0HLRLKI3HEE4I:00000002 [INF] Request finished in 642.408ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:50:18.0059865+07:00 0HLRLKI3HEE4J:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Detail?productID=7   (ca22a1cb)
+2019-11-30T21:50:18.0198859+07:00 0HLRLKI3HEE4J:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" with arguments (["7"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T21:50:18.0332264+07:00 0HLRLKI3HEE4J:00000002 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T21:50:18.0681124+07:00 0HLRLKI3HEE4J:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [pro].[id], [pro].[categoryId], [pro].[color], [pro].[description], [pro].[image], [pro].[name], [pro].[price], [pro].[size], [pro].[status], [pro.category].[id], [pro.category].[name], [pro.category].[status]
+FROM [product] AS [pro]
+LEFT JOIN [category] AS [pro.category] ON [pro].[categoryId] = [pro.category].[id]
+WHERE [pro].[id] = @__id_0
+ORDER BY [pro].[id]" (0723d8ff)
+2019-11-30T21:50:18.0805225+07:00 0HLRLKI3HEE4J:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [pro.Comments].[id], [pro.Comments].[content], [pro.Comments].[createDate], [pro.Comments].[productId], [pro.Comments].[status], [pro.Comments].[userId]
+FROM [comment] AS [pro.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [pro0].[id]
+        FROM [product] AS [pro0]
+        LEFT JOIN [category] AS [pro.category0] ON [pro0].[categoryId] = [pro.category0].[id]
+        WHERE [pro0].[id] = @__id_0
+        ORDER BY [pro0].[id]
+    ) AS [t]
+) AS [t0] ON [pro.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[id]" (0723d8ff)
+2019-11-30T21:50:18.0961479+07:00 0HLRLKI3HEE4J:00000002 [INF] Executed DbCommand ("3"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp].[id], [rp].[content], [rp].[createDate], [rp].[productId], [rp].[status], [rp].[userId], [rp.user].[Id], [rp.user].[AccessFailedCount], [rp.user].[ConcurrencyStamp], [rp.user].[Email], [rp.user].[EmailConfirmed], [rp.user].[LockoutEnabled], [rp.user].[LockoutEnd], [rp.user].[NormalizedEmail], [rp.user].[NormalizedUserName], [rp.user].[PasswordHash], [rp.user].[PhoneNumber], [rp.user].[PhoneNumberConfirmed], [rp.user].[SecurityStamp], [rp.user].[TwoFactorEnabled], [rp.user].[UserName], [rp.user].[address], [rp.user].[birthDay], [rp.user].[displayname], [rp.user].[gender], [rp.user].[password], [rp.user].[phone], [rp.user].[status]
+FROM [comment] AS [rp]
+LEFT JOIN [AspNetUsers] AS [rp.user] ON [rp].[userId] = [rp.user].[Id]
+WHERE [rp].[productId] = @__productId_0
+ORDER BY [rp].[id]" (0723d8ff)
+2019-11-30T21:50:18.4072319+07:00 0HLRLKI3HEE4J:00000002 [INF] Executing ViewResult, running view at path "/Views/Home/Detail.cshtml". (9707eebe)
+2019-11-30T21:50:18.5246895+07:00 0HLRLKI3HEE4J:00000002 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" in 427.9712ms (afa2e885)
+2019-11-30T21:50:18.5535152+07:00 0HLRLKI3HEE4J:00000002 [INF] Request finished in 540.6568ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T21:50:18.8086419+07:00 0HLRLKI3HEE4I:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/favicon.ico   (ca22a1cb)
+2019-11-30T21:50:18.8447132+07:00 0HLRLKI3HEE4I:00000003 [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\favicon.ico"' (27b0a520)
+2019-11-30T21:50:18.8840429+07:00 0HLRLKI3HEE4I:00000003 [INF] Request finished in 55.902ms 200 image/x-icon (791a596a)
+2019-11-30T23:03:41.4180188+07:00 0HLRLLRF67B3K:00000001 [INF] Request starting HTTP/1.1 DEBUG http://localhost:51987/  0 (ca22a1cb)
+2019-11-30T23:03:41.4180177+07:00 0HLRLLRF67B3J:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/   (ca22a1cb)
+2019-11-30T23:03:41.5015309+07:00 0HLRLLRF67B3K:00000001 [INF] Request finished in 164.3523ms 200  (791a596a)
+2019-11-30T23:03:42.0123057+07:00 0HLRLLRF67B3J:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" with arguments (["", "", ""]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T23:03:42.2902460+07:00 0HLRLLRF67B3J:00000001 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T23:03:42.8258282+07:00 0HLRLLRF67B3J:00000001 [INF] Executed DbCommand ("18"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate].[id], [cate].[name], [cate].[status]
+FROM [category] AS [cate]
+ORDER BY [cate].[id]" (0723d8ff)
+2019-11-30T23:03:42.9049572+07:00 0HLRLLRF67B3J:00000001 [INF] Executed DbCommand ("7"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT [cate.Products].[id], [cate.Products].[categoryId], [cate.Products].[color], [cate.Products].[description], [cate.Products].[image], [cate.Products].[name], [cate.Products].[price], [cate.Products].[size], [cate.Products].[status]
+FROM [product] AS [cate.Products]
+INNER JOIN (
+    SELECT [cate0].[id]
+    FROM [category] AS [cate0]
+) AS [t] ON [cate.Products].[categoryId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T23:03:43.0682352+07:00 0HLRLLRF67B3J:00000001 [INF] Executed DbCommand ("36"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x].[id], [x].[categoryId], [x].[color], [x].[description], [x].[image], [x].[name], [x].[price], [x].[size], [x].[status], [x.category].[id], [x.category].[name], [x.category].[status]
+FROM [product] AS [x]
+LEFT JOIN [category] AS [x.category] ON [x].[categoryId] = [x.category].[id]
+WHERE [x].[status] = 1
+ORDER BY [x].[categoryId], [x].[id]
+OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY" (0723d8ff)
+2019-11-30T23:03:43.1046007+07:00 0HLRLLRF67B3J:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__p_0='?', @__p_1='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [x.Comments].[id], [x.Comments].[content], [x.Comments].[createDate], [x.Comments].[productId], [x.Comments].[status], [x.Comments].[userId]
+FROM [comment] AS [x.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT [x0].[id], [x0].[categoryId]
+        FROM [product] AS [x0]
+        LEFT JOIN [category] AS [x.category0] ON [x0].[categoryId] = [x.category0].[id]
+        WHERE [x0].[status] = 1
+        ORDER BY [x0].[categoryId], [x0].[id]
+        OFFSET @__p_0 ROWS FETCH NEXT @__p_1 ROWS ONLY
+    ) AS [t]
+) AS [t0] ON [x.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[categoryId], [t0].[id]" (0723d8ff)
+2019-11-30T23:03:43.1795905+07:00 0HLRLLRF67B3J:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=[""], CommandType='Text', CommandTimeout='30']"
+""SELECT COUNT(*)
+FROM [product] AS [x]
+WHERE [x].[status] = 1" (0723d8ff)
+2019-11-30T23:03:49.0026348+07:00 0HLRLLRF67B3J:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Index.cshtml". (9707eebe)
+2019-11-30T23:03:49.7788143+07:00 0HLRLLRF67B3J:00000001 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Index (ShopMartWebsite)" in 7966.7246ms (afa2e885)
+2019-11-30T23:03:49.8928027+07:00 0HLRLLRF67B3J:00000001 [INF] Request finished in 8467.2219ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T23:03:55.5351881+07:00 0HLRLLRF67B3K:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Detail?productID=3   (ca22a1cb)
+2019-11-30T23:03:55.5833187+07:00 0HLRLLRF67B3K:00000002 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" with arguments (["3"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T23:03:55.5967941+07:00 0HLRLLRF67B3K:00000002 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T23:03:55.6257767+07:00 0HLRLLRF67B3K:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [pro].[id], [pro].[categoryId], [pro].[color], [pro].[description], [pro].[image], [pro].[name], [pro].[price], [pro].[size], [pro].[status], [pro.category].[id], [pro.category].[name], [pro.category].[status]
+FROM [product] AS [pro]
+LEFT JOIN [category] AS [pro.category] ON [pro].[categoryId] = [pro.category].[id]
+WHERE [pro].[id] = @__id_0
+ORDER BY [pro].[id]" (0723d8ff)
+2019-11-30T23:03:55.6563624+07:00 0HLRLLRF67B3K:00000002 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [pro.Comments].[id], [pro.Comments].[content], [pro.Comments].[createDate], [pro.Comments].[productId], [pro.Comments].[status], [pro.Comments].[userId]
+FROM [comment] AS [pro.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [pro0].[id]
+        FROM [product] AS [pro0]
+        LEFT JOIN [category] AS [pro.category0] ON [pro0].[categoryId] = [pro.category0].[id]
+        WHERE [pro0].[id] = @__id_0
+        ORDER BY [pro0].[id]
+    ) AS [t]
+) AS [t0] ON [pro.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[id]" (0723d8ff)
+2019-11-30T23:03:55.7380083+07:00 0HLRLLRF67B3K:00000002 [INF] Executed DbCommand ("20"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp].[id], [rp].[content], [rp].[createDate], [rp].[productId], [rp].[status], [rp].[userId], [rp.user].[Id], [rp.user].[AccessFailedCount], [rp.user].[ConcurrencyStamp], [rp.user].[Email], [rp.user].[EmailConfirmed], [rp.user].[LockoutEnabled], [rp.user].[LockoutEnd], [rp.user].[NormalizedEmail], [rp.user].[NormalizedUserName], [rp.user].[PasswordHash], [rp.user].[PhoneNumber], [rp.user].[PhoneNumberConfirmed], [rp.user].[SecurityStamp], [rp.user].[TwoFactorEnabled], [rp.user].[UserName], [rp.user].[address], [rp.user].[birthDay], [rp.user].[displayname], [rp.user].[gender], [rp.user].[password], [rp.user].[phone], [rp.user].[status]
+FROM [comment] AS [rp]
+LEFT JOIN [AspNetUsers] AS [rp.user] ON [rp].[userId] = [rp.user].[Id]
+WHERE [rp].[productId] = @__productId_0
+ORDER BY [rp].[id]" (0723d8ff)
+2019-11-30T23:03:55.7995841+07:00 0HLRLLRF67B3K:00000002 [INF] Executed DbCommand ("6"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp.Replies].[id], [rp.Replies].[commentId], [rp.Replies].[content], [rp.Replies].[createDate], [rp.Replies].[status], [rp.Replies].[userId]
+FROM [reply] AS [rp.Replies]
+INNER JOIN (
+    SELECT DISTINCT [rp0].[id]
+    FROM [comment] AS [rp0]
+    LEFT JOIN [AspNetUsers] AS [rp.user0] ON [rp0].[userId] = [rp.user0].[Id]
+    WHERE [rp0].[productId] = @__productId_0
+) AS [t] ON [rp.Replies].[commentId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T23:03:56.0444265+07:00 0HLRLLRF67B3K:00000002 [INF] Executing ViewResult, running view at path "/Views/Home/Detail.cshtml". (9707eebe)
+2019-11-30T23:03:56.2701390+07:00 0HLRLLRF67B3K:00000002 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" in 581.575ms (afa2e885)
+2019-11-30T23:03:56.4820535+07:00 0HLRLLRF67B3K:00000002 [INF] Request finished in 743.9149ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T23:04:03.4615212+07:00 0HLRLLRF67B3J:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/bootstrap.js.map   (ca22a1cb)
+2019-11-30T23:04:03.5507326+07:00 0HLRLLRF67B3K:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/bootstrap.css.map   (ca22a1cb)
+2019-11-30T23:04:03.5958145+07:00 0HLRLLRF67B3K:00000003 [INF] Request finished in 88.7343ms 404  (791a596a)
+2019-11-30T23:04:03.6090411+07:00 0HLRLLRF67B3J:00000002 [INF] Request finished in 208.6712ms 404  (791a596a)
+2019-11-30T23:06:18.7875155+07:00 0HLRLLRF67B3L:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Detail?productID=3   (ca22a1cb)
+2019-11-30T23:06:18.8145946+07:00 0HLRLLRF67B3L:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" with arguments (["3"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T23:06:18.8710947+07:00 0HLRLLRF67B3L:00000001 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T23:06:18.9008333+07:00 0HLRLLRF67B3L:00000001 [INF] Executed DbCommand ("1"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [pro].[id], [pro].[categoryId], [pro].[color], [pro].[description], [pro].[image], [pro].[name], [pro].[price], [pro].[size], [pro].[status], [pro.category].[id], [pro.category].[name], [pro.category].[status]
+FROM [product] AS [pro]
+LEFT JOIN [category] AS [pro.category] ON [pro].[categoryId] = [pro.category].[id]
+WHERE [pro].[id] = @__id_0
+ORDER BY [pro].[id]" (0723d8ff)
+2019-11-30T23:06:18.9296753+07:00 0HLRLLRF67B3L:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [pro.Comments].[id], [pro.Comments].[content], [pro.Comments].[createDate], [pro.Comments].[productId], [pro.Comments].[status], [pro.Comments].[userId]
+FROM [comment] AS [pro.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [pro0].[id]
+        FROM [product] AS [pro0]
+        LEFT JOIN [category] AS [pro.category0] ON [pro0].[categoryId] = [pro.category0].[id]
+        WHERE [pro0].[id] = @__id_0
+        ORDER BY [pro0].[id]
+    ) AS [t]
+) AS [t0] ON [pro.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[id]" (0723d8ff)
+2019-11-30T23:06:18.9585235+07:00 0HLRLLRF67B3L:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp].[id], [rp].[content], [rp].[createDate], [rp].[productId], [rp].[status], [rp].[userId], [rp.user].[Id], [rp.user].[AccessFailedCount], [rp.user].[ConcurrencyStamp], [rp.user].[Email], [rp.user].[EmailConfirmed], [rp.user].[LockoutEnabled], [rp.user].[LockoutEnd], [rp.user].[NormalizedEmail], [rp.user].[NormalizedUserName], [rp.user].[PasswordHash], [rp.user].[PhoneNumber], [rp.user].[PhoneNumberConfirmed], [rp.user].[SecurityStamp], [rp.user].[TwoFactorEnabled], [rp.user].[UserName], [rp.user].[address], [rp.user].[birthDay], [rp.user].[displayname], [rp.user].[gender], [rp.user].[password], [rp.user].[phone], [rp.user].[status]
+FROM [comment] AS [rp]
+LEFT JOIN [AspNetUsers] AS [rp.user] ON [rp].[userId] = [rp.user].[Id]
+WHERE [rp].[productId] = @__productId_0
+ORDER BY [rp].[id]" (0723d8ff)
+2019-11-30T23:06:18.9694496+07:00 0HLRLLRF67B3L:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp.Replies].[id], [rp.Replies].[commentId], [rp.Replies].[content], [rp.Replies].[createDate], [rp.Replies].[status], [rp.Replies].[userId]
+FROM [reply] AS [rp.Replies]
+INNER JOIN (
+    SELECT DISTINCT [rp0].[id]
+    FROM [comment] AS [rp0]
+    LEFT JOIN [AspNetUsers] AS [rp.user0] ON [rp0].[userId] = [rp.user0].[Id]
+    WHERE [rp0].[productId] = @__productId_0
+) AS [t] ON [rp.Replies].[commentId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T23:06:19.1762566+07:00 0HLRLLRF67B3L:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Detail.cshtml". (9707eebe)
+2019-11-30T23:06:19.2217376+07:00 0HLRLLRF67B3L:00000001 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" in 417.8174ms (afa2e885)
+2019-11-30T23:06:19.3027034+07:00 0HLRLLRF67B3L:00000001 [INF] Request finished in 466.5271ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T23:06:20.0507806+07:00 0HLRLLRF67B3L:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/bootstrap.css.map   (ca22a1cb)
+2019-11-30T23:06:20.0705769+07:00 0HLRLLRF67B3L:00000002 [INF] Request finished in 10.6511ms 404  (791a596a)
+2019-11-30T23:06:20.1615973+07:00 0HLRLLRF67B3L:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/bootstrap.js.map   (ca22a1cb)
+2019-11-30T23:06:20.1721781+07:00 0HLRLLRF67B3L:00000003 [INF] Request finished in 9.2005ms 404  (791a596a)
+2019-11-30T23:06:20.3160819+07:00 0HLRLLRF67B3L:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/favicon.ico   (ca22a1cb)
+2019-11-30T23:06:20.3517655+07:00 0HLRLLRF67B3L:00000004 [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\favicon.ico"' (27b0a520)
+2019-11-30T23:06:20.3996879+07:00 0HLRLLRF67B3L:00000004 [INF] Request finished in 80.7047ms 200 image/x-icon (791a596a)
+2019-11-30T23:07:26.9632732+07:00 0HLRLLRF67B3M:00000001 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Detail?productID=3   (ca22a1cb)
+2019-11-30T23:07:26.9925115+07:00 0HLRLLRF67B3M:00000001 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" with arguments (["3"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T23:07:26.9983617+07:00 0HLRLLRF67B3M:00000001 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T23:07:27.0110600+07:00 0HLRLLRF67B3M:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [pro].[id], [pro].[categoryId], [pro].[color], [pro].[description], [pro].[image], [pro].[name], [pro].[price], [pro].[size], [pro].[status], [pro.category].[id], [pro.category].[name], [pro.category].[status]
+FROM [product] AS [pro]
+LEFT JOIN [category] AS [pro.category] ON [pro].[categoryId] = [pro.category].[id]
+WHERE [pro].[id] = @__id_0
+ORDER BY [pro].[id]" (0723d8ff)
+2019-11-30T23:07:27.0196363+07:00 0HLRLLRF67B3M:00000001 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [pro.Comments].[id], [pro.Comments].[content], [pro.Comments].[createDate], [pro.Comments].[productId], [pro.Comments].[status], [pro.Comments].[userId]
+FROM [comment] AS [pro.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [pro0].[id]
+        FROM [product] AS [pro0]
+        LEFT JOIN [category] AS [pro.category0] ON [pro0].[categoryId] = [pro.category0].[id]
+        WHERE [pro0].[id] = @__id_0
+        ORDER BY [pro0].[id]
+    ) AS [t]
+) AS [t0] ON [pro.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[id]" (0723d8ff)
+2019-11-30T23:07:27.0316266+07:00 0HLRLLRF67B3M:00000001 [INF] Executed DbCommand ("5"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp].[id], [rp].[content], [rp].[createDate], [rp].[productId], [rp].[status], [rp].[userId], [rp.user].[Id], [rp.user].[AccessFailedCount], [rp.user].[ConcurrencyStamp], [rp.user].[Email], [rp.user].[EmailConfirmed], [rp.user].[LockoutEnabled], [rp.user].[LockoutEnd], [rp.user].[NormalizedEmail], [rp.user].[NormalizedUserName], [rp.user].[PasswordHash], [rp.user].[PhoneNumber], [rp.user].[PhoneNumberConfirmed], [rp.user].[SecurityStamp], [rp.user].[TwoFactorEnabled], [rp.user].[UserName], [rp.user].[address], [rp.user].[birthDay], [rp.user].[displayname], [rp.user].[gender], [rp.user].[password], [rp.user].[phone], [rp.user].[status]
+FROM [comment] AS [rp]
+LEFT JOIN [AspNetUsers] AS [rp.user] ON [rp].[userId] = [rp.user].[Id]
+WHERE [rp].[productId] = @__productId_0
+ORDER BY [rp].[id]" (0723d8ff)
+2019-11-30T23:07:27.0610020+07:00 0HLRLLRF67B3M:00000001 [INF] Executed DbCommand ("3"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp.Replies].[id], [rp.Replies].[commentId], [rp.Replies].[content], [rp.Replies].[createDate], [rp.Replies].[status], [rp.Replies].[userId]
+FROM [reply] AS [rp.Replies]
+INNER JOIN (
+    SELECT DISTINCT [rp0].[id]
+    FROM [comment] AS [rp0]
+    LEFT JOIN [AspNetUsers] AS [rp.user0] ON [rp0].[userId] = [rp.user0].[Id]
+    WHERE [rp0].[productId] = @__productId_0
+) AS [t] ON [rp.Replies].[commentId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T23:07:27.2907665+07:00 0HLRLLRF67B3M:00000001 [INF] Executing ViewResult, running view at path "/Views/Home/Detail.cshtml". (9707eebe)
+2019-11-30T23:07:27.3141824+07:00 0HLRLLRF67B3M:00000001 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" in 343.4419ms (afa2e885)
+2019-11-30T23:07:27.3284741+07:00 0HLRLLRF67B3M:00000001 [INF] Request finished in 357.1733ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T23:07:27.8603370+07:00 0HLRLLRF67B3M:00000002 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/bootstrap.css.map   (ca22a1cb)
+2019-11-30T23:07:27.8728103+07:00 0HLRLLRF67B3M:00000002 [INF] Request finished in 7.9148ms 404  (791a596a)
+2019-11-30T23:07:27.9309526+07:00 0HLRLLRF67B3M:00000003 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/bootstrap.js.map   (ca22a1cb)
+2019-11-30T23:07:27.9437526+07:00 0HLRLLRF67B3M:00000003 [INF] Request finished in 12.2422ms 404  (791a596a)
+2019-11-30T23:07:28.0060300+07:00 0HLRLLRF67B3M:00000004 [INF] Request starting HTTP/1.1 GET http://localhost:44340/favicon.ico   (ca22a1cb)
+2019-11-30T23:07:28.0328805+07:00 0HLRLLRF67B3M:00000004 [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\favicon.ico"' (27b0a520)
+2019-11-30T23:07:28.0685487+07:00 0HLRLLRF67B3M:00000004 [INF] Request finished in 64.3535ms 200 image/x-icon (791a596a)
+2019-11-30T23:08:06.8254768+07:00 0HLRLLRF67B3M:00000005 [INF] Request starting HTTP/1.1 GET http://localhost:44340/Home/Detail?productID=3   (ca22a1cb)
+2019-11-30T23:08:06.8590606+07:00 0HLRLLRF67B3M:00000005 [INF] Executing action method "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" with arguments (["3"]) - ModelState is Valid (ba7f4ac2)
+2019-11-30T23:08:06.8680656+07:00 0HLRLLRF67B3M:00000005 [INF] Entity Framework Core "2.0.3-rtm-10026" initialized '"ShopDbContext"' using provider '"Microsoft.EntityFrameworkCore.SqlServer"' with options: "None" (9958f5bb)
+2019-11-30T23:08:06.8782827+07:00 0HLRLLRF67B3M:00000005 [INF] Executed DbCommand ("2"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT TOP(1) [pro].[id], [pro].[categoryId], [pro].[color], [pro].[description], [pro].[image], [pro].[name], [pro].[price], [pro].[size], [pro].[status], [pro.category].[id], [pro.category].[name], [pro.category].[status]
+FROM [product] AS [pro]
+LEFT JOIN [category] AS [pro.category] ON [pro].[categoryId] = [pro.category].[id]
+WHERE [pro].[id] = @__id_0
+ORDER BY [pro].[id]" (0723d8ff)
+2019-11-30T23:08:06.9078825+07:00 0HLRLLRF67B3M:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=["@__id_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [pro.Comments].[id], [pro.Comments].[content], [pro.Comments].[createDate], [pro.Comments].[productId], [pro.Comments].[status], [pro.Comments].[userId]
+FROM [comment] AS [pro.Comments]
+INNER JOIN (
+    SELECT DISTINCT [t].*
+    FROM (
+        SELECT TOP(1) [pro0].[id]
+        FROM [product] AS [pro0]
+        LEFT JOIN [category] AS [pro.category0] ON [pro0].[categoryId] = [pro.category0].[id]
+        WHERE [pro0].[id] = @__id_0
+        ORDER BY [pro0].[id]
+    ) AS [t]
+) AS [t0] ON [pro.Comments].[productId] = [t0].[id]
+ORDER BY [t0].[id]" (0723d8ff)
+2019-11-30T23:08:06.9349750+07:00 0HLRLLRF67B3M:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp].[id], [rp].[content], [rp].[createDate], [rp].[productId], [rp].[status], [rp].[userId], [rp.user].[Id], [rp.user].[AccessFailedCount], [rp.user].[ConcurrencyStamp], [rp.user].[Email], [rp.user].[EmailConfirmed], [rp.user].[LockoutEnabled], [rp.user].[LockoutEnd], [rp.user].[NormalizedEmail], [rp.user].[NormalizedUserName], [rp.user].[PasswordHash], [rp.user].[PhoneNumber], [rp.user].[PhoneNumberConfirmed], [rp.user].[SecurityStamp], [rp.user].[TwoFactorEnabled], [rp.user].[UserName], [rp.user].[address], [rp.user].[birthDay], [rp.user].[displayname], [rp.user].[gender], [rp.user].[password], [rp.user].[phone], [rp.user].[status]
+FROM [comment] AS [rp]
+LEFT JOIN [AspNetUsers] AS [rp.user] ON [rp].[userId] = [rp.user].[Id]
+WHERE [rp].[productId] = @__productId_0
+ORDER BY [rp].[id]" (0723d8ff)
+2019-11-30T23:08:06.9635436+07:00 0HLRLLRF67B3M:00000005 [INF] Executed DbCommand ("0"ms) [Parameters=["@__productId_0='?'"], CommandType='Text', CommandTimeout='30']"
+""SELECT [rp.Replies].[id], [rp.Replies].[commentId], [rp.Replies].[content], [rp.Replies].[createDate], [rp.Replies].[status], [rp.Replies].[userId]
+FROM [reply] AS [rp.Replies]
+INNER JOIN (
+    SELECT DISTINCT [rp0].[id]
+    FROM [comment] AS [rp0]
+    LEFT JOIN [AspNetUsers] AS [rp.user0] ON [rp0].[userId] = [rp.user0].[Id]
+    WHERE [rp0].[productId] = @__productId_0
+) AS [t] ON [rp.Replies].[commentId] = [t].[id]
+ORDER BY [t].[id]" (0723d8ff)
+2019-11-30T23:08:07.4564156+07:00 0HLRLLRF67B3M:00000005 [INF] Executing ViewResult, running view at path "/Views/Home/Detail.cshtml". (9707eebe)
+2019-11-30T23:08:07.4889277+07:00 0HLRLLRF67B3M:00000005 [INF] Executed action "ShopMartWebsite.Controllers.HomeController.Detail (ShopMartWebsite)" in 652.3189ms (afa2e885)
+2019-11-30T23:08:07.5007210+07:00 0HLRLLRF67B3M:00000005 [INF] Request finished in 674.01ms 200 text/html; charset=utf-8 (791a596a)
+2019-11-30T23:08:08.2751952+07:00 0HLRLLRF67B3M:00000006 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/css/bootstrap.css.map   (ca22a1cb)
+2019-11-30T23:08:08.2879061+07:00 0HLRLLRF67B3M:00000006 [INF] Request finished in 8.6307ms 404  (791a596a)
+2019-11-30T23:08:08.3680625+07:00 0HLRLLRF67B3M:00000007 [INF] Request starting HTTP/1.1 GET http://localhost:44340/user/js/bootstrap.js.map   (ca22a1cb)
+2019-11-30T23:08:08.3897858+07:00 0HLRLLRF67B3M:00000007 [INF] Request finished in 11.7866ms 404  (791a596a)
+2019-11-30T23:08:08.4323282+07:00 0HLRLLRF67B3M:00000008 [INF] Request starting HTTP/1.1 GET http://localhost:44340/favicon.ico   (ca22a1cb)
+2019-11-30T23:08:08.4414255+07:00 0HLRLLRF67B3M:00000008 [INF] Sending file. Request path: '"/favicon.ico"'. Physical path: '"D:\TLCN\TLCN-WebBanHang\ShopMartWebsite\ShopMartWebsite\wwwroot\favicon.ico"' (27b0a520)
+2019-11-30T23:08:08.4620830+07:00 0HLRLLRF67B3M:00000008 [INF] Request finished in 15.0031ms 200 image/x-icon (791a596a)

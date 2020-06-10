@@ -1,0 +1,198 @@
+﻿@model ShopMartWebsite.Models.StatisticalViewModel
+@{
+    string day = DateTime.Now.ToString("dd/MM/yyyy");
+    ViewData["Title"] = "Index";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
+}
+@if (Model.option == "monthtoyear")
+{
+    <div style="width: 90%; margin: 0 auto;">
+        @{ Html.RenderPartial("_Chart", Model);
+        }
+    </div>
+    <div style="width: 90%; margin: 0 auto;  margin-top: 20px;">
+        <form asp-action="Index" asp-controller="Chart">
+
+            <div class="form-group col-md-4">
+
+                <div class="form-group col-md-12">
+
+                    <select class="form-control" name="option">
+
+                        <option value="dayinmonth" selected="@(Model.option == "dayinmonth")">Thống kê các ngày trong tháng </option>
+                        <option value="monthinyear" selected="@(Model.option == "monthinyear")">Thống kê các tháng trong năm </option>
+
+
+                    </select>
+                </div>
+
+            </div>
+            <div class="form-group col-md-3">
+                <div class="form-group col-md-12">
+
+                    <select class="form-control" name="monthSearch">
+                        <option value="0" selected="@(Model.monthSearch == 0)">Tháng</option>
+                        <option value="1" selected="@(Model.monthSearch == 1)">Tháng 1</option>
+                        <option value="2" selected="@(Model.monthSearch == 2)">Tháng 2</option>
+                        <option value="3" selected="@(Model.monthSearch == 3)">Tháng 3</option>
+                        <option value="4" selected="@(Model.monthSearch == 4)">Tháng 4</option>
+                        <option value="5" selected="@(Model.monthSearch == 5)">Tháng 5</option>
+                        <option value="6" selected="@(Model.monthSearch == 6)">Tháng 6</option>
+                        <option value="7" selected="@(Model.monthSearch == 7)">Tháng 7</option>
+                        <option value="8" selected="@(Model.monthSearch == 8)">Tháng 8</option>
+                        <option value="9" selected="@(Model.monthSearch == 9)">Tháng 9</option>
+                        <option value="10" selected="@(Model.monthSearch == 10)">Tháng 10</option>
+                        <option value="11" selected="@(Model.monthSearch == 11)">Tháng 11</option>
+                        <option value="12" selected="@(Model.monthSearch == 12)">Tháng 12</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <div class="form-group col-md-12">
+
+                    <select class="form-control" name="yearSearch">
+                        <option value="0" selected="@(Model.yearSearch == 0)">Năm</option>
+
+                        <option value="2014" selected="@(Model.yearSearch == 2014)">2014</option>
+                        <option value="2015" selected="@(Model.yearSearch == 2015)">2015</option>
+                        <option value="2016" selected="@(Model.yearSearch == 2016)">2016</option>
+                        <option value="2017" selected="@(Model.yearSearch == 2017)">2017</option>
+                        <option value="2018" selected="@(Model.yearSearch == 2018)">2018</option>
+                        <option value="2019" selected="@(Model.yearSearch == 2019)">2019</option>
+                        <option value="2020" selected="@(Model.yearSearch == 2020)">2020</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="input-group-append" id="button-addon4" style="margin-left: 5px;">
+                <button class="btn btn-outline-primary" type="submit"><i class="fa fa-search mr-1"></i> Thống kê</button>
+
+            </div>
+        </form>
+        <table class="table table-striped jambo_table bulk_action">
+            <thead>
+                <tr class="headings">
+
+                    <th class="column-title">Thời gian</th>
+                    <th class="column-title">Số đơn hàng</th>
+                    <th class="column-title">Doanh thu</th>
+
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.statisticals)
+                {
+                    <tr class="even pointer">
+
+                        <td class=" ">@item.Day</td>
+
+                        <td class=" ">@item.Count</td>
+                        <td class=" " style="color: green;">@item.Total</td>
+                    </tr>
+                }
+
+
+
+            </tbody>
+        </table>
+    </div>
+
+}
+else
+{
+    <div style="width: 100%; margin: 0 auto;">
+        @{ Html.RenderPartial("_Chart", Model);
+        }
+    </div>
+    <div style="width: 100%; margin: 0 auto;  margin-top: 20px;">
+        <form asp-action="Index" asp-controller="Chart">
+
+            <div class="form-group col-md-4">
+
+                <div class="form-group col-md-12">
+
+                    <select class="form-control" name="option">
+
+                        <option value="dayinmonth" selected="@(Model.option == "dayinmonth")">Thống kê các ngày trong tháng </option>
+                        <option value="monthinyear" selected="@(Model.option == "monthinyear")">Thống kê các tháng trong năm </option>
+
+
+                    </select>
+                </div>
+
+            </div>
+            <div class="form-group col-md-3">
+                <div class="form-group col-md-12">
+
+                    <select class="form-control" name="monthSearch">
+                        <option value="0" selected="@(Model.monthSearch == 0)">Tháng</option>
+                        <option value="1" selected="@(Model.monthSearch == 1)">Tháng 1</option>
+                        <option value="2" selected="@(Model.monthSearch == 2)">Tháng 2</option>
+                        <option value="3" selected="@(Model.monthSearch == 3)">Tháng 3</option>
+                        <option value="4" selected="@(Model.monthSearch == 4)">Tháng 4</option>
+                        <option value="5" selected="@(Model.monthSearch == 5)">Tháng 5</option>
+                        <option value="6" selected="@(Model.monthSearch == 6)">Tháng 6</option>
+                        <option value="7" selected="@(Model.monthSearch == 7)">Tháng 7</option>
+                        <option value="8" selected="@(Model.monthSearch == 8)">Tháng 8</option>
+                        <option value="9" selected="@(Model.monthSearch == 9)">Tháng 9</option>
+                        <option value="10" selected="@(Model.monthSearch == 10)">Tháng 10</option>
+                        <option value="11" selected="@(Model.monthSearch == 11)">Tháng 11</option>
+                        <option value="12" selected="@(Model.monthSearch == 12)">Tháng 12</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group col-md-3">
+                <div class="form-group col-md-12">
+
+                    <select class="form-control" name="yearSearch">
+                        <option value="0" selected="@(Model.yearSearch == 0)">Năm</option>
+                        <option value="2014" selected="@(Model.yearSearch == 2014)">2014</option>
+                        <option value="2015" selected="@(Model.yearSearch == 2015)">2015</option>
+                        <option value="2016" selected="@(Model.yearSearch == 2016)">2016</option>
+                        <option value="2017" selected="@(Model.yearSearch == 2017)">2017</option>
+                        <option value="2018" selected="@(Model.yearSearch == 2018)">2018</option>
+                        <option value="2019" selected="@(Model.yearSearch == 2019)">2019</option>
+                        <option value="2020" selected="@(Model.yearSearch == 2020)">2020</option>
+
+                    </select>
+                </div>
+            </div>
+            <div class="input-group-append" id="button-addon4" style="margin-left: 5px;">
+                <button class="btn btn-outline-primary" type="submit"><i class="fa fa-search mr-1"></i> Thống kê</button>
+
+            </div>
+        </form>
+        <table class="table table-striped jambo_table bulk_action">
+            <thead>
+                <tr class="headings">
+
+                    <th class="column-title">Thời gian</th>
+                    <th class="column-title">Số đơn hàng</th>
+                    <th class="column-title">Doanh thu</th>
+
+
+                </tr>
+            </thead>
+
+            <tbody>
+                @foreach (var item in Model.statisticals)
+                {
+                    <tr class="even pointer">
+
+                        <td class=" ">@item.Day</td>
+
+                        <td class=" ">@item.Count</td>
+                        <td class=" " style="color: green;">@item.Total</td>
+                    </tr>
+                }
+
+
+
+            </tbody>
+        </table>
+    </div>
+
+}
+

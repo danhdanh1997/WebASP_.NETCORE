@@ -1,0 +1,241 @@
+﻿@model ShopMartWebsite.Models.ProductViewModel;
+@using static ShopMartWebsite.Entities.Size;
+@using static ShopMartWebsite.Entities.Color;
+
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+
+@if (Model != null)
+{
+    <div class="modal-content">
+        <div class="modal-header">
+            <div class="col-md-4"></div>
+            <h5 class="modal-title col-md-4" style="text-align: center;">
+                @if (Model.id > 0)
+                {
+                    <span>Cập nhập sản phẩm</span>
+                }
+                else
+                {
+                    <span>Thêm sản phẩm</span>
+                }
+
+            </h5>
+
+            <button type="button" style="text-align: end;" class="close col-md-4" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
+        <div class="modal-body">
+            <!--Thêm value để Edit-->
+            <form id="actionForm" style="font-weight: bold;">
+                
+                <input type="hidden" name="ID" value="@Model.id" />
+                <div class="col-md-12" style="  margin-top: 10px; margin-bottom: 10px;">
+                    
+                    <div class="col-md-6" id="pictureArea">
+                        @if (Model.pictureIDs != null)
+                        {
+                            <img src="~/images/site/@Model.pictureIDs" class="img-fluid" width="200" onclick="removeMe(this)" data-id="@Model.pictureIDs" />
+                        }
+                    </div>
+                    <div class="col-md-6">
+                        <div>
+                            <label>Chọn ảnh</label>
+                        </div>
+                        <input id="selectPicture" type="file" multiple name="image" />
+                        <input type="hidden" id="pictureIDs" name="pictureIDs" value="@Model.image"/>
+                    </div>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Tên sản phẩm</label>
+                    <input class="form-control" name="name" placeholder="tên..." value="@Model.name">
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Loại sản phẩm</label>
+                    <select class="form-control" name="categoryId">
+                        @if (Model.Categories != null)
+                        {
+                            @foreach (var item in Model.Categories)
+                            {
+                                <option value="@item.id" selected="@(Model.categoryId==item.id)">@item.name</option>
+                            }
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group col-md-6">
+                    <label>Giá sản phẩm</label>
+                    <input class="form-control" name="price" placeholder="giá..." value="@Model.price">
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Số lượng</label>
+                    <input class="form-control" name="amount" placeholder="1" value="@Model.amount">
+                </div>
+
+                <div class="form-group col-md-12">
+                    <label>Mô tả sản phẩm</label>
+                    <textarea class="form-control" name="description" placeholder="mô tả...">@Model.description</textarea>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Size</label>
+                    <select class="form-control" name="size">
+                        <option value="NULL">None</option>
+                        <option value="0" selected="@(Model.size == ShopMartWebsite.Entities.Size.X)">X</option>
+                        <option value="1" selected="@(Model.size == ShopMartWebsite.Entities.Size.M)">M</option>
+                        <option value="2" selected="@(Model.size == ShopMartWebsite.Entities.Size.L)">L</option>
+                        <option value="3" selected="@(Model.size == ShopMartWebsite.Entities.Size.XL)">XL</option>
+                    </select>
+                </div>
+                <div class="form-group col-md-6">
+                    <label>Màu sắc</label>
+                    <select class="form-control" name="color">
+                        <option value="NULL">None</option>
+                        <option value="0" selected="@(Model.color == ShopMartWebsite.Entities.Color.white)" style="color: White;">White</option>
+                        <option value="1" selected="@(Model.color == ShopMartWebsite.Entities.Color.black)">Black</option>
+                        <option value="2" selected="@(Model.color == ShopMartWebsite.Entities.Color.red)" style="color: Red;">Red</option>
+                        <option value="3" selected="@(Model.color == ShopMartWebsite.Entities.Color.orange)" style="color: Orange;">Orange</option>
+                        <option value="4" selected="@(Model.color == ShopMartWebsite.Entities.Color.yellow)" style="color: Yellow;">Yellow</option>
+                        <option value="5" selected="@(Model.color == ShopMartWebsite.Entities.Color.green)" style="color: Green;">Green</option>
+                        <option value="6" selected="@(Model.color == ShopMartWebsite.Entities.Color.blue)" style="color: Blue;">Blue</option>
+                        <option value="7" selected="@(Model.color == ShopMartWebsite.Entities.Color.gray)" style="color: Gray;">Gray</option>
+                        <option value="8" selected="@(Model.color == ShopMartWebsite.Entities.Color.purple)" style="color: Purple;">Purple</option>
+                        <option value="9" selected="@(Model.color == ShopMartWebsite.Entities.Color.pink)" style="color: Pink;">Pink</option>
+                    </select>
+                </div>
+
+            </form>
+            <div class="errorDiv">
+
+            </div>
+        </div>
+        <div class="modal-footer">
+            <button id="actionButton" type="button" class="btn btn-primary"><i class="fas fa-save mr-1"></i> Save</button>
+            <button type="button" class="btn btn-secondary" data-dismiss="modal"><i class="fas fa-times mr-1"></i> Close</button>
+        </div>
+    </div>
+}
+<div id="imageTemplate" style="text-align:center;">
+    <img src="" class="img-fluid" width="200" onclick="removeMe(this)"/>
+</div>
+<script>
+    //Create or Edit
+    $('#actionButton').click(function () {
+        var pictureIDs = [];
+        $('#pictureArea img').each(function () {
+            var picID = $(this).attr("data-id");
+
+            pictureIDs.push(picID);
+        });
+        $('#pictureIDs').val(pictureIDs.join());
+        
+        
+        $.ajax({
+            url: '@Url.Action("Action","Product")',
+            type: 'post',
+            data: $('#actionForm').serialize(),
+            /*success: function (res) {
+                debugger;
+                
+                location.reload();
+                
+            },
+            error: function (err) {
+                debugger;
+                console.log(err);
+            }*/
+        })
+       
+            .done(function (response) {
+                if (response.Success) {
+                    if (response.Type == "edit") {
+                        swal({
+                            title: "Chúc mừng!!!",
+                            text: "Cập nhập Sản phẩm thành công!",
+                            icon: "success",
+                            buttons: "OK"
+
+                        })
+                            .then((willDelete) => {
+                                location.reload();
+                            });
+                    }
+                    else {
+                        swal({
+                            title: "Chúc mừng!!!",
+                            text: "Thêm Sản phẩm thành công!",
+                            icon: "success",
+                            buttons: "OK"
+
+                        })
+                            .then((willDelete) => {
+                                location.reload();
+                            });
+                    }
+
+                }
+                else {
+                    if (response.Type == "create") {
+                        swal({
+                            title: "Cảnh báo!!!",
+                            text: "Xin vui lòng điền tên Sản phẩm!",
+                            icon: "warning",
+                            buttons: "OK"
+                        })
+                    }
+                    else {
+                        swal({
+                            title: "Cảnh báo!!!",
+                            text: "Cập nhập Sản phẩm thất bại!",
+                            icon: "warning",
+                            buttons: "OK"
+                        })
+                    }
+
+                }
+            });
+        
+    });
+    //upload listen change file
+    
+    $('#selectPicture').change(function () {
+        
+        var pictures = this.files;
+        var formData = new FormData();
+        for (var i = 0; i < pictures.length; i++) {
+            formData.append("Picture", pictures[i]);
+        }
+        
+        $.ajax({
+            url: '@Url.Action("UploadPictures", "Admin")',
+            type: 'post',
+            data: formData,
+            processData: false,
+            contentType: false,
+            dataType: "json",
+            success: function (data) {
+                
+                $.each(data, function (index, item) {
+                    var $imgHTML = $('#imageTemplate').clone();
+                    $imgHTML.find("img").attr("src", "/images/site/" + item);
+                    $imgHTML.find("img").attr("data-id", item);
+                    $("#pictureArea").append($imgHTML.html());
+                    
+                });
+            },
+            error: function () {
+
+                alert("There was error uploading files!");
+
+            }
+        })
+
+    });
+    function removeMe(element) {
+        element.remove();
+    }
+</script>
+

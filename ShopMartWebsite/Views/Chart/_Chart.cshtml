@@ -1,0 +1,118 @@
+﻿@model ShopMartWebsite.Models.StatisticalViewModel
+@*
+    For more information on enabling MVC for empty projects, visit http://go.microsoft.com/fwlink/?LinkID=397860
+*@
+<script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+<input type="hidden" id="option" value="@Model.option" />
+<input type="hidden" id="monthSearch" value="@Model.monthSearch" />
+<input type="hidden" id="yearSearch" value="@Model.yearSearch" />
+
+<script type="text/javascript">
+
+    google.charts.load('current', {
+        packages: ['corechart', 'bar']
+    });
+    google.charts.setOnLoadCallback(LoadData);
+
+    function LoadData() {
+        var option = $('#option').val();
+        var monthSearch = $('#monthSearch').val();
+        var yearSearch = $('#yearSearch').val();
+        $.ajax({
+
+            url: 'Chart/ColumnChart',
+            dataType: "json",
+            data: { option: option, monthSearch: monthSearch, yearSearch: yearSearch },
+            type: "GET",
+            error: function (xhr, status, error) {
+                var err = eval("(" + xhr.responseText + ")");
+                toastr.error(err.message);
+            },
+            success: function (data) {
+                PopulationChart(data);
+                return false;
+            }
+        });
+        return false;
+    }
+
+    function PopulationChart(data) {
+        var dataArray = [
+            ['Ngày', 'Số Đơn Hàng', 'Tổng doanh thu']
+        ];
+        $.each(data, function (i, item) {
+            dataArray.push([item.Day, item.Count, item.Total]);
+        });
+        var data = google.visualization.arrayToDataTable(dataArray);
+        var option = $('#option').val();
+        if (option == "monthinyear") {
+            var options = {
+                title: 'Biểu đồ doanh thu và số đơn hàng ',
+                chartArea: {
+                    width: '100%'
+
+                },
+                colors: ['#b0120a', '#7b1fa2'],
+                series: {
+                    1: { targetAxisIndex: 1 },
+                    0: { targetAxisIndex: 0 }
+
+                },
+                hAxis: {
+                    title: 'Các Tháng trong năm',
+                    minValue: 0
+                },
+                vAxis: {
+                    1: { title: 'Tổng doanh thu' },
+                    0: { title: 'Số đơn hàng' }
+
+                },
+                axes: {
+                    y: {
+                        Count: { label: 'Số đơn hàng' }, // Left y-axis.
+                        Total: { side: 'right', label: 'Tổng doanh thu' } // Right y-axis.
+                    }
+                }
+            };
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+            return false;
+        }
+        else {
+            var options = {
+                title: 'Biểu đồ doanh thu và số đơn hàng ',
+                chartArea: {
+                    width: '92%'
+                },
+                colors: ['#b0120a', '#7b1fa2'],
+                series: {
+                    1: { targetAxisIndex: 1 },
+                    0: { targetAxisIndex: 0 }
+
+                },
+                hAxis: {
+                    title: 'Các Ngày trong tháng',
+                    minValue: 0
+                },
+                vAxis: {
+                    1: { title: 'Tổng doanh thu' },
+                    0: { title: 'Số đơn hàng' }
+
+                },
+                axes: {
+                    y: {
+                        Count: { label: 'Số đơn hàng' }, // Left y-axis.
+                        Total: { side: 'right', label: 'Tổng doanh thu' } // Right y-axis.
+                    }
+                }
+            };
+            var chart = new google.visualization.ColumnChart(document.getElementById('chart_div'));
+
+            chart.draw(data, options);
+            return false;
+        }
+
+    }
+</script>
+<div style="margin-top: 100px;" id="chart_div"></div>
